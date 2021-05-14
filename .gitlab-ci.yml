@@ -1,0 +1,18 @@
+image: java:latest
+
+stages:
+    - build
+    - test
+
+build:
+    stage: build
+    script: /usr/lib/jvm/java-8-openjdk-amd64/bin/javac -cp .:lib/junit-4.10.jar *.java
+    artifacts:
+        paths:
+            - LoginController.*
+            - LoginControllerTest.*
+            - TestRunner.*
+
+test:
+    stage: test
+    script: /usr/lib/jvm/java-8-openjdk-amd64/bin/java -cp .:lib/junit-4.10.jar TestRunner.java
