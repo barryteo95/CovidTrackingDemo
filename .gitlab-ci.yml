@@ -9,10 +9,10 @@ build:
     script: /usr/lib/jvm/java-8-openjdk-amd64/bin/javac -cp .:lib/junit-4.10.jar *.java
     artifacts:
         paths:
-            - /src/covidtrackingdemo/HealthOrganization/LoginController.*
-            - /test/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.*
-            - /test/TestRunner.*
+            - src/covidtrackingdemo/HealthOrganization/LoginController.*
+            - test/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.*
+            - test/TestRunner.*
 
 test:
     stage: test
-    script: /usr/lib/jvm/java-8-openjdk-amd64/bin/java -cp .:lib/junit-4.10.jar /test/TestRunner.java
+    script: /usr/lib/jvm/java-8-openjdk-amd64/bin/java -cp .:lib/junit-4.10.jar test/TestRunner.java
