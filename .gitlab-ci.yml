@@ -6,13 +6,14 @@ stages:
 
 build:
     stage: build
-    script: /usr/lib/jvm/java-8-openjdk-amd64/bin/javac -cp .:lib/junit-4.10.jar CovidTrackingDemo/src/covidtrackingdemo/Controller/HealthOrganization/LoginController.java CovidTrackingDemo/test/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.java CovidTrackingDemo/test/TestRunner.java CovidTrackingDemo/src/covidtrackingdemo/Entity/User.java
+    script: /usr/lib/jvm/java-8-openjdk-amd64/bin/javac -cp .:lib/junit-4.10.jar CovidTrackingDemo/src/covidtrackingdemo/Controller/HealthOrganization/LoginController.java CovidTrackingDemo/test/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.java CovidTrackingDemo/test/TestRunner.java CovidTrackingDemo/src/covidtrackingdemo/Entity/User.java CovidTrackingDemo/src/covidtrackingdemo/UserProfiles.java
     artifacts:
         paths:
             - LoginController.*
             - LoginControllerTest.*
             - TestRunner.*
             - User.*
+            - UserProfiles.*
 
 test:
     stage: test
