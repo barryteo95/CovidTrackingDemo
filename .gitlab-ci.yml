@@ -6,7 +6,7 @@ stages:
 
 build:
     stage: build
-    script: /usr/lib/jvm/java-8-openjdk-amd64/bin/javac -cp .:lib/junit-4.10.jar src/covidtrackingdemo/Controller/HealthOrganization/LoginController.java test/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.java test/TestRunner.java 
+    script: /usr/lib/jvm/java-8-openjdk-amd64/bin/javac -cp .:lib/junit-4.10.jar CovidTrackingDemo/src/covidtrackingdemo/Controller/HealthOrganization/LoginController.java CovidTrackingDemo/test/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.java CovidTrackingDemo/test/TestRunner.java 
     artifacts:
         paths:
             - LoginController.*
