@@ -8,7 +8,7 @@ build:
     stage: build
     script: 
         - cd CovidTrackingDemo
-        - /usr/lib/jvm/java-15-openjdk-amd64/bin/javac -cp .:lib/junit-4.10.jar src/covidtrackingdemo/Controller/HealthOrganization/LoginController.java src/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.java test/TestRunner.java src/covidtrackingdemo/Entity/User.java src/covidtrackingdemo/UserProfiles.java test/TestRunner.java
+        - javac -cp .:lib/junit-4.10.jar src/covidtrackingdemo/Controller/HealthOrganization/LoginController.java src/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.java test/TestRunner.java src/covidtrackingdemo/Entity/User.java src/covidtrackingdemo/UserProfiles.java test/TestRunner.java
     artifacts:
         paths:
             - CovidTrackingDemo/bin/TestRunner.class
@@ -22,4 +22,4 @@ test:
     stage: test
     script: 
         - cd CovidTrackingDemo
-        - /usr/lib/jvm/java-15-openjdk-amd64/bin/java -cp .:lib/junit-4.10.jar bin/TestRunner
+        - java -cp .:lib/junit-4.10.jar bin/TestRunner
