@@ -20,6 +20,5 @@ build:
 test:
     stage: test
     script: 
-        - cd CovidTrackingDemo/bin
-        - ls
-        - java -cp lib/junit-4.10.jar TestRunner
+        - cd CovidTrackingDemo
+        - java -cp lib/junit-4.10.jar bin/TestRunner
