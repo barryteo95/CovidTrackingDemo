@@ -1,5 +1,8 @@
 image: openjdk:14
 
+before_script:
+  - ant install
+
 stages:
     - build
     - test
