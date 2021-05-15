@@ -9,7 +9,7 @@ build:
     script: 
         - cd CovidTrackingDemo
         - javac -cp lib/junit-4.10.jar src/covidtrackingdemo/Controller/HealthOrganization/LoginController.java src/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.java test/TestRunner.java src/covidtrackingdemo/Entity/User.java src/covidtrackingdemo/UserProfiles.java test/TestRunner.java
-artifacts:
+    artifacts:
         paths:
             - CovidTrackingDemo/build/classes/covidtrackingdemo/Controller/HealthOrganization/LoginController.class
             - CovidTrackingDemo/build/classes/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.class
