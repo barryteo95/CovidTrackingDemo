@@ -18,7 +18,7 @@ import static org.junit.Assert.*;
  */
 public class LoginControllerTest {
     
-    private LoginController lc;
+    private LoginController instance;
     
     public LoginControllerTest() {
     }
@@ -34,13 +34,13 @@ public class LoginControllerTest {
     @Before
     public void setUp() {
         
-        this.lc = new LoginController();
+        this.instance = new LoginController();
     }
     
     @After
     public void tearDown() {
         
-        lc = null;
+        instance = null;
     }
 
     /**
@@ -55,9 +55,7 @@ public class LoginControllerTest {
         String password;
         String expResult;
         String result;
-        
-        LoginController instance = new LoginController();
-        
+                
         username = "admin1";
         password = "admin";
         expResult = "Admin";
