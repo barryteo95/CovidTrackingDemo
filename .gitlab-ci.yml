@@ -1,4 +1,4 @@
-image: ant:latest
+image: frekele/ant:1.10.1-jdk8
 
 stages:
     - build
