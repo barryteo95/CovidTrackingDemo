@@ -1,4 +1,8 @@
-image: java:latest
+image: openjdk:8
+
+before_script:
+    - apt-get update
+    - apt-get -y install ant
 
 stages:
     - build
@@ -6,15 +10,12 @@ stages:
 
 build:
     stage: build
-    script: /usr/lib/jvm/java-8-openjdk-amd64/bin/javac -cp .:CovidTrackingDemo/lib/junit-4.10.jar CovidTrackingDemo/src/covidtrackingdemo/Controller/HealthOrganization/LoginController.java CovidTrackingDemo/test/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.java CovidTrackingDemo/test/TestRunner.java CovidTrackingDemo/src/covidtrackingdemo/Entity/User.java CovidTrackingDemo/src/covidtrackingdemo/UserProfiles.java
-    artifacts:
-        paths:
-            - build/classes/covidtrackingdemo/Controller/HealthOrganization/LoginController.class
-            - LoginControllerTest.*
-            - TestRunner.*
-            - User.*
-            - CovidTrackingDemo/build/classes/covidtrackingdemo/UserProfiles.class
+    script: 
+        - cd CovidTrackingDemo
+        - ant compile
 
 test:
     stage: test
-    script: /usr/lib/jvm/java-8-openjdk-amd64/bin/java -cp .:CovidTrackingDemo/lib/junit-4.10.jar CovidTrackingDemo/build/test/classes/TestRunner
+    script: 
+        - cd CovidTrackingDemo
+        - ant runtest
