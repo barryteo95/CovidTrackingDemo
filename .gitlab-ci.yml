@@ -8,13 +8,14 @@ build:
     stage: build
     script: 
         - cd CovidTrackingDemo
-        - /usr/lib/jvm/java-8-openjdk-amd64/bin/javac -cp .:lib/junit-4.10.jar src/covidtrackingdemo/Controller/HealthOrganization/LoginController.java src/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.java test/TestRunner.java src/covidtrackingdemo/Entity/User.java
+        - /usr/lib/jvm/java-8-openjdk-amd64/bin/javac -cp .:lib/junit-4.10.jar src/covidtrackingdemo/Controller/HealthOrganization/LoginController.java src/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.java test/TestRunner.java src/covidtrackingdemo/Entity/User.java src/covidtrackingdemo/UserProfiles.java
     artifacts:
         paths:
             - bin/TestRunner.class
             - bin/covidtrackingdemo/Controller/HealthOrganization/LoginController.class
             - bin/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.class
-            - bin/covidtrackingdemo/Entity/User.java
+            - bin/covidtrackingdemo/Entity/User.class
+            - bin/covidtrackingdemo/UserProfiles.class
 
 test:
     stage: test
