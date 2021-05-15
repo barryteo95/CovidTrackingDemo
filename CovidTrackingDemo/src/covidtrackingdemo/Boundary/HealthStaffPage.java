@@ -564,17 +564,16 @@ public class HealthStaffPage extends javax.swing.JFrame {
         
         switch(vStats) {
 
-            case "Y" -> {
+            case "Y" : 
                 vStatsYesBtn.setSelected(true);
                 vStatsNoBtn.setSelected(false);
                 vaccinationDate.setEnabled(true);
-
-            }  
-            case "N" -> {
+                break;
+            case "N" : 
                 vStatsYesBtn.setSelected(false);
                 vStatsNoBtn.setSelected(true);
                 vaccinationDate.setEnabled(false);
-            }
+                break;
         }
         
         // Populate Vaccine Date
@@ -596,16 +595,16 @@ public class HealthStaffPage extends javax.swing.JFrame {
         
         switch(iStats) {
 
-            case "Y" -> {
+            case "Y" : 
                 iStatsYesBtn.setSelected(true);
                 iStatsNoBtn.setSelected(false);
                 infectionDate.setEnabled(true);
-            }  
-            case "N" -> {
+                break;
+            case "N" : 
                 iStatsYesBtn.setSelected(false);
                 iStatsNoBtn.setSelected(true);
                 infectionDate.setEnabled(false);
-            }
+                break;
         }
         
         // Populate Infection Date

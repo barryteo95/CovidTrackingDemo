@@ -359,7 +359,7 @@ public class AdminPage extends javax.swing.JFrame {
         
         switch (result) {
             
-            case JOptionPane.YES_OPTION -> { 
+            case JOptionPane.YES_OPTION :  
                 
                 CreateController cc = new CreateController();
         
@@ -392,8 +392,9 @@ public class AdminPage extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(AdminPage.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-            case JOptionPane.NO_OPTION -> {}
+                break;
+            case JOptionPane.NO_OPTION : 
+                break;
         }
     }//GEN-LAST:event_create
 
@@ -405,7 +406,7 @@ public class AdminPage extends javax.swing.JFrame {
         
         switch (result) {
             
-            case JOptionPane.YES_OPTION -> { 
+            case JOptionPane.YES_OPTION : 
                 
                 UpdateController uc = new UpdateController();
         
@@ -438,8 +439,9 @@ public class AdminPage extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(AdminPage.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-            case JOptionPane.NO_OPTION -> {}
+                break;
+            case JOptionPane.NO_OPTION :
+                break;
         }
     }//GEN-LAST:event_update
 
@@ -451,7 +453,7 @@ public class AdminPage extends javax.swing.JFrame {
         
         switch (result) {
             
-            case JOptionPane.YES_OPTION -> { 
+            case JOptionPane.YES_OPTION : 
                 
                 SuspendController sc = new SuspendController();
                 
@@ -476,8 +478,9 @@ public class AdminPage extends javax.swing.JFrame {
                 } catch (IOException ex) {
                     Logger.getLogger(AdminPage.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-            case JOptionPane.NO_OPTION -> {}
+                break;
+            case JOptionPane.NO_OPTION : 
+                break;
         }
     }//GEN-LAST:event_suspend
 
@@ -493,18 +496,18 @@ public class AdminPage extends javax.swing.JFrame {
 
         switch(privilegeCurrent) {
 
-            case "Public User" -> {
+            case "Public User" : 
                 privilege.setSelectedIndex(0);
-            }
-            case "Business Owner" -> {
+                break;
+            case "Business Owner" : 
                 privilege.setSelectedIndex(1);
-            }
-            case "Health Staff" -> {
+                break;
+            case "Health Staff" : 
                 privilege.setSelectedIndex(2);
-            }
-            case "Admin" -> {
+                break;
+            case "Admin" : 
                 privilege.setSelectedIndex(3);
-            }
+                break;
         }
 
         fname.setText(model.getValueAt(i, 3).toString());

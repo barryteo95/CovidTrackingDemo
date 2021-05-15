@@ -118,32 +118,32 @@ public class LoginPage extends javax.swing.JFrame {
             
             switch(accPrivilege) {
                 
-                case "Admin" -> {
+                case "Admin" : 
                     JOptionPane.showMessageDialog(this, "Valid credentials. Admin");
                     AdminPage admin = new AdminPage();
                     admin.setVisible(true);
-                }
-                case "Public User" -> {
+                    break;
+                case "Public User" : 
                     JOptionPane.showMessageDialog(this, "Valid credentials. Public user");
                     PublicUserPage publicUser = new PublicUserPage();
                     publicUser.setVisible(true);
                     publicUser.setUsername(username.getText());
-                }
-                case "Business Owner" -> {
+                    break;
+                case "Business Owner" : 
                     JOptionPane.showMessageDialog(this, "Valid credentials. Business owner");
                     BusinessOwnerPage businessOwner = new BusinessOwnerPage();
                     businessOwner.setVisible(true);
                     businessOwner.setUsername(username.getText());
-                }
-                case "Health Staff" -> {
+                    break;
+                case "Health Staff" : 
                     JOptionPane.showMessageDialog(this, "Valid credentials. Health staff");
                     HealthStaffPage healthStaff = new HealthStaffPage();
                     healthStaff.setVisible(true);
                     healthStaff.setHsUsername(username.getText());
-                }
-                default -> {
+                    break;
+                default : 
                     JOptionPane.showMessageDialog(this, "Invalid credentials.");
-                }
+                    break;
             }
             
             username.setText("");
