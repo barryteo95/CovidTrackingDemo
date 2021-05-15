@@ -1,9 +1,5 @@
 image: openjdk:14
 
-before_script:
-    - apt-get update
-    - apt-get -y install ant
-
 stages:
     - build
     - test
