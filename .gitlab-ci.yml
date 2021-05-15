@@ -1,4 +1,4 @@
-image: java:latest
+image: frekele/java:jdk8
 
 stages:
     - build
@@ -8,14 +8,7 @@ build:
     stage: build
     script: 
         - cd CovidTrackingDemo
-        - javac -cp lib/junit-4.10.jar src/covidtrackingdemo/Controller/HealthOrganization/LoginController.java src/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.java test/TestRunner.java src/covidtrackingdemo/Entity/User.java src/covidtrackingdemo/UserProfiles.java test/TestRunner.java
-    artifacts:
-        paths:
-            - CovidTrackingDemo/bin/covidtrackingdemo/Controller/HealthOrganization/LoginController.class
-            - CovidTrackingDemo/bin/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.class
-            - CovidTrackingDemo/bin/covidtrackingdemo/Entity/User.class
-            - CovidTrackingDemo/bin/covidtrackingdemo/UserProfiles.class
-            - CovidTrackingDemo/bin/TestRunner.class
+        - ant compile
 
 test:
     stage: test
