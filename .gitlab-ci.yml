@@ -1,4 +1,4 @@
-image: frekele/ant:1.10.1-jdk8
+image: java:latest
 
 stages:
     - build
@@ -8,10 +8,18 @@ build:
     stage: build
     script: 
         - cd CovidTrackingDemo
-        - ant compile
+        - /usr/lib/jvm/java-8-openjdk-amd64/bin/javac -cp .:lib/junit-4.10.jar src/covidtrackingdemo/Controller/HealthOrganization/LoginController.java src/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.java test/TestRunner.java src/covidtrackingdemo/Entity/User.java src/covidtrackingdemo/UserProfiles.java test/TestRunner.java
+    artifacts:
+        paths:
+            - CovidTrackingDemo/bin/TestRunner.class
+            - CovidTrackingDemo/bin/covidtrackingdemo/Controller/HealthOrganization/LoginController.class
+            - CovidTrackingDemo/bin/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.class
+            - CovidTrackingDemo/bin/covidtrackingdemo/Entity/User.class
+            - CovidTrackingDemo/bin/covidtrackingdemo/UserProfiles.class
+            - CovidTrackingDemo/bin/TestRunner.class
 
 test:
     stage: test
     script: 
         - cd CovidTrackingDemo
-        - ant runtest
+        - /usr/lib/jvm/java-8-openjdk-amd64/bin/java -cp .:lib/junit-4.10.jar bin/TestRunner
