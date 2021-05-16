@@ -6,7 +6,7 @@ services:
 before_script:
     - docker run --rm -i ubuntu bash
     - apk update 
-    - apk add ant
+    - apk add apache-ant
     
 build:
     stage: build
