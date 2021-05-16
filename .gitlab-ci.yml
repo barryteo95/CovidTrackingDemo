@@ -1,5 +1,5 @@
-image: frekele/java:jdk8
+image: maven:3.6.3-jdk-11
 build:
     stage: build
     script: 
-        - ant --help
+        - maven --help
