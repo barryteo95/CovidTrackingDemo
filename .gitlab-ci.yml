@@ -1,17 +1,25 @@
-image: java:latest
+image: docker:latest
+
+services:
+    - docker:dind
+
+before_script:
+    - docker run --rm -i ubuntu bash
+    - apk update 
+    - apk add apache-ant
+    - apk add openjdk8
 
 stages:
     - build
     - test
-
+    
 build:
     stage: build
-    script: 
-        - cd CovidTrackingDemo
-        - javac -cp .:lib/junit-4.10.jar src/covidtrackingdemo/Controller/HealthOrganization/LoginController.java src/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.java test/TestRunner.java src/covidtrackingdemo/Entity/User.java src/covidtrackingdemo/UserProfiles.java test/TestRunner.java
+    script:
+        - cd CovidTrackingDemo 
+        - ant compile
     artifacts:
         paths:
-            - CovidTrackingDemo/bin/TestRunner.class
             - CovidTrackingDemo/bin/covidtrackingdemo/Controller/HealthOrganization/LoginController.class
             - CovidTrackingDemo/bin/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.class
             - CovidTrackingDemo/bin/covidtrackingdemo/Entity/User.class
@@ -22,4 +30,4 @@ test:
     stage: test
     script: 
         - cd CovidTrackingDemo
-        - java -cp .:lib/junit-4.10.jar bin/TestRunner
+        - ant runtest
