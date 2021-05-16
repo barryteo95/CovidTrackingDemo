@@ -2,4 +2,4 @@ image: docker:latest
 build:
     stage: build
     script: 
-        - docker run frekele/ant
+        - docker pull frekele/ant
