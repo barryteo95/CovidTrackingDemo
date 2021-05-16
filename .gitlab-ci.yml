@@ -9,4 +9,4 @@ before_script:
 build:
     stage: build
     script:
-        - docker echo "Hello world"
+        - docker ps -a
