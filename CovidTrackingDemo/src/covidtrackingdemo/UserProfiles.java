@@ -27,8 +27,10 @@ public class UserProfiles {
     final String path; 
     
     public UserProfiles() {
-       
+        
         path = "dataset\\UserProfiles.csv";
+        
+        System.out.println(path);
     }
     
     // Insert 

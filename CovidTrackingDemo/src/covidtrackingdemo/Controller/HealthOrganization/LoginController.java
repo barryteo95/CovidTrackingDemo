@@ -18,6 +18,8 @@ public class LoginController {
     
     public String login(String username, String password) throws IOException {
     
+        System.out.println("login");
+        
         User user = new User();
         return user.login(username, password);
     }
