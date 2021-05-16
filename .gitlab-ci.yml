@@ -1,24 +1,6 @@
-image: java:latest
-
-stages:
-    - build
-    - test
+image: docker:latest
 
 build:
     stage: build
     script: 
-        - cd CovidTrackingDemo
-        - javac -cp lib/junit-4.10.jar src/covidtrackingdemo/Controller/HealthOrganization/LoginController.java src/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.java test/TestRunner.java src/covidtrackingdemo/Entity/User.java src/covidtrackingdemo/UserProfiles.java test/TestRunner.java
-    artifacts:
-        paths:
-            - CovidTrackingDemo/build/classes/covidtrackingdemo/Controller/HealthOrganization/LoginController.class
-            - CovidTrackingDemo/build/classes/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.class
-            - CovidTrackingDemo/build/classes/covidtrackingdemo/Entity/User.class
-            - CovidTrackingDemo/build/classes/covidtrackingdemo/UserProfiles.class
-            - CovidTrackingDemo/build/test/classes/TestRunner.class
-
-test:
-    stage: test
-    script: 
-        - cd CovidTrackingDemo
-        - java -cp lib/junit-4.10.jar build/test/classes/TestRunner
+        - ant --version
