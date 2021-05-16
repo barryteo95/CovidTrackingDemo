@@ -9,4 +9,5 @@ before_script:
 build:
     stage: build
     script:
-        - docker ps -a
+        - docker exec -it 51a25d9e4767 bash
+        - echo hello
