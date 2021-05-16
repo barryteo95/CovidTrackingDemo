@@ -17,7 +17,7 @@ build:
     stage: build
     script:
         - cd CovidTrackingDemo 
-        - ant compile
+        - ant jar
     artifacts:
         paths:
             - CovidTrackingDemo/bin/covidtrackingdemo/Controller/HealthOrganization/LoginController.class
