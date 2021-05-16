@@ -4,11 +4,11 @@ services:
     - docker:dind
 
 before_script:
-    - docker run ubuntu
-    - docker apt-get update 
-    - docker apt-get install ant
+    - docker run -it ubuntu
+    - apt-get update 
+    - apt-get install ant
     
 build:
     stage: build
     script:
-        - docker ant -version
+        - ant -version
