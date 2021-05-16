@@ -7,9 +7,10 @@ before_script:
     - docker run --rm -i ubuntu bash
     - apk update 
     - apk add apache-ant
+    - apk add openjdk8
     
 build:
     stage: build
     script:
         - cd CovidTrackingDemo 
-        - ant runtest
+        - ant compile
