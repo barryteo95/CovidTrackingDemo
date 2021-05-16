@@ -4,9 +4,9 @@ services:
     - docker:dind
 
 before_script:
-    - docker run frekele/ant 
+    - docker run -it ubuntu bash
     
 build:
     stage: build
     script:
-        - docker ant --help
+        - lsb_release -a
