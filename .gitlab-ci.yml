@@ -18,6 +18,13 @@ build:
     script:
         - cd CovidTrackingDemo 
         - ant compile
+    artifacts:
+        paths:
+            - CovidTrackingDemo/bin/covidtrackingdemo/Controller/HealthOrganization/LoginController.class
+            - CovidTrackingDemo/bin/covidtrackingdemo/Controller/HealthOrganization/LoginControllerTest.class
+            - CovidTrackingDemo/bin/covidtrackingdemo/Entity/User.class
+            - CovidTrackingDemo/bin/covidtrackingdemo/UserProfiles.class
+            - CovidTrackingDemo/bin/TestRunner.class
 
 test:
     stage: test
