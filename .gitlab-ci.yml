@@ -1,6 +1,6 @@
 image: docker:latest
 
-before@script:
+before_script:
     - docker pull frekele/ant
 
 build:
