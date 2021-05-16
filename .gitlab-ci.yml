@@ -1,4 +1,7 @@
-image: frekele/java:jdk8
+image: docker:latest
+
+before@script:
+    - docker pull frekele/ant
 
 build:
     stage: build
