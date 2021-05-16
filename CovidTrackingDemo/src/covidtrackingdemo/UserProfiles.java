@@ -28,9 +28,7 @@ public class UserProfiles {
     
     public UserProfiles() {
         
-        path = "dataset/UserProfiles.csv";
-        
-        System.out.println(System.getProperty("user.dir"));
+        path = "dataset/UserProfiles.csv";        
     }
     
     // Insert 
@@ -91,6 +89,8 @@ public class UserProfiles {
     public User select(String username) throws IOException {
         
         try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
+            
+            System.out.println("UserProfiles - select()");
             
             csvReader.readLine();
             

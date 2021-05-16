@@ -49,7 +49,7 @@ public class LoginControllerTest {
     @Test
     public void testLogin() throws Exception {
         
-        System.out.println("testLogin");
+        System.out.println("LoginControllerTest - testLogin()");
        
         String username;
         String password;

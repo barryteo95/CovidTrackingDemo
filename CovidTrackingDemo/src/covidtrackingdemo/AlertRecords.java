@@ -6,7 +6,6 @@
 package covidtrackingdemo;
 
 import covidtrackingdemo.Entity.Alert;
-import covidtrackingdemo.Entity.PublicUser;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -25,7 +24,7 @@ public class AlertRecords {
 
     public AlertRecords() {
        
-        path = "dataset\\AlertRecords.csv";
+        path = "dataset/AlertRecords.csv";
     }
     
     public ArrayList<Alert> select() throws FileNotFoundException, IOException {

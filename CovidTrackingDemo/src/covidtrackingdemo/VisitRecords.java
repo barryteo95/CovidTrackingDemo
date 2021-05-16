@@ -24,7 +24,7 @@ public class VisitRecords {
     
     public VisitRecords() {
        
-        path = "dataset\\VisitRecords.csv";
+        path = "dataset/VisitRecords.csv";
     }
     
     public void insert(String businessOwner, String publicUser, String date) throws IOException {

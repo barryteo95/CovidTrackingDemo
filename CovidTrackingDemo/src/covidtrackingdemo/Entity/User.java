@@ -39,7 +39,7 @@ public class User {
     
     public String login(String username, String password) throws FileNotFoundException, IOException {
                 
-        System.out.println("login");
+        System.out.println("User - login()");
         
         UserProfiles db = new UserProfiles();
         
