@@ -8,9 +8,19 @@ before_script:
     - apk update 
     - apk add apache-ant
     - apk add openjdk8
+
+stages:
+    - build
+    - test
     
 build:
     stage: build
     script:
         - cd CovidTrackingDemo 
         - ant compile
+
+test:
+    stage: test
+    script: 
+        - cd CovidTrackingDemo
+        - ant runtest
