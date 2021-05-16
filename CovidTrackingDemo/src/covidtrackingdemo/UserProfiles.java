@@ -28,7 +28,7 @@ public class UserProfiles {
     
     public UserProfiles() {
         
-        path = "dataset\\UserProfiles.csv";
+        path = "dataset/UserProfiles.csv";
         
         System.out.println(System.getProperty("user.dir"));
     }
