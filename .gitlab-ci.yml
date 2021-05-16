@@ -25,6 +25,7 @@ build:
             - CovidTrackingDemo/bin/covidtrackingdemo/Entity/User.class
             - CovidTrackingDemo/bin/covidtrackingdemo/UserProfiles.class
             - CovidTrackingDemo/bin/TestRunner.class
+            - CovidTrackingDemo/dataset/UserProfiles.csv
 
 test:
     stage: test
