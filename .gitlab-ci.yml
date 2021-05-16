@@ -4,9 +4,9 @@ services:
     - docker:dind
 
 before_script:
-    - docker run -it ubuntu bash
+    - docker run ubuntu 
     
 build:
     stage: build
     script:
-        - lsb_release -a
+        - docker echo "Hello world"
