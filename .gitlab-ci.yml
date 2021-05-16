@@ -1,6 +1,5 @@
-image: frekele/java:jdk8
-
+image: docker/latest
 build:
     stage: build
     script: 
-        - ant --help
+        - docker run frekele/ant
