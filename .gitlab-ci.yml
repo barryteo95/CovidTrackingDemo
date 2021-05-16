@@ -2,8 +2,11 @@ image: docker:latest
 
 services:
     - docker:dind
+
+before_script:
+    - docker run frekele/ant 
     
 build:
     stage: build
     script:
-        - docker run hello-world
+        - docker ant --help
