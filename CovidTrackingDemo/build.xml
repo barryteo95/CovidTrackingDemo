@@ -27,6 +27,7 @@
 	<path id="classpath">
 		<fileset dir="${lib.dir}" includes="*.jar"/>
 		<pathelement location="${bin.dir}"/>
+		<pathelement location="dataset"/>
 	</path>
 	
 	<target name="compile" depends="create">
