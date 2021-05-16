@@ -11,4 +11,5 @@ before_script:
 build:
     stage: build
     script:
+        - cd CovidTrackingDemo 
         - ant runtest
