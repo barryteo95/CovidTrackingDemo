@@ -4,9 +4,9 @@ services:
     - docker:dind
 
 before_script:
-    - docker pull -it frekele/ant 
+    - docker run frekele/ant 
     
 build:
     stage: build
     script:
-        - ant --help
+        - docker ant --help
