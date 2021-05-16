@@ -4,7 +4,7 @@ services:
     - docker:dind
 
 before_script:
-    - docker run -it ubuntu
+    - docker run --rm -i ubuntu bash
     - apt-get update 
     - apt-get install ant
     
