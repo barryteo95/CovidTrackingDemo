@@ -36,11 +36,23 @@
 		</javac>
 	</target>
 	
+	<target name="jar" depends="compile">
+        <mkdir dir="${bin.dir}/jar"/>
+        <jar destfile="${bin.dir}/jar/${ant.project.name}.jar" basedir="${bin.dir}">
+            <manifest>
+                <attribute name="Main-Class" value="Main"/>
+            </manifest>
+        </jar>
+    </target>
+	
+	<path id="application" location="${bin.dir}/jar/${ant.project.name}.jar"/>
+	
 	<!-- "ant runtest" to run the test -->
-	<target name="runtest" depends="compile">
+	<target name="runtest" depends="jar">
 		<java fork="true" classname="TestRunner">
             <classpath>
                 <path refid="classpath"/>
+                <path refid="application"/>
             </classpath>
         </java>
 	</target>
@@ -54,20 +66,9 @@
 		</junit>
 	</target>
 	-->
-	
-	<target name="jar" depends="compile">
-        <mkdir dir="${bin.dir}/jar"/>
-        <jar destfile="${bin.dir}/jar/${ant.project.name}.jar" basedir="${bin.dir}">
-            <manifest>
-                <attribute name="Main-Class" value="Main"/>
-            </manifest>
-        </jar>
-    </target>
-	
-	<path id="application" location="${bin.dir}/jar/${ant.project.name}.jar"/>
 
 	<!-- "ant runjar" to run the application -->
-	<target name="runjar" depends="compile">
+	<target name="runjar" depends="jar">
 		<java fork="true" classname="Main">
             <classpath>
                 <path refid="classpath"/>
