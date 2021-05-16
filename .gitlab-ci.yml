@@ -5,8 +5,8 @@ services:
 
 before_script:
     - docker run --rm -i ubuntu bash
-    - apt-get update 
-    - apt-get install ant
+    - apk update 
+    - apk add ant
     
 build:
     stage: build
