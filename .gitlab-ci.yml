@@ -1,3 +1,9 @@
+image: docker:stable
+
+services:
+    - docker-dind
+
 build:
+    stage: build
     script:
-        - ruby -v
+        - docker run hello-world
