@@ -41,7 +41,6 @@
 		<java fork="true" classname="TestRunner">
             <classpath>
                 <path refid="classpath"/>
-                <path refid="application"/>
             </classpath>
         </java>
 	</target>
