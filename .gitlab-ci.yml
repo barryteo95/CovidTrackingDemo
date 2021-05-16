@@ -3,4 +3,4 @@ image: docker:latest
 build:
     stage: build
     script: 
-        - ant --version
+        - docker ant --version
