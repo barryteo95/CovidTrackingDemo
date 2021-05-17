@@ -16,11 +16,11 @@ import static org.junit.Assert.*;
  *
  * @author User
  */
-public class LoginControllerTest {
+public class LoginCtrlerTest {
     
-    private LoginController instance;
+    private LoginCtrler instance;
     
-    public LoginControllerTest() {
+    public LoginCtrlerTest() {
     }
     
     @BeforeClass
@@ -34,7 +34,7 @@ public class LoginControllerTest {
     @Before
     public void setUp() {
         
-        this.instance = new LoginController();
+        this.instance = new LoginCtrler();
     }
     
     @After

@@ -12,9 +12,9 @@ import java.io.IOException;
  *
  * @author User
  */
-public class LoginController {
+public class LoginCtrler {
     
-    public LoginController() {}
+    public LoginCtrler() {}
     
     public String login(String username, String password) throws IOException {
     

@@ -6,7 +6,7 @@
 
 package covidtrackingdemo.Boundary;
 
-import covidtrackingdemo.Controller.HealthOrganization.LoginController;
+import covidtrackingdemo.Controller.HealthOrganization.LoginCtrler;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.logging.Level;
@@ -111,7 +111,7 @@ public class LoginPage extends javax.swing.JFrame {
         
         String accPrivilege;
         
-        LoginController lc = new LoginController();
+        LoginCtrler lc = new LoginCtrler();
         
         try {
             accPrivilege = lc.login(usernameField.getText(), passwordField.getText());
