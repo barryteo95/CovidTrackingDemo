@@ -5,16 +5,13 @@
  */
 package covidtrackingdemo.Boundary;
 
-import covidtrackingdemo.Controller.BusinessOwner.AcknowledgeController;
-import covidtrackingdemo.Controller.BusinessOwner.ShowVisitorController;
-import covidtrackingdemo.Controller.BusinessOwner.ShowAlertController;
+import covidtrackingdemo.Controller.BusinessOwner.AckAlertCtrler;
+import covidtrackingdemo.Controller.BusinessOwner.ShowVisitorCtrler;
+import covidtrackingdemo.Controller.BusinessOwner.ShowAlertCtrler;
 import covidtrackingdemo.Entity.Alert;
-import covidtrackingdemo.Entity.User;
 import covidtrackingdemo.Entity.Visit;
-import java.awt.List;
 import java.io.IOException;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.logging.Level;
@@ -46,22 +43,22 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        headerLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        alertList = new javax.swing.JList<>();
+        expAlertList = new javax.swing.JList<>();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
+        visitorTable = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        ackBtn = new javax.swing.JButton();
+        ackExpAlertBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        date = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        jButton1 = new javax.swing.JButton();
-        visitorCount = new javax.swing.JLabel();
-        welcomeMsg = new javax.swing.JLabel();
+        dateLabel = new javax.swing.JLabel();
+        dateField = new com.toedter.calendar.JDateChooser();
+        showVisitorBtn = new javax.swing.JButton();
+        visitorCountLabel = new javax.swing.JLabel();
+        welcomeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
@@ -72,12 +69,12 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 204, 102));
         jPanel1.setPreferredSize(new java.awt.Dimension(120, 120));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("BUSINESS OWNER");
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel7.setPreferredSize(new java.awt.Dimension(127, 48));
+        headerLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        headerLabel.setForeground(new java.awt.Color(255, 255, 255));
+        headerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        headerLabel.setText("BUSINESS OWNER");
+        headerLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        headerLabel.setPreferredSize(new java.awt.Dimension(127, 48));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -85,14 +82,14 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+                .addComponent(headerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(headerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -107,8 +104,8 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(312, 200));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        alertList.setPreferredSize(new java.awt.Dimension(252, 80));
-        jScrollPane1.setViewportView(alertList);
+        expAlertList.setPreferredSize(new java.awt.Dimension(252, 80));
+        jScrollPane1.setViewportView(expAlertList);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
@@ -124,7 +121,7 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
 
         jPanel3.setPreferredSize(new java.awt.Dimension(472, 264));
 
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        visitorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -140,7 +137,7 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jScrollPane2.setViewportView(jTable);
+        jScrollPane2.setViewportView(visitorTable);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -169,12 +166,12 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
 
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        ackBtn.setText("ACKNOWLEDGE");
-        ackBtn.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        ackBtn.setPreferredSize(new java.awt.Dimension(252, 23));
-        ackBtn.addActionListener(new java.awt.event.ActionListener() {
+        ackExpAlertBtn.setText("ACKNOWLEDGE");
+        ackExpAlertBtn.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        ackExpAlertBtn.setPreferredSize(new java.awt.Dimension(252, 23));
+        ackExpAlertBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                acknowledge(evt);
+                ackAlert(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -182,7 +179,7 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(7, 0, 7, 0);
-        jPanel4.add(ackBtn, gridBagConstraints);
+        jPanel4.add(ackExpAlertBtn, gridBagConstraints);
 
         logoutBtn.setText("LOGOUT");
         logoutBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -209,7 +206,7 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         jPanel5.setPreferredSize(new java.awt.Dimension(34, 30));
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
-        date.setText("Date");
+        dateLabel.setText("Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
@@ -217,19 +214,19 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 7.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
-        jPanel5.add(date, gridBagConstraints);
+        jPanel5.add(dateLabel, gridBagConstraints);
 
-        jDateChooser1.setPreferredSize(new java.awt.Dimension(100, 30));
+        dateField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 8.0;
-        jPanel5.add(jDateChooser1, gridBagConstraints);
+        jPanel5.add(dateField, gridBagConstraints);
 
-        jButton1.setText("SHOW");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        showVisitorBtn.setText("SHOW");
+        showVisitorBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 showVisitor(evt);
             }
@@ -237,7 +234,7 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        jPanel5.add(jButton1, gridBagConstraints);
+        jPanel5.add(showVisitorBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -246,49 +243,49 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(15, 10, 0, 10);
         getContentPane().add(jPanel5, gridBagConstraints);
 
-        visitorCount.setText("Visitor Count");
+        visitorCountLabel.setText("Visitor Count");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
-        getContentPane().add(visitorCount, gridBagConstraints);
+        getContentPane().add(visitorCountLabel, gridBagConstraints);
 
-        welcomeMsg.setText("Welcome,  Test");
+        welcomeLabel.setText("Welcome,  Test");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        getContentPane().add(welcomeMsg, gridBagConstraints);
+        getContentPane().add(welcomeLabel, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
     public void setUsername(String username) throws IOException, ParseException {
     
-        welcomeMsg.setText("Welcome, " + username);
+        welcomeLabel.setText("Welcome, " + username);
         
         this.currentUser = username;
         
         showAlert();
        
-        jDateChooser1.setDate(new Date());
+        dateField.setDate(new Date());
     }
 
-    private void acknowledge(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_acknowledge
+    private void ackAlert(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ackAlert
         
         ArrayList<String> selectedList = new ArrayList<>();
         
-        int[] selectedIx = alertList.getSelectedIndices();
+        int[] selectedIx = expAlertList.getSelectedIndices();
         
         for (int i = 0; i < selectedIx.length; i++) {
             
-            String selected = alertList.getModel().getElementAt(selectedIx[i]);
+            String selected = expAlertList.getModel().getElementAt(selectedIx[i]);
             
             selectedList.add(currentUser + " " + selected);
         }
         
-        AcknowledgeController ac = new AcknowledgeController();
+        AckAlertCtrler ac = new AckAlertCtrler();
             
         try {
-            ac.acknowledge(selectedList);
+            ac.ackAlert(selectedList);
             
             JOptionPane.showMessageDialog(this, "Alert acknowledged");
             
@@ -297,7 +294,7 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         } catch (IOException ex) {
             Logger.getLogger(BusinessOwnerPage.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_acknowledge
+    }//GEN-LAST:event_ackAlert
 
     private void logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout
         // TODO add your handling code here:
@@ -310,28 +307,28 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
     private void showVisitor(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showVisitor
         // TODO add your handling code here:
         
-        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) visitorTable.getModel();
         model.setRowCount(0);
         
-        ShowVisitorController sv = new ShowVisitorController();
+        ShowVisitorCtrler sv = new ShowVisitorCtrler();
             
         ArrayList<Visit> visitorList;
        
         try {
-            visitorList = sv.showVisitor(jDateChooser1.getDate(), currentUser);
+            visitorList = sv.showVisitor(dateField.getDate(), currentUser);
             
             Object rowData[] = new Object[2];
         
             for (Visit visitor : visitorList) {
 
-                rowData[0] = visitor.getPublicUser();
+                rowData[0] = visitor.getPuUsername();
                 rowData[1] = visitor.getVisitedDate();
 
                 model.addRow(rowData);
             }
 
             String count = Integer.toString(model.getRowCount());
-            visitorCount.setText("Visitor Count: " + count);
+            visitorCountLabel.setText("Visitor Count: " + count);
         
         } catch (IOException ex) {
             Logger.getLogger(BusinessOwnerPage.class.getName()).log(Level.SEVERE, null, ex);
@@ -344,7 +341,7 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
             
         DefaultListModel<String> model = new DefaultListModel<>(); 
          
-        ShowAlertController sac = new ShowAlertController();
+        ShowAlertCtrler sac = new ShowAlertCtrler();
         ArrayList<Alert> aList = sac.showAlert(currentUser);
          
         for (Alert a : aList) {
@@ -352,7 +349,7 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
             model.addElement(a.getAlertType() + " alert sent on " + a.getAlertDate());
         }
          
-        alertList.setModel(model);
+        expAlertList.setModel(model);
     }
     
     /**
@@ -395,12 +392,11 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton ackBtn;
-    private javax.swing.JList<String> alertList;
-    private javax.swing.JLabel date;
-    private javax.swing.JButton jButton1;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton ackExpAlertBtn;
+    private com.toedter.calendar.JDateChooser dateField;
+    private javax.swing.JLabel dateLabel;
+    private javax.swing.JList<String> expAlertList;
+    private javax.swing.JLabel headerLabel;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -408,9 +404,10 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable;
     private javax.swing.JButton logoutBtn;
-    private javax.swing.JLabel visitorCount;
-    private javax.swing.JLabel welcomeMsg;
+    private javax.swing.JButton showVisitorBtn;
+    private javax.swing.JLabel visitorCountLabel;
+    private javax.swing.JTable visitorTable;
+    private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 }

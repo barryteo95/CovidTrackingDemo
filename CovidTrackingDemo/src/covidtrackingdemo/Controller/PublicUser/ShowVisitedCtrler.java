@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package covidtrackingdemo.Controller.BusinessOwner;
+package covidtrackingdemo.Controller.PublicUser;
 
 import covidtrackingdemo.Entity.Visit;
 import java.io.IOException;
@@ -17,30 +17,30 @@ import java.util.Iterator;
  *
  * @author User
  */
-public class ShowVisitorController {
+public class ShowVisitedCtrler {
     
-    public ShowVisitorController() {}
+    public ShowVisitedCtrler() {}
     
-    public ArrayList<Visit> showVisitor(java.util.Date date, String currentUser) throws IOException, ParseException {
+    public ArrayList<Visit> showVisited(java.util.Date date, String currentUser) throws IOException, ParseException {
         
         Visit visit = new Visit();
-        ArrayList<Visit> visitorList = visit.display();
+        ArrayList<Visit> visitedList = visit.display();
         
-        Iterator itr = visitorList.iterator();
+        Iterator itr = visitedList.iterator();
         
         while (itr.hasNext()) {
             
             Visit v = (Visit) itr.next();
             
             Date visitDate = new SimpleDateFormat("dd/MM/yyyy").parse(v.getVisitedDate());
-            String username = v.getBusinessOwner();
-                                
+            String username = v.getPuUsername();
+            
             if (!(date.equals(visitDate) && currentUser.equals(username))) {
                 
                 itr.remove();
             }            
         }
 
-        return visitorList;
+        return visitedList;
     }
 }

@@ -5,10 +5,10 @@
  */
 package covidtrackingdemo.Boundary;
 
-import covidtrackingdemo.Controller.HealthOrganization.CreateController;
-import covidtrackingdemo.Controller.HealthOrganization.DisplayController;
-import covidtrackingdemo.Controller.HealthOrganization.SuspendController;
-import covidtrackingdemo.Controller.HealthOrganization.UpdateController;
+import covidtrackingdemo.Controller.HealthOrganization.CreateAccCtrler;
+import covidtrackingdemo.Controller.HealthOrganization.ShowUserProfilesCtrler;
+import covidtrackingdemo.Controller.HealthOrganization.SuspendAccCtrler;
+import covidtrackingdemo.Controller.HealthOrganization.UpdateAccCtrler;
 import covidtrackingdemo.Entity.User;
 import java.awt.Color;
 import java.io.IOException;
@@ -27,7 +27,7 @@ public class AdminPage extends javax.swing.JFrame {
     public AdminPage() throws IOException {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        display(); 
+        showUserProfiles(); 
     }
 
     /**
@@ -41,25 +41,25 @@ public class AdminPage extends javax.swing.JFrame {
         java.awt.GridBagConstraints gridBagConstraints;
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        headerLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        username = new javax.swing.JTextField();
-        password = new javax.swing.JTextField();
-        fname = new javax.swing.JTextField();
-        lname = new javax.swing.JTextField();
-        privilege = new javax.swing.JComboBox<>();
+        usernameLabel = new javax.swing.JLabel();
+        passwordLabel = new javax.swing.JLabel();
+        firstNameLabel = new javax.swing.JLabel();
+        lastNameLabel = new javax.swing.JLabel();
+        privilegeLabel = new javax.swing.JLabel();
+        usernameField = new javax.swing.JTextField();
+        passwordField = new javax.swing.JTextField();
+        firstNameField = new javax.swing.JTextField();
+        lastNameField = new javax.swing.JTextField();
+        privilegeComboBox = new javax.swing.JComboBox<>();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
+        userProfilesTable = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
-        createBtn = new javax.swing.JButton();
-        updateBtn = new javax.swing.JButton();
-        suspendBtn = new javax.swing.JButton();
+        createAccBtn = new javax.swing.JButton();
+        updateAccBtn = new javax.swing.JButton();
+        suspendAccBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -73,12 +73,12 @@ public class AdminPage extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 204, 102));
         jPanel1.setPreferredSize(new java.awt.Dimension(120, 120));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("ADMIN");
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel7.setPreferredSize(new java.awt.Dimension(127, 48));
+        headerLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        headerLabel.setForeground(new java.awt.Color(255, 255, 255));
+        headerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        headerLabel.setText("ADMIN");
+        headerLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        headerLabel.setPreferredSize(new java.awt.Dimension(127, 48));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -86,14 +86,14 @@ public class AdminPage extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
+                .addComponent(headerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(headerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -108,63 +108,63 @@ public class AdminPage extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(312, 200));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setText("Username");
-        jLabel1.setPreferredSize(new java.awt.Dimension(100, 30));
+        usernameLabel.setText("Username");
+        usernameLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 15);
-        jPanel2.add(jLabel1, gridBagConstraints);
+        jPanel2.add(usernameLabel, gridBagConstraints);
 
-        jLabel2.setText("Password");
-        jLabel2.setPreferredSize(new java.awt.Dimension(100, 30));
+        passwordLabel.setText("Password");
+        passwordLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
-        jPanel2.add(jLabel2, gridBagConstraints);
+        jPanel2.add(passwordLabel, gridBagConstraints);
 
-        jLabel3.setText("First Name");
-        jLabel3.setPreferredSize(new java.awt.Dimension(100, 30));
+        firstNameLabel.setText("First Name");
+        firstNameLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
-        jPanel2.add(jLabel3, gridBagConstraints);
+        jPanel2.add(firstNameLabel, gridBagConstraints);
 
-        jLabel4.setText("Last Name");
-        jLabel4.setPreferredSize(new java.awt.Dimension(100, 30));
+        lastNameLabel.setText("Last Name");
+        lastNameLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
-        jPanel2.add(jLabel4, gridBagConstraints);
+        jPanel2.add(lastNameLabel, gridBagConstraints);
 
-        jLabel6.setText("Privilege");
-        jLabel6.setPreferredSize(new java.awt.Dimension(100, 30));
+        privilegeLabel.setText("Privilege");
+        privilegeLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
-        jPanel2.add(jLabel6, gridBagConstraints);
+        jPanel2.add(privilegeLabel, gridBagConstraints);
 
-        username.setPreferredSize(new java.awt.Dimension(100, 30));
-        username.setEditable(false);
-        username.setBackground(new Color(224,224,224));
+        usernameField.setPreferredSize(new java.awt.Dimension(100, 30));
+        usernameField.setEditable(false);
+        usernameField.setBackground(new Color(224,224,224));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel2.add(username, gridBagConstraints);
+        jPanel2.add(usernameField, gridBagConstraints);
 
-        password.setPreferredSize(new java.awt.Dimension(100, 30));
+        passwordField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -172,9 +172,9 @@ public class AdminPage extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        jPanel2.add(password, gridBagConstraints);
+        jPanel2.add(passwordField, gridBagConstraints);
 
-        fname.setPreferredSize(new java.awt.Dimension(100, 30));
+        firstNameField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
@@ -182,9 +182,9 @@ public class AdminPage extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        jPanel2.add(fname, gridBagConstraints);
+        jPanel2.add(firstNameField, gridBagConstraints);
 
-        lname.setPreferredSize(new java.awt.Dimension(100, 30));
+        lastNameField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -192,10 +192,10 @@ public class AdminPage extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        jPanel2.add(lname, gridBagConstraints);
+        jPanel2.add(lastNameField, gridBagConstraints);
 
-        privilege.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Public User", "Business Owner", "Health Staff", "Admin" }));
-        privilege.setPreferredSize(new java.awt.Dimension(100, 30));
+        privilegeComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Public User", "Business Owner", "Health Staff", "Admin" }));
+        privilegeComboBox.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
@@ -203,7 +203,7 @@ public class AdminPage extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        jPanel2.add(privilege, gridBagConstraints);
+        jPanel2.add(privilegeComboBox, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -215,7 +215,7 @@ public class AdminPage extends javax.swing.JFrame {
 
         jPanel3.setPreferredSize(new java.awt.Dimension(472, 264));
 
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        userProfilesTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -231,12 +231,12 @@ public class AdminPage extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        userProfilesTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableMouseClicked(evt);
+                clickUserProfile(evt);
             }
         });
-        jScrollPane2.setViewportView(jTable);
+        jScrollPane2.setViewportView(userProfilesTable);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -264,38 +264,38 @@ public class AdminPage extends javax.swing.JFrame {
 
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
-        createBtn.setText("CREATE");
-        createBtn.setMargin(new java.awt.Insets(0, 0, 0, 0));
-        createBtn.setPreferredSize(new java.awt.Dimension(98, 23));
-        createBtn.addActionListener(new java.awt.event.ActionListener() {
+        createAccBtn.setText("CREATE");
+        createAccBtn.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        createAccBtn.setPreferredSize(new java.awt.Dimension(98, 23));
+        createAccBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                create(evt);
+                createAcc(evt);
             }
         });
-        jPanel4.add(createBtn, new java.awt.GridBagConstraints());
+        jPanel4.add(createAccBtn, new java.awt.GridBagConstraints());
 
-        updateBtn.setText("UPDATE");
-        updateBtn.setPreferredSize(new java.awt.Dimension(98, 23));
-        updateBtn.addActionListener(new java.awt.event.ActionListener() {
+        updateAccBtn.setText("UPDATE");
+        updateAccBtn.setPreferredSize(new java.awt.Dimension(98, 23));
+        updateAccBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                update(evt);
+                updateAcc(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.PAGE_START;
         gridBagConstraints.insets = new java.awt.Insets(3, 6, 3, 6);
-        jPanel4.add(updateBtn, gridBagConstraints);
+        jPanel4.add(updateAccBtn, gridBagConstraints);
 
-        suspendBtn.setText("SUSPEND");
-        suspendBtn.setPreferredSize(new java.awt.Dimension(98, 23));
-        suspendBtn.addActionListener(new java.awt.event.ActionListener() {
+        suspendAccBtn.setText("SUSPEND");
+        suspendAccBtn.setPreferredSize(new java.awt.Dimension(98, 23));
+        suspendAccBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                suspend(evt);
+                suspendAcc(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.insets = new java.awt.Insets(3, 0, 3, 0);
-        jPanel4.add(suspendBtn, gridBagConstraints);
+        jPanel4.add(suspendAccBtn, gridBagConstraints);
 
         logoutBtn.setText("LOGOUT");
         logoutBtn.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -351,7 +351,7 @@ public class AdminPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
     
-    private void create(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_create
+    private void createAcc(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAcc
         
         int result = JOptionPane.showConfirmDialog(this ,"Confirm create account?", "",
                JOptionPane.YES_NO_OPTION,
@@ -361,20 +361,18 @@ public class AdminPage extends javax.swing.JFrame {
             
             case JOptionPane.YES_OPTION :  
                 
-                CreateController cc = new CreateController();
+                CreateAccCtrler cc = new CreateAccCtrler();
         
                 try {
-                    int validationIsSuccessful = cc.create(username.getText(), password.getText(), (String)privilege.getSelectedItem(), fname.getText(), lname.getText());
+                    int validationIsSuccessful = cc.createAcc(usernameField.getText(), passwordField.getText(), (String)privilegeComboBox.getSelectedItem(), firstNameField.getText(), lastNameField.getText());
                     
                     if (validationIsSuccessful == 0) {
 
-                        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+                        DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
 
                         model.setRowCount(0);
 
-                        display();
-
-                        // Clear content
+                        showUserProfiles();
                     }
                     
                     else if (validationIsSuccessful == 1) {
@@ -396,9 +394,9 @@ public class AdminPage extends javax.swing.JFrame {
             case JOptionPane.NO_OPTION : 
                 break;
         }
-    }//GEN-LAST:event_create
+    }//GEN-LAST:event_createAcc
 
-    private void update(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update
+    private void updateAcc(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateAcc
         
         int result = JOptionPane.showConfirmDialog(this ,"Confirm update account?", "",
                JOptionPane.YES_NO_OPTION,
@@ -408,20 +406,18 @@ public class AdminPage extends javax.swing.JFrame {
             
             case JOptionPane.YES_OPTION : 
                 
-                UpdateController uc = new UpdateController();
+                UpdateAccCtrler uc = new UpdateAccCtrler();
         
                 try {
-                    int validationIsSuccessful = uc.update(username.getText(), password.getText(), (String)privilege.getSelectedItem(), fname.getText(), lname.getText());
+                    int validationIsSuccessful = uc.updateAcc(usernameField.getText(), passwordField.getText(), (String)privilegeComboBox.getSelectedItem(), firstNameField.getText(), lastNameField.getText());
                     
                     if (validationIsSuccessful == 0) {
 
-                        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+                        DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
 
                         model.setRowCount(0);
 
-                        display();
-
-                        // Clear content
+                        showUserProfiles();
                     }
                     
                     else if (validationIsSuccessful == 1) {
@@ -443,9 +439,9 @@ public class AdminPage extends javax.swing.JFrame {
             case JOptionPane.NO_OPTION :
                 break;
         }
-    }//GEN-LAST:event_update
+    }//GEN-LAST:event_updateAcc
 
-    private void suspend(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suspend
+    private void suspendAcc(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_suspendAcc
                 
         int result = JOptionPane.showConfirmDialog(this ,"Confirm suspend account?", "",
                JOptionPane.YES_NO_OPTION,
@@ -455,20 +451,18 @@ public class AdminPage extends javax.swing.JFrame {
             
             case JOptionPane.YES_OPTION : 
                 
-                SuspendController sc = new SuspendController();
+                SuspendAccCtrler sc = new SuspendAccCtrler();
                 
                 try {
-                    int validationIsSuccessful = sc.suspend(username.getText(), password.getText(), (String)privilege.getSelectedItem(), fname.getText(), lname.getText());
+                    int validationIsSuccessful = sc.suspendAcc(usernameField.getText(), passwordField.getText(), (String)privilegeComboBox.getSelectedItem(), firstNameField.getText(), lastNameField.getText());
                     
                     if (validationIsSuccessful == 0) {
 
-                        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+                        DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
 
                         model.setRowCount(0);
 
-                        display();
-
-                        // Clear content
+                        showUserProfiles();
                     }
                     
                     else if (validationIsSuccessful == 1) {
@@ -482,37 +476,37 @@ public class AdminPage extends javax.swing.JFrame {
             case JOptionPane.NO_OPTION : 
                 break;
         }
-    }//GEN-LAST:event_suspend
+    }//GEN-LAST:event_suspendAcc
 
-    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+    private void clickUserProfile(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickUserProfile
         // TODO add your handling code here:
-        int i = jTable.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        int i = userProfilesTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
 
-        username.setText(model.getValueAt(i, 0).toString());
-        password.setText(model.getValueAt(i, 1).toString());
+        usernameField.setText(model.getValueAt(i, 0).toString());
+        passwordField.setText(model.getValueAt(i, 1).toString());
 
         String privilegeCurrent = model.getValueAt(i, 2).toString();
 
         switch(privilegeCurrent) {
 
             case "Public User" : 
-                privilege.setSelectedIndex(0);
+                privilegeComboBox.setSelectedIndex(0);
                 break;
             case "Business Owner" : 
-                privilege.setSelectedIndex(1);
+                privilegeComboBox.setSelectedIndex(1);
                 break;
             case "Health Staff" : 
-                privilege.setSelectedIndex(2);
+                privilegeComboBox.setSelectedIndex(2);
                 break;
             case "Admin" : 
-                privilege.setSelectedIndex(3);
+                privilegeComboBox.setSelectedIndex(3);
                 break;
         }
 
-        fname.setText(model.getValueAt(i, 3).toString());
-        lname.setText(model.getValueAt(i, 4).toString());
-    }//GEN-LAST:event_jTableMouseClicked
+        firstNameField.setText(model.getValueAt(i, 3).toString());
+        lastNameField.setText(model.getValueAt(i, 4).toString());
+    }//GEN-LAST:event_clickUserProfile
 
     private void logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout
         // TODO add your handling code here:
@@ -522,13 +516,13 @@ public class AdminPage extends javax.swing.JFrame {
         lp.setVisible(true);
     }//GEN-LAST:event_logout
     
-    private void display() throws IOException {
+    private void showUserProfiles() throws IOException {
         
-        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
         
-        DisplayController dc = new DisplayController();
+        ShowUserProfilesCtrler dc = new ShowUserProfilesCtrler();
        
-        ArrayList<User> userList = dc.display();
+        ArrayList<User> userList = dc.showUserProfiles();
         
         Object rowData[] = new Object[5];
         
@@ -584,14 +578,10 @@ public class AdminPage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton createBtn;
-    private javax.swing.JTextField fname;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
+    private javax.swing.JButton createAccBtn;
+    private javax.swing.JTextField firstNameField;
+    private javax.swing.JLabel firstNameLabel;
+    private javax.swing.JLabel headerLabel;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -599,13 +589,17 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable;
-    private javax.swing.JTextField lname;
+    private javax.swing.JTextField lastNameField;
+    private javax.swing.JLabel lastNameLabel;
     private javax.swing.JButton logoutBtn;
-    private javax.swing.JTextField password;
-    private javax.swing.JComboBox<String> privilege;
-    private javax.swing.JButton suspendBtn;
-    private javax.swing.JButton updateBtn;
-    private javax.swing.JTextField username;
+    private javax.swing.JTextField passwordField;
+    private javax.swing.JLabel passwordLabel;
+    private javax.swing.JComboBox<String> privilegeComboBox;
+    private javax.swing.JLabel privilegeLabel;
+    private javax.swing.JButton suspendAccBtn;
+    private javax.swing.JButton updateAccBtn;
+    private javax.swing.JTable userProfilesTable;
+    private javax.swing.JTextField usernameField;
+    private javax.swing.JLabel usernameLabel;
     // End of variables declaration//GEN-END:variables
 }

@@ -7,7 +7,7 @@ package covidtrackingdemo.Boundary;
 
 import covidtrackingdemo.Controller.HealthStaff.UpdateVacStatusCtrler;
 import covidtrackingdemo.Controller.HealthStaff.UpdateInfStatusCtrler;
-import covidtrackingdemo.Controller.HealthStaff.DisplayController;
+import covidtrackingdemo.Controller.HealthStaff.ShowHealthRecCtrler;
 import covidtrackingdemo.Controller.HealthStaff.SendExpAlertCtrler;
 import covidtrackingdemo.Controller.HealthStaff.SendInfAlertCtrler;
 import covidtrackingdemo.Controller.HealthStaff.SendVacAlertCtrler;
@@ -20,7 +20,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.Set;
@@ -39,7 +38,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
     public HealthStaffPage() throws IOException {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        display(); 
+        showHealthRec(); 
     }
 
     /**
@@ -55,32 +54,32 @@ public class HealthStaffPage extends javax.swing.JFrame {
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
+        headerLabel = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        hsUsername = new javax.swing.JTextField();
-        puUsername = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        infectionDate = new com.toedter.calendar.JDateChooser();
-        vaccinationDate = new com.toedter.calendar.JDateChooser();
-        iStatsYesBtn = new javax.swing.JRadioButton();
-        iStatsNoBtn = new javax.swing.JRadioButton();
-        vStatsYesBtn = new javax.swing.JRadioButton();
-        vStatsNoBtn = new javax.swing.JRadioButton();
+        hsUsernameLabel = new javax.swing.JLabel();
+        puUsernameLabel = new javax.swing.JLabel();
+        vacStatusLabel = new javax.swing.JLabel();
+        vacDateLabel = new javax.swing.JLabel();
+        infStatusLabel = new javax.swing.JLabel();
+        hsUsernameField = new javax.swing.JTextField();
+        puUsernameField = new javax.swing.JTextField();
+        infDateLabel = new javax.swing.JLabel();
+        infDateField = new com.toedter.calendar.JDateChooser();
+        vacDateField = new com.toedter.calendar.JDateChooser();
+        infStatusYesBtn = new javax.swing.JRadioButton();
+        infStatusNoBtn = new javax.swing.JRadioButton();
+        vacStatusYesBtn = new javax.swing.JRadioButton();
+        vacStatusNoBtn = new javax.swing.JRadioButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        jTable = new javax.swing.JTable();
+        healthRecTable = new javax.swing.JTable();
         jPanel4 = new javax.swing.JPanel();
         updateBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        exposedBtn = new javax.swing.JButton();
-        jLabel8 = new javax.swing.JLabel();
-        currentDate = new javax.swing.JLabel();
+        sendExpAlertBtn = new javax.swing.JButton();
+        expAlertDateLabel = new javax.swing.JLabel();
+        expAlertDateField = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
@@ -91,12 +90,12 @@ public class HealthStaffPage extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 204, 102));
         jPanel1.setPreferredSize(new java.awt.Dimension(120, 120));
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("HEALTH STAFF");
-        jLabel7.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jLabel7.setPreferredSize(new java.awt.Dimension(127, 48));
+        headerLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+        headerLabel.setForeground(new java.awt.Color(255, 255, 255));
+        headerLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        headerLabel.setText("HEALTH STAFF");
+        headerLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        headerLabel.setPreferredSize(new java.awt.Dimension(127, 48));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -104,14 +103,14 @@ public class HealthStaffPage extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
+                .addComponent(headerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 824, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(headerLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -126,54 +125,54 @@ public class HealthStaffPage extends javax.swing.JFrame {
         jPanel2.setPreferredSize(new java.awt.Dimension(312, 200));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
-        jLabel1.setText("Health Staff Username");
-        jLabel1.setPreferredSize(new java.awt.Dimension(100, 30));
+        hsUsernameLabel.setText("Health Staff Username");
+        hsUsernameLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 15);
-        jPanel2.add(jLabel1, gridBagConstraints);
+        jPanel2.add(hsUsernameLabel, gridBagConstraints);
 
-        jLabel2.setText("Public User Username");
-        jLabel2.setPreferredSize(new java.awt.Dimension(100, 30));
+        puUsernameLabel.setText("Public User Username");
+        puUsernameLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
-        jPanel2.add(jLabel2, gridBagConstraints);
+        jPanel2.add(puUsernameLabel, gridBagConstraints);
 
-        jLabel3.setText("Vaccination Status");
-        jLabel3.setPreferredSize(new java.awt.Dimension(100, 30));
+        vacStatusLabel.setText("Vaccination Status");
+        vacStatusLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
-        jPanel2.add(jLabel3, gridBagConstraints);
+        jPanel2.add(vacStatusLabel, gridBagConstraints);
 
-        jLabel4.setText("Vaccination Date");
-        jLabel4.setPreferredSize(new java.awt.Dimension(100, 30));
+        vacDateLabel.setText("Vaccination Date");
+        vacDateLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
-        jPanel2.add(jLabel4, gridBagConstraints);
+        jPanel2.add(vacDateLabel, gridBagConstraints);
 
-        jLabel6.setText("Infection Status");
-        jLabel6.setPreferredSize(new java.awt.Dimension(100, 30));
+        infStatusLabel.setText("Infection Status");
+        infStatusLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
-        jPanel2.add(jLabel6, gridBagConstraints);
+        jPanel2.add(infStatusLabel, gridBagConstraints);
 
-        hsUsername.setPreferredSize(new java.awt.Dimension(100, 30));
-        hsUsername.setEditable(false);
-        hsUsername.setBackground(new Color(224,224,224));
+        hsUsernameField.setPreferredSize(new java.awt.Dimension(100, 30));
+        hsUsernameField.setEditable(false);
+        hsUsernameField.setBackground(new Color(224,224,224));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
@@ -181,11 +180,11 @@ public class HealthStaffPage extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
-        jPanel2.add(hsUsername, gridBagConstraints);
+        jPanel2.add(hsUsernameField, gridBagConstraints);
 
-        puUsername.setPreferredSize(new java.awt.Dimension(100, 30));
-        puUsername.setEditable(false);
-        puUsername.setBackground(new Color(224,224,224));
+        puUsernameField.setPreferredSize(new java.awt.Dimension(100, 30));
+        puUsernameField.setEditable(false);
+        puUsernameField.setBackground(new Color(224,224,224));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
@@ -194,20 +193,20 @@ public class HealthStaffPage extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        jPanel2.add(puUsername, gridBagConstraints);
+        jPanel2.add(puUsernameField, gridBagConstraints);
 
-        jLabel5.setText("Infection Date");
-        jLabel5.setPreferredSize(new java.awt.Dimension(100, 30));
+        infDateLabel.setText("Infection Date");
+        infDateLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
-        jPanel2.add(jLabel5, gridBagConstraints);
+        jPanel2.add(infDateLabel, gridBagConstraints);
 
-        infectionDate.setDateFormatString("dd/MM/yyyy");
-        infectionDate.setEnabled(false);
-        infectionDate.setPreferredSize(new java.awt.Dimension(100, 30));
+        infDateField.setDateFormatString("dd/MM/yyyy");
+        infDateField.setEnabled(false);
+        infDateField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
@@ -216,11 +215,11 @@ public class HealthStaffPage extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        jPanel2.add(infectionDate, gridBagConstraints);
+        jPanel2.add(infDateField, gridBagConstraints);
 
-        vaccinationDate.setDateFormatString("dd/MM/yyyy");
-        vaccinationDate.setEnabled(false);
-        vaccinationDate.setPreferredSize(new java.awt.Dimension(100, 30));
+        vacDateField.setDateFormatString("dd/MM/yyyy");
+        vacDateField.setEnabled(false);
+        vacDateField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
@@ -229,14 +228,14 @@ public class HealthStaffPage extends javax.swing.JFrame {
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        jPanel2.add(vaccinationDate, gridBagConstraints);
+        jPanel2.add(vacDateField, gridBagConstraints);
 
-        buttonGroup1.add(iStatsYesBtn);
-        iStatsYesBtn.setText("Yes");
-        iStatsYesBtn.setPreferredSize(new java.awt.Dimension(50, 30));
-        iStatsYesBtn.addItemListener(new java.awt.event.ItemListener() {
+        buttonGroup1.add(infStatusYesBtn);
+        infStatusYesBtn.setText("Yes");
+        infStatusYesBtn.setPreferredSize(new java.awt.Dimension(50, 30));
+        infStatusYesBtn.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                iStatsYesBtnItemStateChanged(evt);
+                infStatusListener(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -246,12 +245,12 @@ public class HealthStaffPage extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        jPanel2.add(iStatsYesBtn, gridBagConstraints);
+        jPanel2.add(infStatusYesBtn, gridBagConstraints);
 
-        buttonGroup1.add(iStatsNoBtn);
-        iStatsNoBtn.setSelected(true);
-        iStatsNoBtn.setText("No");
-        iStatsNoBtn.setPreferredSize(new java.awt.Dimension(50, 30));
+        buttonGroup1.add(infStatusNoBtn);
+        infStatusNoBtn.setSelected(true);
+        infStatusNoBtn.setText("No");
+        infStatusNoBtn.setPreferredSize(new java.awt.Dimension(50, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 4;
@@ -259,14 +258,14 @@ public class HealthStaffPage extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        jPanel2.add(iStatsNoBtn, gridBagConstraints);
+        jPanel2.add(infStatusNoBtn, gridBagConstraints);
 
-        buttonGroup2.add(vStatsYesBtn);
-        vStatsYesBtn.setText("Yes");
-        vStatsYesBtn.setPreferredSize(new java.awt.Dimension(50, 30));
-        vStatsYesBtn.addItemListener(new java.awt.event.ItemListener() {
+        buttonGroup2.add(vacStatusYesBtn);
+        vacStatusYesBtn.setText("Yes");
+        vacStatusYesBtn.setPreferredSize(new java.awt.Dimension(50, 30));
+        vacStatusYesBtn.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                vStatsYesBtnItemStateChanged(evt);
+                vacStatusListener(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -276,19 +275,19 @@ public class HealthStaffPage extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        jPanel2.add(vStatsYesBtn, gridBagConstraints);
+        jPanel2.add(vacStatusYesBtn, gridBagConstraints);
 
-        buttonGroup2.add(vStatsNoBtn);
-        vStatsNoBtn.setSelected(true);
-        vStatsNoBtn.setText("No");
-        vStatsNoBtn.setPreferredSize(new java.awt.Dimension(50, 30));
+        buttonGroup2.add(vacStatusNoBtn);
+        vacStatusNoBtn.setSelected(true);
+        vacStatusNoBtn.setText("No");
+        vacStatusNoBtn.setPreferredSize(new java.awt.Dimension(50, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
-        jPanel2.add(vStatsNoBtn, gridBagConstraints);
+        jPanel2.add(vacStatusNoBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -300,7 +299,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
         jPanel3.setPreferredSize(new java.awt.Dimension(472, 264));
 
-        jTable.setModel(new javax.swing.table.DefaultTableModel(
+        healthRecTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -316,12 +315,12 @@ public class HealthStaffPage extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        jTable.addMouseListener(new java.awt.event.MouseAdapter() {
+        healthRecTable.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jTableMouseClicked(evt);
+                clickHealthRec(evt);
             }
         });
-        jScrollPane2.setViewportView(jTable);
+        jScrollPane2.setViewportView(healthRecTable);
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -387,11 +386,11 @@ public class HealthStaffPage extends javax.swing.JFrame {
         jPanel5.setPreferredSize(new java.awt.Dimension(472, 74));
         jPanel5.setLayout(new java.awt.GridBagLayout());
 
-        exposedBtn.setText("SEND EXPOSURE ALERTS");
-        exposedBtn.setPreferredSize(new java.awt.Dimension(500, 23));
-        exposedBtn.addActionListener(new java.awt.event.ActionListener() {
+        sendExpAlertBtn.setText("SEND EXPOSURE ALERTS");
+        sendExpAlertBtn.setPreferredSize(new java.awt.Dimension(500, 23));
+        sendExpAlertBtn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                exposedBtnActionPerformed(evt);
+                sendExpAlert(evt);
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -400,23 +399,23 @@ public class HealthStaffPage extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(7, 10, 3, 10);
-        jPanel5.add(exposedBtn, gridBagConstraints);
+        jPanel5.add(sendExpAlertBtn, gridBagConstraints);
 
-        jLabel8.setText("Exposure alert date : ");
-        jLabel8.setPreferredSize(new java.awt.Dimension(107, 23));
+        expAlertDateLabel.setText("Exposure alert date : ");
+        expAlertDateLabel.setPreferredSize(new java.awt.Dimension(107, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(7, 0, 16, 0);
-        jPanel5.add(jLabel8, gridBagConstraints);
+        jPanel5.add(expAlertDateLabel, gridBagConstraints);
 
-        currentDate.setText("jLabel9");
-        currentDate.setPreferredSize(new java.awt.Dimension(35, 23));
+        expAlertDateField.setText("jLabel9");
+        expAlertDateField.setPreferredSize(new java.awt.Dimension(35, 23));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(7, 0, 16, 0);
-        jPanel5.add(currentDate, gridBagConstraints);
+        jPanel5.add(expAlertDateField, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -430,41 +429,41 @@ public class HealthStaffPage extends javax.swing.JFrame {
     
     private void update(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update
         
-        int i = jTable.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        int i = healthRecTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) healthRecTable.getModel();
 
         // Convert Vaccination/ Infection String to String (Y/N)
-        String vacStats;
-        String infStats;
+        String vacStatus;
+        String infStatus;
 
-        if (vStatsYesBtn.isSelected()) {
-            vacStats = "Y";
+        if (vacStatusYesBtn.isSelected()) {
+            vacStatus = "Yes";
         }
         
         else {
-            vacStats = "N"; 
+            vacStatus = "No"; 
         }
         
-        if (iStatsYesBtn.isSelected()) {
-            infStats = "Y";
+        if (infStatusYesBtn.isSelected()) {
+            infStatus = "Yes";
         }
         
         else {
-            infStats = "N"; 
+            infStatus = "No"; 
         }
 
         // Convert Vaccination/ Infection Date to String Type
         
-        String recordVDate = model.getValueAt(i,3).toString();
-        String recordIDate = model.getValueAt(i,6).toString();
+        String recordVacDate = model.getValueAt(i,3).toString();
+        String recordInfDate = model.getValueAt(i,6).toString();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String fieldVDate = dateFormat.format(vaccinationDate.getDate());
-        String fieldIDate = dateFormat.format(vaccinationDate.getDate());
+        String fieldVacDate = dateFormat.format(vacDateField.getDate());
+        String fieldInfDate = dateFormat.format(vacDateField.getDate());
         
         // If Vaccination Date is Updated
 
-        if (!recordVDate.equals(fieldVDate)) {
+        if (!recordVacDate.equals(fieldVacDate)) {
             
             int confirmationNumber = JOptionPane.showConfirmDialog(this ,"Infection Vaccination Alert will be sent upon update. Proceed?", "",
             JOptionPane.YES_NO_OPTION,
@@ -479,18 +478,16 @@ public class HealthStaffPage extends javax.swing.JFrame {
                 SendVacAlertCtrler svc = new SendVacAlertCtrler();
 
                 try {
-                    int validationNumber = uvc.update(hsUsername.getText(), puUsername.getText(),
-                            vacStats, vaccinationDate.getDate(), infStats, infectionDate.getDate());
+                    int validationNumber = uvc.updateVacStatus(hsUsernameField.getText(), puUsernameField.getText(),
+                            vacStatus, vacDateField.getDate(), infStatus, infDateField.getDate());
 
                     if (validationNumber == 0) {
                         
-                        svc.sendVacAlert(puUsername.getText(), "vaccination", vaccinationDate.getDate());
+                        svc.sendVacAlert(puUsernameField.getText(), "vaccination", vacDateField.getDate());
 
                         model.setRowCount(0);
 
-                        display();
-
-                        JOptionPane.showMessageDialog(null, "Send Vaccination Alert?");
+                        showHealthRec();
                     }
                     
                     else {
@@ -507,7 +504,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
         // Else-If Infection Date is Updated
 
-        else if (!recordIDate.equals(fieldIDate)) {
+        else if (!recordInfDate.equals(fieldInfDate)) {
 
             int confirmationNumber = JOptionPane.showConfirmDialog(this ,"Infection Notification Alert will be sent upon update. Proceed?", "",
             JOptionPane.YES_NO_OPTION,
@@ -523,16 +520,16 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
                 try {
 
-                    int validationNumber = uic.update(hsUsername.getText(), puUsername.getText(), 
-                        vacStats, vaccinationDate.getDate(), infStats, infectionDate.getDate());
+                    int validationNumber = uic.updateInfStatus(hsUsernameField.getText(), puUsernameField.getText(), 
+                        vacStatus, vacDateField.getDate(), infStatus, infDateField.getDate());
 
                     if (validationNumber == 0) {
 
-                        sic.sendInfAlert(puUsername.getText(), "infection", infectionDate.getDate());
+                        sic.sendInfAlert(puUsernameField.getText(), "infection", infDateField.getDate());
 
                         model.setRowCount(0);
 
-                        display();
+                        showHealthRec();
                     }
                     
                     else {
@@ -549,40 +546,40 @@ public class HealthStaffPage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_update
 
-    private void jTableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTableMouseClicked
+    private void clickHealthRec(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickHealthRec
 
-        int i = jTable.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        int i = healthRecTable.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) healthRecTable.getModel();
 
         // Populate PU Username
       
-        puUsername.setText(model.getValueAt(i, 0).toString());
+        puUsernameField.setText(model.getValueAt(i, 0).toString());
 
         // Populate Vaccine Status
         
-        String vStats = model.getValueAt(i,2).toString();
+        String vacStatus = model.getValueAt(i,2).toString();
         
-        switch(vStats) {
+        switch(vacStatus) {
 
-            case "Y" : 
-                vStatsYesBtn.setSelected(true);
-                vStatsNoBtn.setSelected(false);
-                vaccinationDate.setEnabled(true);
+            case "Yes" : 
+                vacStatusYesBtn.setSelected(true);
+                vacStatusNoBtn.setSelected(false);
+                vacDateField.setEnabled(true);
                 break;
-            case "N" : 
-                vStatsYesBtn.setSelected(false);
-                vStatsNoBtn.setSelected(true);
-                vaccinationDate.setEnabled(false);
+            case "No" : 
+                vacStatusYesBtn.setSelected(false);
+                vacStatusNoBtn.setSelected(true);
+                vacDateField.setEnabled(false);
                 break;
         }
         
         // Populate Vaccine Date
         
-        String vaccinationDateValue = model.getValueAt(i,3).toString();
+        String strVacDate = model.getValueAt(i,3).toString();
 
         try {
-            java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse(vaccinationDateValue);            
-            vaccinationDate.setDate(date); 
+            java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse(strVacDate);            
+            vacDateField.setDate(date); 
         } 
         
         catch (ParseException ex) {
@@ -591,35 +588,35 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
         // Populate Infection Status
         
-        String iStats = model.getValueAt(i,5).toString();
+        String infStatus = model.getValueAt(i,5).toString();
         
-        switch(iStats) {
+        switch(infStatus) {
 
-            case "Y" : 
-                iStatsYesBtn.setSelected(true);
-                iStatsNoBtn.setSelected(false);
-                infectionDate.setEnabled(true);
+            case "Yes" : 
+                infStatusYesBtn.setSelected(true);
+                infStatusNoBtn.setSelected(false);
+                infDateField.setEnabled(true);
                 break;
-            case "N" : 
-                iStatsYesBtn.setSelected(false);
-                iStatsNoBtn.setSelected(true);
-                infectionDate.setEnabled(false);
+            case "No" : 
+                infStatusYesBtn.setSelected(false);
+                infStatusNoBtn.setSelected(true);
+                infDateField.setEnabled(false);
                 break;
         }
         
         // Populate Infection Date
         
-        String infectionDateValue = model.getValueAt(i,6).toString();
+        String strInfDate = model.getValueAt(i,6).toString();
         
         try {
-            java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse(infectionDateValue);            
-            infectionDate.setDate(date); 
+            java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse(strInfDate);            
+            infDateField.setDate(date); 
         } 
         
         catch (ParseException ex) {
             Logger.getLogger(HealthStaffPage.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_jTableMouseClicked
+    }//GEN-LAST:event_clickHealthRec
 
     private void logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout
         // TODO add your handling code here:
@@ -629,27 +626,27 @@ public class HealthStaffPage extends javax.swing.JFrame {
         lp.setVisible(true);
     }//GEN-LAST:event_logout
 
-    private void vStatsYesBtnItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_vStatsYesBtnItemStateChanged
+    private void vacStatusListener(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_vacStatusListener
 
         int state = evt.getStateChange();        
 
         // Get Vaccination Date from File
         
-        int i = jTable.getSelectedRow();
+        int i = healthRecTable.getSelectedRow();
         
-        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) healthRecTable.getModel();
 
-        String fileVStats = model.getValueAt(i,2).toString();
+        String recVacStatus = model.getValueAt(i,2).toString();
         
-        String pageVStats;
+        String currentVacStatus;
         
-        if (vStatsYesBtn.isSelected())
+        if (vacStatusYesBtn.isSelected())
             
-            pageVStats = "Y";
+            currentVacStatus = "Yes";
         
         else {
             
-            pageVStats = "N";
+            currentVacStatus = "No";
         }
         
         // If User click/select Yes Btn
@@ -657,7 +654,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
         if (state == ItemEvent.SELECTED) {
             
-            vaccinationDate.setEnabled(true);
+            vacDateField.setEnabled(true);
         }
 
         // If User click/select No Btn
@@ -665,19 +662,19 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
         else {
             
-            vaccinationDate.setEnabled(false);
+            vacDateField.setEnabled(false);
         }
 
         // If User click Diff VStats Btn as Health Records
         // ... Disable infection fields
 
-        if (!fileVStats.equals(pageVStats)) {
+        if (!recVacStatus.equals(currentVacStatus)) {
             
-            iStatsYesBtn.setEnabled(false);
+            infStatusYesBtn.setEnabled(false);
             
-            iStatsNoBtn.setEnabled(false);
+            infStatusNoBtn.setEnabled(false);
             
-            infectionDate.setEnabled(false);
+            infDateField.setEnabled(false);
         }
 
         // If User click Same VStats Btn as Health Records
@@ -685,34 +682,34 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
         else {
             
-            iStatsYesBtn.setEnabled(true);
+            infStatusYesBtn.setEnabled(true);
             
-            iStatsNoBtn.setEnabled(true); 
+            infStatusNoBtn.setEnabled(true); 
             
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
-            String strInfectionDate = sdf.format(infectionDate.getDate());
+            String strInfDate = sdf.format(infDateField.getDate());
             
-            if (!strInfectionDate.equals("01/01/0001")) {
+            if (!strInfDate.equals("01/01/0001")) {
                 
-                infectionDate.setEnabled(true);
+                infDateField.setEnabled(true);
             }
         }
         
         // Populate Vaccine Date on Toggling VStats Btn
         // ... With vaccine date if any. Else today date
 
-        String strVaccinationDate = model.getValueAt(i,3).toString();
+        String strVacDate = model.getValueAt(i,3).toString();
 
-        if (pageVStats.equals("Y")) {
+        if (currentVacStatus.equals("Y")) {
 
-            if (fileVStats.equals("Y")) {
+            if (recVacStatus.equals("Y")) {
                 
                 try {
 
-                    java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse(strVaccinationDate);
+                    java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse(strVacDate);
 
-                    vaccinationDate.setDate(date);  
+                    vacDateField.setDate(date);  
                 } 
 
                 catch (ParseException ex) {
@@ -731,7 +728,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
                     
                     java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dtf.format(localDate));
 
-                    vaccinationDate.setDate(date);  
+                    vacDateField.setDate(date);  
                 } 
 
                 catch (ParseException ex) {
@@ -747,7 +744,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
                 java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse("01/01/0001");
 
-                vaccinationDate.setDate(date);  
+                vacDateField.setDate(date);  
             } 
 
             catch (ParseException ex) {
@@ -755,29 +752,29 @@ public class HealthStaffPage extends javax.swing.JFrame {
                 Logger.getLogger(HealthStaffPage.class.getName()).log(Level.SEVERE, null, ex);
             } 
         }
-    }//GEN-LAST:event_vStatsYesBtnItemStateChanged
+    }//GEN-LAST:event_vacStatusListener
 
-    private void iStatsYesBtnItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_iStatsYesBtnItemStateChanged
+    private void infStatusListener(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_infStatusListener
 
         int state = evt.getStateChange();        
 
         // Get Vaccination Date from File
         
-        int i = jTable.getSelectedRow();
+        int i = healthRecTable.getSelectedRow();
         
-        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) healthRecTable.getModel();
 
-        String fileIStats = model.getValueAt(i,5).toString();
+        String recInfStatus = model.getValueAt(i,5).toString();
         
-        String pageIStats;
+        String currentInfStatus;
         
-        if (iStatsYesBtn.isSelected())
+        if (infStatusYesBtn.isSelected())
             
-            pageIStats = "Y";
+            currentInfStatus = "Yes";
         
         else {
             
-            pageIStats = "N";
+            currentInfStatus = "No";
         }
         
         // If User click/select Yes Btn
@@ -785,7 +782,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
         if (state == ItemEvent.SELECTED) {
             
-            infectionDate.setEnabled(true);
+            infDateField.setEnabled(true);
         }
 
         // If User click/select No Btn
@@ -793,19 +790,19 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
         else {
             
-            infectionDate.setEnabled(false);
+            infDateField.setEnabled(false);
         }
 
         // If User click Diff IStats Btn as Health Records
         // ... Disable vaccination fields
 
-        if (!fileIStats.equals(pageIStats)) {
+        if (!recInfStatus.equals(currentInfStatus)) {
             
-            vStatsYesBtn.setEnabled(false);
+            vacStatusYesBtn.setEnabled(false);
             
-            vStatsNoBtn.setEnabled(false);
+            vacStatusNoBtn.setEnabled(false);
             
-            vaccinationDate.setEnabled(false);
+            vacDateField.setEnabled(false);
         }
 
         // If User click Same IStats Btn as Health Records
@@ -813,34 +810,34 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
         else {
             
-            vStatsYesBtn.setEnabled(true);
+            vacStatusYesBtn.setEnabled(true);
             
-            vStatsNoBtn.setEnabled(true);
+            vacStatusNoBtn.setEnabled(true);
             
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
-            String strVaccinationDate = sdf.format(vaccinationDate.getDate());
+            String strVacDate = sdf.format(vacDateField.getDate());
             
-            if (!strVaccinationDate.equals("01/01/0001")) {
+            if (!strVacDate.equals("01/01/0001")) {
                 
-                vaccinationDate.setEnabled(true);
+                vacDateField.setEnabled(true);
             }
         }   
         
         // Populate Infection Date on Toggling IStats Btn
         // ... With infection date if any. Else today date
                 
-        String strInfectionDate = model.getValueAt(i,6).toString();
+        String strInfDate = model.getValueAt(i,6).toString();
 
-        if (pageIStats.equals("Y")) {
+        if (currentInfStatus.equals("Yes")) {
 
-            if (fileIStats.equals("Y")) {
+            if (recInfStatus.equals("Yes")) {
                 
                 try {
 
-                    java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse(strInfectionDate);
+                    java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse(strInfDate);
 
-                    infectionDate.setDate(date);  
+                    infDateField.setDate(date);  
                 } 
 
                 catch (ParseException ex) {
@@ -861,7 +858,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
                     
                     java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse(dtf.format(localDate));
 
-                    infectionDate.setDate(date);  
+                    infDateField.setDate(date);  
                 } 
 
                 catch (ParseException ex) {
@@ -877,7 +874,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
                 java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse("01/01/0001");
 
-                infectionDate.setDate(date);  
+                infDateField.setDate(date);  
             } 
 
             catch (ParseException ex) {
@@ -885,16 +882,16 @@ public class HealthStaffPage extends javax.swing.JFrame {
                 Logger.getLogger(HealthStaffPage.class.getName()).log(Level.SEVERE, null, ex);
             } 
         }
-    }//GEN-LAST:event_iStatsYesBtnItemStateChanged
+    }//GEN-LAST:event_infStatusListener
 
-    private void exposedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exposedBtnActionPerformed
+    private void sendExpAlert(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendExpAlert
         // TODO add your handling code here:
         SendExpAlertCtrler ec = new SendExpAlertCtrler();
         
         try {
-            Set<String> exposedList = ec.sendExpAlert(currentDate.getText());
+            Set<String> expList = ec.sendExpAlert(expAlertDateField.getText());
             
-            Iterator<String> i = exposedList.iterator();
+            Iterator<String> i = expList.iterator();
         
             String message = "Exposure alert sent to:\n";
         
@@ -909,15 +906,15 @@ public class HealthStaffPage extends javax.swing.JFrame {
         } catch (ParseException ex) {
             Logger.getLogger(HealthStaffPage.class.getName()).log(Level.SEVERE, null, ex);
         }
-    }//GEN-LAST:event_exposedBtnActionPerformed
+    }//GEN-LAST:event_sendExpAlert
     
-    private void display() throws IOException {
+    private void showHealthRec() throws IOException {
 
-        DefaultTableModel model = (DefaultTableModel) jTable.getModel();
+        DefaultTableModel model = (DefaultTableModel) healthRecTable.getModel();
         
-        DisplayController dc = new DisplayController();
+        ShowHealthRecCtrler dc = new ShowHealthRecCtrler();
        
-        ArrayList<PublicUser> userList = dc.display();
+        ArrayList<PublicUser> userList = dc.showHealthRec();
         
         Object rowData[] = new Object[7];
         
@@ -925,11 +922,11 @@ public class HealthStaffPage extends javax.swing.JFrame {
                         
             rowData[0] = user.getUsername();
             rowData[1] = user.getVaccinatedBy();
-            rowData[2] = user.getVaccinationStatus();
-            rowData[3] = user.getVaccinationDate();
+            rowData[2] = user.getVacStatus();
+            rowData[3] = user.getVacDate();
             rowData[4] = user.getDeterminedBy();
-            rowData[5] = user.getInfectionStatus();
-            rowData[6] = user.getInfectionDate();
+            rowData[5] = user.getInfStatus();
+            rowData[6] = user.getInfDate();
             
             model.addRow(rowData);
         }
@@ -937,7 +934,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
         // Show current exposure alert date
         Date date = new Date();
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
-        currentDate.setText(formatter.format(date));
+        expAlertDateField.setText(formatter.format(date));
     }
 
     /**
@@ -982,36 +979,36 @@ public class HealthStaffPage extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JLabel currentDate;
-    private javax.swing.JButton exposedBtn;
-    private javax.swing.JTextField hsUsername;
-    private javax.swing.JRadioButton iStatsNoBtn;
-    private javax.swing.JRadioButton iStatsYesBtn;
-    private com.toedter.calendar.JDateChooser infectionDate;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel expAlertDateField;
+    private javax.swing.JLabel expAlertDateLabel;
+    private javax.swing.JLabel headerLabel;
+    private javax.swing.JTable healthRecTable;
+    private javax.swing.JTextField hsUsernameField;
+    private javax.swing.JLabel hsUsernameLabel;
+    private com.toedter.calendar.JDateChooser infDateField;
+    private javax.swing.JLabel infDateLabel;
+    private javax.swing.JLabel infStatusLabel;
+    private javax.swing.JRadioButton infStatusNoBtn;
+    private javax.swing.JRadioButton infStatusYesBtn;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane2;
-    private javax.swing.JTable jTable;
     private javax.swing.JButton logoutBtn;
-    private javax.swing.JTextField puUsername;
+    private javax.swing.JTextField puUsernameField;
+    private javax.swing.JLabel puUsernameLabel;
+    private javax.swing.JButton sendExpAlertBtn;
     private javax.swing.JButton updateBtn;
-    private javax.swing.JRadioButton vStatsNoBtn;
-    private javax.swing.JRadioButton vStatsYesBtn;
-    private com.toedter.calendar.JDateChooser vaccinationDate;
+    private com.toedter.calendar.JDateChooser vacDateField;
+    private javax.swing.JLabel vacDateLabel;
+    private javax.swing.JLabel vacStatusLabel;
+    private javax.swing.JRadioButton vacStatusNoBtn;
+    private javax.swing.JRadioButton vacStatusYesBtn;
     // End of variables declaration//GEN-END:variables
 
     void setHsUsername(String username) {
-        hsUsername.setText(username);
+        hsUsernameField.setText(username);
     }
 }

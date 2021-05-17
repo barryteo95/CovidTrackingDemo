@@ -18,7 +18,7 @@ public class HealthStaff extends User {
     
     public HealthStaff() {}
     
-    public PublicUser showUser(String username) throws IOException {
+    public PublicUser showHealthRec(String username) throws IOException {
     
         HealthRecords hr = new HealthRecords();
         
@@ -26,10 +26,8 @@ public class HealthStaff extends User {
         
         return user;
     }
-    
-    public void update() {}
-    
-    public ArrayList<PublicUser> display() throws IOException {
+        
+    public ArrayList<PublicUser> showHealthRecs() throws IOException {
         
         HealthRecords hr = new HealthRecords();
         
@@ -38,11 +36,11 @@ public class HealthStaff extends User {
         return userList;
     }
 
-    public void update(String hsUsername, String puUsername, String vacStats, String strVacDate, String infStats, String strInfDate) throws IOException {
+    public void update(String hsUsername, String puUsername, String vacStatus, String strVacDate, String infStatus, String strInfDate) throws IOException {
         
         HealthRecords hr = new HealthRecords();
         
-        hr.update(hsUsername, puUsername, vacStats, strVacDate, infStats, strInfDate);    
+        hr.update(hsUsername, puUsername, vacStatus, strVacDate, infStatus, strInfDate);    
     }
     
     public ArrayList<String> findInfected(String currentDate) throws IOException, ParseException {  
@@ -55,7 +53,7 @@ public class HealthStaff extends User {
         
         for (PublicUser user : recordList) {
                         
-            if (currentDate.equals(user.getInfectionDate())) {
+            if (currentDate.equals(user.getInfDate())) {
             
                 infectedList.add(user.getUsername());
             }

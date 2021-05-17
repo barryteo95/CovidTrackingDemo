@@ -12,9 +12,9 @@ import java.io.IOException;
  *
  * @author User
  */
-public class CheckInController {
+public class CheckInCtrler {
     
-    public CheckInController() {}
+    public CheckInCtrler() {}
     
     public void checkIn(String businessOwner, String publicUser, String date) throws IOException {
     

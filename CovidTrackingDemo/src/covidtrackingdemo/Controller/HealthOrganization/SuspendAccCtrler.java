@@ -12,18 +12,18 @@ import java.io.IOException;
  *
  * @author barry
  */
-public class SuspendController {
+public class SuspendAccCtrler {
 
-    public SuspendController() {}
+    public SuspendAccCtrler() {}
 
-    public int suspend(String username, String password, String privilege, String firstName, String lastName) throws IOException {
+    public int suspendAcc(String username, String password, String privilege, String firstName, String lastName) throws IOException {
 
         HealthOrganization ho = new HealthOrganization();
 
         int validationIsSuccessful = validate(username);
 
         if (validationIsSuccessful == 0)
-            ho.suspend(username, "admin", privilege, firstName, lastName);
+            ho.suspendAcc(username, "admin", privilege, firstName, lastName);
         
         return validationIsSuccessful;
     }        

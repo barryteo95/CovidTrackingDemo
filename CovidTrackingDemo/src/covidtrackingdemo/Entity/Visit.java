@@ -19,40 +19,40 @@ import java.util.Set;
  */
 public class Visit {
     
-    private String businessOwner;
-    private String publicUser;
+    private String boUsername;
+    private String puUsername;
     private String visitedDate;
     
     public Visit() {}
     
     // Accessor Methods
-    public String getBusinessOwner() { 
-        return this.businessOwner; 
+    public String getBoUsername() { 
+        return this.boUsername; 
     }
-    public String getPublicUser() { 
-        return this.publicUser; 
+    public String getPuUsername() { 
+        return this.puUsername; 
     }
     public String getVisitedDate() { 
         return this.visitedDate; 
     }
     
     // Mutator Methods
-    public void setBusinessOwner(String businessOwner) { 
-        this.businessOwner = businessOwner; 
+    public void setBoUsername(String boUsername) { 
+        this.boUsername = boUsername; 
     }
-    public void setPublicUser(String publicUser) {
-        this.publicUser = publicUser;
+    public void setPuUsername(String puUsername) {
+        this.puUsername = puUsername;
     }
     public void setVisitedDate(String visitedDate) {
         this.visitedDate = visitedDate;
     }
     
     // Other Methods
-    public void checkIn(String businessOwner, String publicUser, String date) throws IOException {
+    public void checkIn(String boUsername, String puUsername, String date) throws IOException {
     
         VisitRecords vr = new VisitRecords();
         
-        vr.insert(businessOwner, publicUser, date);
+        vr.insert(boUsername, puUsername, date);
     }
     
     public ArrayList<Visit> display() throws IOException {
@@ -62,55 +62,55 @@ public class Visit {
         return vr.select();
     } 
     
-    public Set<String> findExposed(ArrayList<String> infectedList, LocalDate startDate) throws IOException {
+    public Set<String> findExposed(ArrayList<String> infList, LocalDate startDate) throws IOException {
         
-        Set<String> exposedList = new HashSet<>();
+        Set<String> expList = new HashSet<>();
         
         VisitRecords vr = new VisitRecords();
         ArrayList<Visit> visitorList = vr.select();
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate dateOfVisit;
-        Boolean startofIP;
+        Boolean startOfIP;
         Boolean duringIP;
-        Boolean endofIP;
-        Boolean infectionPeriod;
+        Boolean endOfIP;
+        Boolean infPeriod;
         
         for (Visit visit : visitorList) {
             
-            String visitor = visit.getPublicUser();  
+            String visitor = visit.getPuUsername();  
             
             dateOfVisit = LocalDate.parse(visit.getVisitedDate(), formatter);
-            startofIP = dateOfVisit.isEqual(startDate);
+            startOfIP = dateOfVisit.isEqual(startDate);
             duringIP = dateOfVisit.isAfter(startDate);
-            endofIP = dateOfVisit.isBefore(startDate.plusDays(3)); 
+            endOfIP = dateOfVisit.isBefore(startDate.plusDays(3)); 
             
-            infectionPeriod = startofIP || (duringIP && endofIP);
+            infPeriod = startOfIP || (duringIP && endOfIP);
                         
-            if (infectedList.contains(visitor) && infectionPeriod) {
+            if (infList.contains(visitor) && infPeriod) {
             
-                exposedList.add(visit.getBusinessOwner());
+                expList.add(visit.getBoUsername());
             }
         }
         
         for (Visit visit : visitorList) {
            
-            String owner = visit.getBusinessOwner();
-            String visitor = visit.getPublicUser();
+            String owner = visit.getBoUsername();
+            String visitor = visit.getPuUsername();
             
             dateOfVisit = LocalDate.parse(visit.getVisitedDate(), formatter);
-            startofIP = dateOfVisit.isEqual(startDate);
+            startOfIP = dateOfVisit.isEqual(startDate);
             duringIP = dateOfVisit.isAfter(startDate);
-            endofIP = dateOfVisit.isBefore(startDate.plusDays(3));
+            endOfIP = dateOfVisit.isBefore(startDate.plusDays(3));
             
-            infectionPeriod = startofIP || (duringIP && endofIP);
+            infPeriod = startOfIP || (duringIP && endOfIP);
             
-            if ((exposedList.contains(owner) && infectionPeriod) && !infectedList.contains(visitor)) {
+            if ((expList.contains(owner) && infPeriod) && !infList.contains(visitor)) {
             
-                exposedList.add(visitor);
+                expList.add(visitor);
             }
         }
         
-        return exposedList;
+        return expList;
     }
 }

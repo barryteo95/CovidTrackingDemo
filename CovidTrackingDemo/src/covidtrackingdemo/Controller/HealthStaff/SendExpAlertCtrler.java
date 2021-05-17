@@ -7,15 +7,12 @@ package covidtrackingdemo.Controller.HealthStaff;
 
 import covidtrackingdemo.Entity.Alert;
 import covidtrackingdemo.Entity.HealthStaff;
-import covidtrackingdemo.Entity.PublicUser;
 import covidtrackingdemo.Entity.Visit;
 import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
-import java.time.ZoneId;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Set;
 /**
  *
@@ -30,7 +27,7 @@ public class SendExpAlertCtrler {
         // HealthRecords
         // Find out the infected cases based on the current date 
         HealthStaff hs = new HealthStaff();
-        ArrayList<String> infectedList = hs.findInfected(currentDate);
+        ArrayList<String> infList = hs.findInfected(currentDate);
         
         // Vists
         // Find about the exposed cases based on the current date - 2
@@ -41,12 +38,12 @@ public class SendExpAlertCtrler {
         startDate = startDate.minusDays(2);
         
         Visit vist = new Visit();
-        Set<String> exposedList = vist.findExposed(infectedList, startDate);
+        Set<String> expList = vist.findExposed(infList, startDate);
         
         // Alerts
         Alert alert = new Alert();
-        alert.sendExpAlert(exposedList, currentDate);
+        alert.sendExpAlert(expList, currentDate);
         
-        return exposedList;
+        return expList;
     }
 }

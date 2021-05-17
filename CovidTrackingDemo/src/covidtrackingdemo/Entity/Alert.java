@@ -20,7 +20,7 @@ public class Alert {
     private String username;
     private String alertType;
     private String alertDate;
-    private Boolean isAcknowledge;
+    private String isAcknowledge;
     
     public Alert() {}
     
@@ -34,7 +34,7 @@ public class Alert {
     public String getAlertDate() { 
         return this.alertDate; 
     }
-    public Boolean getIsAcknowledge() { 
+    public String getIsAcknowledge() { 
         return this.isAcknowledge; 
     }
     
@@ -48,7 +48,7 @@ public class Alert {
     public void setAlertDate(String alertDate) {
         this.alertDate = alertDate;
     }
-    public void setIsAcknowledge(Boolean isAcknowledge) {
+    public void setIsAcknowledge(String isAcknowledge) {
         this.isAcknowledge = isAcknowledge;
     }
     
@@ -58,14 +58,14 @@ public class Alert {
 
         AlertRecords ar = new AlertRecords();
         
-        ar.insert(puUsername, alertType, strVacDate, false);
+        ar.insert(puUsername, alertType, strVacDate, "No");
     }
     
     public void sendInfAlert(String puUsername, String alertType, String strInfDate) throws IOException {
 
         AlertRecords ar = new AlertRecords();
         
-        ar.insert(puUsername, alertType, strInfDate, false);
+        ar.insert(puUsername, alertType, strInfDate, "No");
     }
     
     public Boolean sendExpAlert(Set<String> exposedList, String currentDate) throws IOException {
@@ -75,7 +75,7 @@ public class Alert {
         Iterator<String> i = exposedList.iterator();
         
         while (i.hasNext()){
-            ar.insert(i.next(), "exposure", currentDate, false);
+            ar.insert(i.next(), "exposure", currentDate, "No");
         }
         
         return true;
@@ -88,7 +88,7 @@ public class Alert {
         return ar.select();
     }
     
-    public void acknowledge(String username, String alertType, String alertDate) throws IOException {
+    public void ackAlert(String username, String alertType, String alertDate) throws IOException {
     
         AlertRecords ar = new AlertRecords();
         

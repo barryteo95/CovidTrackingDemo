@@ -5,10 +5,6 @@
  */
 package covidtrackingdemo.Entity;
 
-import covidtrackingdemo.UserProfiles;
-import java.io.IOException;
-import java.util.ArrayList;
-
 /**
  *
  * @author barry
@@ -16,28 +12,28 @@ import java.util.ArrayList;
 public class PublicUser extends User {
     
     private String vaccinatedBy;
-    private String vaccinationStatus;
-    private String vaccinationDate;
+    private String vacStatus;
+    private String vacDate;
     private String determinedBy;
-    private String infectionStatus;
-    private String infectionDate;
+    private String infStatus;
+    private String infDate;
 
     public PublicUser() {
     }
     
     // Accessor Methods
     public String getVaccinatedBy() { return vaccinatedBy; }
-    public String getVaccinationStatus() { return vaccinationStatus; }
-    public String getVaccinationDate() { return vaccinationDate; }
+    public String getVacStatus() { return vacStatus; }
+    public String getVacDate() { return vacDate; }
     public String getDeterminedBy() { return determinedBy; }
-    public String getInfectionStatus() { return infectionStatus; }
-    public String getInfectionDate() { return infectionDate; }
+    public String getInfStatus() { return infStatus; }
+    public String getInfDate() { return infDate; }
 
     // Mutator Methods
     public void setVaccinatedBy(String vaccinatedBy) { this.vaccinatedBy = vaccinatedBy; }
-    public void setVaccinationStatus(String vaccinationStatus) { this.vaccinationStatus = vaccinationStatus; }
-    public void setVaccinationDate(String vaccinationDate) { this.vaccinationDate = vaccinationDate; }
+    public void setVacStatus(String vacStatus) { this.vacStatus = vacStatus; }
+    public void setVacDate(String vacDate) { this.vacDate = vacDate; }
     public void setDeterminedBy(String determinedBy) { this.determinedBy = determinedBy; }
-    public void setInfectionStatus(String infectionStatus) { this.infectionStatus = infectionStatus; }
-    public void setInfectionDate(String infectionDate) { this.infectionDate = infectionDate; }
+    public void setInfStatus(String infStatus) { this.infStatus = infStatus; }
+    public void setInfDate(String infDate) { this.infDate = infDate; }
 }

@@ -27,11 +27,11 @@ public class VisitRecords {
         path = "dataset/VisitRecords.csv";
     }
     
-    public void insert(String businessOwner, String publicUser, String date) throws IOException {
+    public void insert(String boUsername, String puUsername, String date) throws IOException {
     
         try (BufferedWriter csvWriter = new BufferedWriter(new FileWriter(path, true))) {
             
-            String row = businessOwner + "," + publicUser + "," + date;
+            String row = boUsername + "," + puUsername + "," + date;
             
             csvWriter.newLine();
             
@@ -58,8 +58,8 @@ public class VisitRecords {
                 
                 Visit visit = new Visit();
                 
-                visit.setBusinessOwner(data[0]);
-                visit.setPublicUser(data[1]);
+                visit.setBoUsername(data[0]);
+                visit.setPuUsername(data[1]);
                 visit.setVisitedDate(data[2]);
                 
                 visitorList.add(visit);
@@ -70,8 +70,4 @@ public class VisitRecords {
       
         return visitorList; 
     }
-    
-    public void select(String date, String username) {}
-    
-    // public void delete() {}
 }

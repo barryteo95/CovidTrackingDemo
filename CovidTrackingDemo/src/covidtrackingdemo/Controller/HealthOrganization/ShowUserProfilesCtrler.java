@@ -3,25 +3,25 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package covidtrackingdemo.Controller.PublicUser;
+package covidtrackingdemo.Controller.HealthOrganization;
 
 import covidtrackingdemo.Entity.HealthOrganization;
-import covidtrackingdemo.Entity.PublicUser;
 import covidtrackingdemo.Entity.User;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
  * @author User
  */
-public class ShowUserProfileController {
+public class ShowUserProfilesCtrler {
     
-    public ShowUserProfileController() {}
+    public ShowUserProfilesCtrler() {}
     
-    public User getUserProfile(String accName) throws IOException {
-        
+    public ArrayList<User> showUserProfiles() throws IOException {
+    
         HealthOrganization ho = new HealthOrganization();
         
-        return ho.display(accName);
+        return ho.showUserProfiles();
     }
 }
