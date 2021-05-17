@@ -38,11 +38,11 @@ public class HealthStaff extends User {
         return userList;
     }
 
-    public void update(String hsUsername, String puUsername, String vacStats, String strVaccinationDate, String infStats, String strInfectionDate) throws IOException {
+    public void update(String hsUsername, String puUsername, String vacStats, String strVacDate, String infStats, String strInfDate) throws IOException {
         
         HealthRecords hr = new HealthRecords();
         
-        hr.update(hsUsername, puUsername, vacStats, strVaccinationDate, infStats, strInfectionDate);    
+        hr.update(hsUsername, puUsername, vacStats, strVacDate, infStats, strInfDate);    
     }
     
     public ArrayList<String> findInfected(String currentDate) throws IOException, ParseException {  
