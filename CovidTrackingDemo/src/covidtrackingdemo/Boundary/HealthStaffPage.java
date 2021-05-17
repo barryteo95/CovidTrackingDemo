@@ -459,13 +459,13 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String fieldVacDate = dateFormat.format(vacDateField.getDate());
-        String fieldInfDate = dateFormat.format(vacDateField.getDate());
+        String fieldInfDate = dateFormat.format(infDateField.getDate());
         
         // If Vaccination Date is Updated
 
         if (!recordVacDate.equals(fieldVacDate)) {
             
-            int confirmationNumber = JOptionPane.showConfirmDialog(this ,"Infection Vaccination Alert will be sent upon update. Proceed?", "",
+            int confirmationNumber = JOptionPane.showConfirmDialog(this ,"Vaccination Notification Alert will be sent upon update. Proceed?", "",
             JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE);
 
@@ -478,6 +478,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
                 SendVacAlertCtrler svc = new SendVacAlertCtrler();
 
                 try {
+                    
                     int validationNumber = uvc.updateVacStatus(hsUsernameField.getText(), puUsernameField.getText(),
                             vacStatus, vacDateField.getDate(), infStatus, infDateField.getDate());
 
@@ -490,10 +491,10 @@ public class HealthStaffPage extends javax.swing.JFrame {
                         showHealthRec();
                     }
                     
-                    else {
-                        
-                        JOptionPane.showMessageDialog(null, "Please enter a new and valid vaccination date");   
-                    }
+//                    else {
+//                        
+//                        JOptionPane.showMessageDialog(null, "Please enter a new and valid vaccination date");   
+//                    }
                 } 
                 catch (IOException ex) {
                     
@@ -510,13 +511,14 @@ public class HealthStaffPage extends javax.swing.JFrame {
             JOptionPane.YES_NO_OPTION,
             JOptionPane.QUESTION_MESSAGE);
 
-             if (confirmationNumber == 0) {
+            // If User agrees to Update Inf with Send Alert
+
+            if (confirmationNumber == 0) {
                  
                 UpdateInfStatusCtrler uic = new UpdateInfStatusCtrler();
 
                 SendInfAlertCtrler sic = new SendInfAlertCtrler();
 
-                // If User agrees to Update Inf with Send Alert
 
                 try {
 
@@ -532,10 +534,10 @@ public class HealthStaffPage extends javax.swing.JFrame {
                         showHealthRec();
                     }
                     
-                    else {
-
-                        JOptionPane.showMessageDialog(null, "Please enter a new and valid infection date");   
-                    }
+//                    else {
+//
+//                        JOptionPane.showMessageDialog(null, "Please enter a new and valid infection date");   
+//                    }
                 } 
                 
                 catch (IOException ex) {
@@ -559,6 +561,9 @@ public class HealthStaffPage extends javax.swing.JFrame {
         
         String vacStatus = model.getValueAt(i,2).toString();
         
+        vacStatusYesBtn.setEnabled(true);
+        vacStatusNoBtn.setEnabled(true);
+
         switch(vacStatus) {
 
             case "Yes" : 
@@ -566,6 +571,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
                 vacStatusNoBtn.setSelected(false);
                 vacDateField.setEnabled(true);
                 break;
+                
             case "No" : 
                 vacStatusYesBtn.setSelected(false);
                 vacStatusNoBtn.setSelected(true);
@@ -590,6 +596,9 @@ public class HealthStaffPage extends javax.swing.JFrame {
         
         String infStatus = model.getValueAt(i,5).toString();
         
+        infStatusYesBtn.setEnabled(true);
+        infStatusNoBtn.setEnabled(true);
+
         switch(infStatus) {
 
             case "Yes" : 
@@ -597,6 +606,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
                 infStatusNoBtn.setSelected(false);
                 infDateField.setEnabled(true);
                 break;
+                
             case "No" : 
                 infStatusYesBtn.setSelected(false);
                 infStatusNoBtn.setSelected(true);
@@ -701,9 +711,9 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
         String strVacDate = model.getValueAt(i,3).toString();
 
-        if (currentVacStatus.equals("Y")) {
+        if (currentVacStatus.equals("Yes")) {
 
-            if (recVacStatus.equals("Y")) {
+            if (recVacStatus.equals("Yes")) {
                 
                 try {
 
@@ -849,9 +859,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
             else {
 
                 try {
-                    
-                    // set today date... 
-                    
+                                        
                     DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
                     LocalDate localDate = LocalDate.now();

@@ -10,7 +10,6 @@ import covidtrackingdemo.Controller.HealthOrganization.ShowUserProfilesCtrler;
 import covidtrackingdemo.Controller.HealthOrganization.SuspendAccCtrler;
 import covidtrackingdemo.Controller.HealthOrganization.UpdateAccCtrler;
 import covidtrackingdemo.Entity.User;
-import java.awt.Color;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -154,8 +153,6 @@ public class AdminPage extends javax.swing.JFrame {
         jPanel2.add(privilegeLabel, gridBagConstraints);
 
         usernameField.setPreferredSize(new java.awt.Dimension(100, 30));
-        usernameField.setEditable(false);
-        usernameField.setBackground(new Color(224,224,224));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;

@@ -43,20 +43,20 @@ public class UpdateInfStatusCtrler {
         } 
     }
     
-    private String validateDate(Date vacDate) throws IOException {
+    private String validateDate(Date infDate) throws IOException {
 
-        Date dateOfVac = vacDate;
+        Date dateOfInf = infDate;
         
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
-        String strVacDate = sdf.format(dateOfVac);
+        String strInfDate = sdf.format(dateOfInf);
         
-        if (!strVacDate.equals(sdf.format(dateOfVac))) {
+        if (!strInfDate.equals(sdf.format(dateOfInf))) {
             return ""; 
         }
         
         else {
-            return strVacDate;
+            return strInfDate;
         } 
     }
 }
