@@ -54,18 +54,18 @@ public class Alert {
     
     // Other Methods
     
-    public void sendVacAlert(String puUsername, String alertType, String strVaccinationDate) throws IOException {
+    public void sendVacAlert(String puUsername, String alertType, String strVacDate) throws IOException {
 
         AlertRecords ar = new AlertRecords();
         
-        ar.insert(puUsername, alertType, strVaccinationDate, false);
+        ar.insert(puUsername, alertType, strVacDate, false);
     }
     
-    public void sendInfAlert(String puUsername, String alertType, String strInfectionDate) throws IOException {
+    public void sendInfAlert(String puUsername, String alertType, String strInfDate) throws IOException {
 
         AlertRecords ar = new AlertRecords();
         
-        ar.insert(puUsername, alertType, strInfectionDate, false);
+        ar.insert(puUsername, alertType, strInfDate, false);
     }
     
     public Boolean sendExpAlert(Set<String> exposedList, String currentDate) throws IOException {
