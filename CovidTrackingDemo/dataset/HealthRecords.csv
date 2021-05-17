@@ -1,6 +1,6 @@
 Username,VaccinatedBy,VaccinationStatus,VaccinatedDate,DeterminedBy,InfectionStatus,InfectedDate
-AJ5@example.com,OW895@example.com,Yes,30/4/2021,OW895@example.com,No,01/01/0001
+AJ5@example.com,OW895@example.com,No,01/01/0001,OW895@example.com,No,01/01/0001
 JW2@example.com,OW895@example.com,Yes,30/4/2021,OW895@example.com,No,01/01/0001
 EN3@example.com,OW895@example.com,No,01/01/0001,OW895@example.com,No,01/01/0001
 CC4@example.com,OW895@example.com,Yes,30/4/2021,OW895@example.com,No,01/01/0001
-AJ5@example.com,OW895@example.com,Yes,30/4/2021,OW895@example.com,No,01/01/0001
+AJ5@example.com,OW895@example.com,No,01/01/0001,OW895@example.com,No,01/01/0001
