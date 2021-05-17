@@ -32,13 +32,13 @@ public class UserProfiles {
     }
     
     // Insert 
-    public void insert(String username, String password, String privilege, String fname, String lname) throws FileNotFoundException, IOException {
+    public void insert(String username, String password, String privilege, String firstName, String lastName) throws FileNotFoundException, IOException {
         
         // Insert validations here
         
         try (BufferedWriter csvWriter = new BufferedWriter(new FileWriter(path, true))) {
             
-            String row = username + "," + password + "," + privilege + "," + fname + "," + lname;
+            String row = username + "," + password + "," + privilege + "," + firstName + "," + lastName;
             
             csvWriter.newLine();
             
@@ -49,7 +49,7 @@ public class UserProfiles {
     }
     
     // Update
-    public void update(String username, String password, String privilege, String fname, String lname) throws FileNotFoundException, IOException {
+    public void update(String username, String password, String privilege, String firstName, String lastName) throws FileNotFoundException, IOException {
         
         String newData = "";
     
@@ -65,7 +65,7 @@ public class UserProfiles {
                 
                 if (username.equals(data[0])) {
                 
-                    row = username + "," + password + "," + privilege + "," + fname + "," + lname;
+                    row = username + "," + password + "," + privilege + "," + firstName + "," + lastName;
                 }
 
                 newData = newData + "\n" + row;

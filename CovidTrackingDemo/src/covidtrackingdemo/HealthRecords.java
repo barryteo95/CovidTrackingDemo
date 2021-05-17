@@ -27,40 +27,6 @@ public class HealthRecords {
         path = "dataset/HealthRecords.csv";
     }
         
-    // Update
-//    public void update(String username, String vaccinatedBy, String vaccinationStatus, String vaccinationDate, String determinedBy, String infectionStatus, String infectionDate) throws FileNotFoundException, IOException {
-//        
-//        String newData = "";
-//    
-//        try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
-//            
-//            newData = csvReader.readLine();
-//            
-//            String row;
-//            
-//            while ((row = csvReader.readLine()) != null) {
-//                
-//                String[] data = row.split(",");
-//                
-//                if (username.equals(data[0])) {
-//                
-//                    row = username + "," + vaccinatedBy + "," + vaccinationStatus + "," + vaccinationDate + "," + determinedBy + "," + infectionStatus + "," + infectionDate;
-//                }
-//
-//                newData = newData + "\n" + row;
-//            }
-//            
-//            csvReader.close();
-//        }
-//        
-//        try (BufferedWriter csvWriter = new BufferedWriter(new FileWriter(path))) {
-//               
-//            csvWriter.write(newData);
-//            
-//            csvWriter.close();
-//        }
-//    }
-   
     // Select - individual
     public PublicUser select(String username) throws IOException {
         
@@ -74,17 +40,17 @@ public class HealthRecords {
                 
                 String[] data = row.split(",");
                 
-                if (username.equals(data[0])){// && password.equals(data[1])){
+                if (username.equals(data[0])){
                     
                     PublicUser user = new PublicUser();
                     
                     user.setUsername(data[0]);
                     user.setVaccinatedBy(data[1]);
-                    user.setVaccinationStatus(data[2]); 
-                    user.setVaccinationDate(data[3]); 
+                    user.setVacStatus(data[2]); 
+                    user.setVacDate(data[3]); 
                     user.setDeterminedBy(data[4]);
-                    user.setInfectionStatus(data[5]);
-                    user.setInfectionDate(data[6]);
+                    user.setInfStatus(data[5]);
+                    user.setInfDate(data[6]);
                     
                     return user;
                 } 
@@ -116,11 +82,11 @@ public class HealthRecords {
                 
                 user.setUsername(data[0]);
                 user.setVaccinatedBy(data[1]);
-                user.setVaccinationStatus(data[2]); 
-                user.setVaccinationDate(data[3]); 
+                user.setVacStatus(data[2]); 
+                user.setVacDate(data[3]); 
                 user.setDeterminedBy(data[4]);
-                user.setInfectionStatus(data[5]);
-                user.setInfectionDate(data[6]);
+                user.setInfStatus(data[5]);
+                user.setInfDate(data[6]);
                 
                 userList.add(user);
             }
@@ -131,7 +97,7 @@ public class HealthRecords {
         return userList; 
     }
 
-    public void update(String hsUsername, String puUsername, String vacStats, String strVaccinationDate, String infStats, String strInfectionDate) throws FileNotFoundException, IOException {
+    public void update(String hsUsername, String puUsername, String vacStatus, String strVacDate, String infStatus, String strInfDate) throws FileNotFoundException, IOException {
       
         String newData = "";
     
@@ -147,7 +113,7 @@ public class HealthRecords {
                 
                 if (puUsername.equals(data[0])) {
                 
-                    row = puUsername + "," + hsUsername + "," + vacStats + "," + strVaccinationDate + "," + hsUsername + "," + infStats + "," + strInfectionDate;
+                    row = puUsername + "," + hsUsername + "," + vacStatus + "," + strVacDate + "," + hsUsername + "," + infStatus + "," + strInfDate;
                 }
 
                 newData = newData + "\n" + row;

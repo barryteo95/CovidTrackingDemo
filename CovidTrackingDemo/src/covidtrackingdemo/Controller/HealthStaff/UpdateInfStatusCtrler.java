@@ -18,21 +18,21 @@ public class UpdateInfStatusCtrler {
 
     public UpdateInfStatusCtrler() {}
     
-    public int update(String hsUsername, String puUsername, String vacStats, Date vaccinationDate, String infStats, Date infectionDate) throws IOException {
+    public int updateInfStatus(String hsUsername, String puUsername, String vacStatus, Date vacDate, String infStatus, Date infDate) throws IOException {
    
         HealthStaff hs = new HealthStaff();
 
-        String strInfectionDate = validateDate(infectionDate);
+        String strInfDate = validateDate(infDate);
 
         // Update occurs when date is valid 
         
-        if (!strInfectionDate.equals("")) {
+        if (!strInfDate.equals("")) {
             
             SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
-            String strVaccinationDate = sdf.format(vaccinationDate);
+            String strVacDate = sdf.format(vacDate);
 
-            hs.update(hsUsername, puUsername, vacStats, strVaccinationDate, infStats, strInfectionDate);
+            hs.update(hsUsername, puUsername, vacStatus, strVacDate, infStatus, strInfDate);
             
             return 0;
         }
@@ -43,20 +43,20 @@ public class UpdateInfStatusCtrler {
         } 
     }
     
-    private String validateDate(Date vaccinationDate) throws IOException {
+    private String validateDate(Date vacDate) throws IOException {
 
-        Date dateDate = vaccinationDate;
+        Date dateOfVac = vacDate;
         
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
         
-        String strDate = sdf.format(dateDate);
+        String strVacDate = sdf.format(dateOfVac);
         
-        if (!strDate.equals(sdf.format(dateDate))) {
+        if (!strVacDate.equals(sdf.format(dateOfVac))) {
             return ""; 
         }
         
         else {
-            return strDate;
+            return strVacDate;
         } 
     }
 }

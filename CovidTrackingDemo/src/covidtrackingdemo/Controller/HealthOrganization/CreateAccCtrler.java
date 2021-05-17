@@ -12,18 +12,18 @@ import java.io.IOException;
  *
  * @author barry
  */
-public class CreateController {
+public class CreateAccCtrler {
     
-    public CreateController() {}
+    public CreateAccCtrler() {}
 
-    public int create(String username, String password, String privilege, String firstName, String lastName) throws IOException {
+    public int createAcc(String username, String password, String privilege, String firstName, String lastName) throws IOException {
 
         HealthOrganization ho = new HealthOrganization();
 
         int validationIsSuccessful = validate(username, password, privilege, firstName, lastName);
 
         if (validationIsSuccessful == 0)
-            ho.create(username, password, privilege, firstName, lastName);
+            ho.createAcc(username, password, privilege, firstName, lastName);
 
         return validationIsSuccessful;
     }

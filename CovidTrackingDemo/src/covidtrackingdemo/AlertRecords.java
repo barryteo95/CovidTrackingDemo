@@ -47,7 +47,7 @@ public class AlertRecords {
                 alert.setUsername(data[0]);
                 alert.setAlertType(data[1]);
                 alert.setAlertDate(data[2]); 
-                alert.setIsAcknowledge(Boolean.valueOf(data[3])); 
+                alert.setIsAcknowledge(data[3]); 
 
                 alertList.add(alert);
             }
@@ -58,11 +58,11 @@ public class AlertRecords {
         return alertList;
     }
     
-    public void insert(String username, String alertType, String date, Boolean isAcknowledge) throws FileNotFoundException, IOException {
+    public void insert(String username, String alertType, String date, String isAcknowledge) throws FileNotFoundException, IOException {
     
         try (BufferedWriter csvWriter = new BufferedWriter(new FileWriter(path, true))) {
             
-            String row = username + "," + alertType + "," + date + "," + false;
+            String row = username + "," + alertType + "," + date + "," + isAcknowledge;
             
             csvWriter.newLine();
             
@@ -88,7 +88,7 @@ public class AlertRecords {
                 
                 if ((username.equals(data[0]) && alertType.equals(data[1])) && alertDate.equals(data[2])) {
                 
-                    row = data[0] + "," + data[1] + "," + data[2] + "," + true;
+                    row = data[0] + "," + data[1] + "," + data[2] + "," + "Yes";
                 }
 
                 newData = newData + "\n" + row;

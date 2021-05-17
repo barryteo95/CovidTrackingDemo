@@ -58,6 +58,4 @@ public class User {
             return user.getPrivilege();
         }         
     }
-    
-    // public String toString() {}
 }

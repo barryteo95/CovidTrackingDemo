@@ -13,11 +13,11 @@ import java.util.ArrayList;
  *
  * @author User
  */
-public class AcknowledgeController {
+public class AckAlertCtrler {
     
-    public AcknowledgeController() {}
+    public AckAlertCtrler() {}
     
-    public void acknowledge(ArrayList<String> selectedList) throws IOException {
+    public void ackAlert(ArrayList<String> selectedList) throws IOException {
     
         Alert alert = new Alert();
         
@@ -25,7 +25,7 @@ public class AcknowledgeController {
         
             String[] data = sel.split(" ");
             
-            alert.acknowledge(data[0], data[1], data[5]);
+            alert.ackAlert(data[0], data[1], data[5]);
         }
     }
 }

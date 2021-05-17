@@ -6,20 +6,17 @@
 package covidtrackingdemo.Controller.BusinessOwner;
 
 import covidtrackingdemo.Entity.Alert;
-import covidtrackingdemo.Entity.Visit;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
 
 /**
  *
  * @author User
  */
-public class ShowAlertController {
+public class ShowAlertCtrler {
     
-    public ShowAlertController() {}
+    public ShowAlertCtrler() {}
     
     public ArrayList<Alert> showAlert(String accName) throws IOException {
                         

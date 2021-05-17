@@ -17,28 +17,28 @@ public class HealthOrganization extends User {
 
     public HealthOrganization() {}
 
-    public void create(String username, String password, String privilege, String firstName, String lastName) throws IOException {
+    public void createAcc(String username, String password, String privilege, String firstName, String lastName) throws IOException {
                 
         UserProfiles db = new UserProfiles();
         
         db.insert(username, password, privilege, firstName, lastName);
     }    
     
-    public void update(String username, String password, String privilege, String firstName, String lastName) throws IOException {
+    public void updateAcc(String username, String password, String privilege, String firstName, String lastName) throws IOException {
                 
         UserProfiles db = new UserProfiles();
         
         db.update(username, password, privilege, firstName, lastName);
     }
     
-    public void suspend(String username, String password, String privilege, String firstName, String lastName) throws IOException {
+    public void suspendAcc(String username, String password, String privilege, String firstName, String lastName) throws IOException {
     
         UserProfiles db = new UserProfiles();
         
         db.update(username, password, privilege, firstName, lastName);
     }
     
-    public User display(String accName) throws IOException {
+    public User showUserProfile(String accName) throws IOException {
     
         UserProfiles db = new UserProfiles();
         
@@ -47,7 +47,7 @@ public class HealthOrganization extends User {
         return user;
     }
     
-    public ArrayList<User> display() throws IOException {
+    public ArrayList<User> showUserProfiles() throws IOException {
     
         UserProfiles db = new UserProfiles();
         
