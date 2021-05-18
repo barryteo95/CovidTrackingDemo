@@ -122,6 +122,7 @@ public class LoginPage extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Valid credentials. Admin");
                     AdminPage admin = new AdminPage();
                     admin.setVisible(true);
+                    admin.setUsername(usernameField.getText());
                     break;
                 case "Public User" : 
                     JOptionPane.showMessageDialog(this, "Valid credentials. Public user");
@@ -139,7 +140,7 @@ public class LoginPage extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(this, "Valid credentials. Health staff");
                     HealthStaffPage healthStaff = new HealthStaffPage();
                     healthStaff.setVisible(true);
-                    healthStaff.setHsUsername(usernameField.getText());
+                    healthStaff.setUsername(usernameField.getText());
                     break;
                 default : 
                     JOptionPane.showMessageDialog(this, "Invalid credentials.");

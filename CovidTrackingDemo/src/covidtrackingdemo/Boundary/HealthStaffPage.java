@@ -35,10 +35,11 @@ import javax.swing.table.DefaultTableModel;
  */
 public class HealthStaffPage extends javax.swing.JFrame {
             
+    private String currentUser;
+    
     public HealthStaffPage() throws IOException {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        showHealthRec(); 
     }
 
     /**
@@ -80,6 +81,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
         sendExpAlertBtn = new javax.swing.JButton();
         expAlertDateLabel = new javax.swing.JLabel();
         expAlertDateField = new javax.swing.JLabel();
+        welcomeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
@@ -291,7 +293,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.insets = new java.awt.Insets(15, 15, 0, 15);
@@ -341,7 +343,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.insets = new java.awt.Insets(15, 0, 0, 0);
         getContentPane().add(jPanel3, gridBagConstraints);
@@ -378,7 +380,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(15, 15, 0, 15);
         getContentPane().add(jPanel4, gridBagConstraints);
@@ -419,13 +421,34 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(15, 15, 0, 15);
         getContentPane().add(jPanel5, gridBagConstraints);
 
+        welcomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcomeLabel.setText("Welcome, Test");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 0);
+        getContentPane().add(welcomeLabel, gridBagConstraints);
+
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    public void setUsername(String username) throws IOException {
+        
+        welcomeLabel.setText("Welcome, " + username);
+        
+        this.currentUser = username;
+        
+        hsUsernameField.setText(username);
+        
+        showHealthRec(); 
+    }
     
     private void update(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update
         
@@ -1014,9 +1037,6 @@ public class HealthStaffPage extends javax.swing.JFrame {
     private javax.swing.JLabel vacStatusLabel;
     private javax.swing.JRadioButton vacStatusNoBtn;
     private javax.swing.JRadioButton vacStatusYesBtn;
+    private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
-
-    void setHsUsername(String username) {
-        hsUsernameField.setText(username);
-    }
 }

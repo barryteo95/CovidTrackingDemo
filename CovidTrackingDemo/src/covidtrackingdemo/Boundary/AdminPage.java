@@ -6,27 +6,54 @@
 package covidtrackingdemo.Boundary;
 
 import covidtrackingdemo.Controller.HealthOrganization.CreateAccCtrler;
+import covidtrackingdemo.Controller.HealthOrganization.GenerateReportCtrler;
 import covidtrackingdemo.Controller.HealthOrganization.ShowUserProfilesCtrler;
 import covidtrackingdemo.Controller.HealthOrganization.SuspendAccCtrler;
 import covidtrackingdemo.Controller.HealthOrganization.UpdateAccCtrler;
 import covidtrackingdemo.Entity.User;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Dimension;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
 import java.io.IOException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartPanel;
+import org.jfree.chart.ChartRenderingInfo;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.axis.NumberAxis;
+import org.jfree.chart.entity.StandardEntityCollection;
+import org.jfree.chart.plot.CategoryPlot;
+import org.jfree.chart.plot.PlotOrientation;
+import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
  * @author barry
  */
 public class AdminPage extends javax.swing.JFrame {
-            
+    
+    private String currentUser;
+    
     public AdminPage() throws IOException {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        showUserProfiles(); 
     }
 
     /**
@@ -61,7 +88,11 @@ public class AdminPage extends javax.swing.JFrame {
         suspendAccBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
+        generateReportBtn = new javax.swing.JButton();
+        startDateLabel = new javax.swing.JLabel();
+        endDateLabel = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        welcomeLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
@@ -204,7 +235,7 @@ public class AdminPage extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.insets = new java.awt.Insets(15, 15, 0, 15);
@@ -217,7 +248,7 @@ public class AdminPage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Username", "Password", "Privilege", "Fname", "Lname"
+                "Username", "Password", "Privilege", "First Name", "Last Name"
             }
         ) {
             boolean[] canEdit = new boolean [] {
@@ -254,7 +285,7 @@ public class AdminPage extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.insets = new java.awt.Insets(15, 0, 0, 0);
         getContentPane().add(jPanel3, gridBagConstraints);
@@ -312,41 +343,89 @@ public class AdminPage extends javax.swing.JFrame {
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(15, 15, 0, 15);
         getContentPane().add(jPanel4, gridBagConstraints);
 
-        jLabel8.setText("jLabel8");
+        jPanel5.setLayout(new java.awt.GridBagLayout());
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel8)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(jPanel5Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(jLabel8)
-                    .addGap(0, 0, Short.MAX_VALUE)))
-        );
+        generateReportBtn.setText("GENERATE REPORT");
+        generateReportBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generateReport(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
+        jPanel5.add(generateReportBtn, gridBagConstraints);
+
+        startDateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        startDateLabel.setText("DD/MM/YYYY");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 5);
+        jPanel5.add(startDateLabel, gridBagConstraints);
+
+        endDateLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        endDateLabel.setText("DD/MM/YYYY");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 10, 0);
+        jPanel5.add(endDateLabel, gridBagConstraints);
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setText("-");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.weightx = 1.0;
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 10, 0);
+        jPanel5.add(jLabel1, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.insets = new java.awt.Insets(15, 15, 0, 15);
         getContentPane().add(jPanel5, gridBagConstraints);
+
+        welcomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        welcomeLabel.setText("Welcome, Test");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 0);
+        getContentPane().add(welcomeLabel, gridBagConstraints);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+    
+    public void setUsername(String username) throws IOException {
+    
+        welcomeLabel.setText("Welcome, " + username);
+        
+        this.currentUser = username;
+        
+        showUserProfiles();
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        LocalDate endDate = LocalDate.now();
+        LocalDate startDate = LocalDate.now().minusDays(7);
+        
+        endDateLabel.setText(formatter.format(endDate));
+        startDateLabel.setText(formatter.format(startDate));
+    }
     
     private void createAcc(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_createAcc
         
@@ -512,6 +591,149 @@ public class AdminPage extends javax.swing.JFrame {
         LoginPage lp = new LoginPage();
         lp.setVisible(true);
     }//GEN-LAST:event_logout
+
+    private void generateReport(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReport
+        // TODO add your handling code here:
+        
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+
+        GenerateReportCtrler grc = new GenerateReportCtrler();
+        
+        try {
+            
+            // HashMap<String, Integer> dict = grc.generateReport(startDateLabel.getText(), endDateLabel.getText());
+            HashMap<String, Integer> dict = grc.generateReport("18/05/2021", "20/05/2021");
+            
+            Map<LocalDate, Integer> vacDict = new TreeMap<>();
+            Map<LocalDate, Integer> infDict = new TreeMap<>();
+            
+            String tempKey;
+            Integer tempVal;
+            LocalDate tempDate;
+            
+            for (Map.Entry<String, Integer> me : dict.entrySet()) {
+                
+                tempKey = me.getKey();
+                tempVal = me.getValue();
+                tempDate = LocalDate.parse(tempKey.substring(2, tempKey.length()), formatter);
+                
+                // If tempKey is a Vaccination date
+                if (tempKey.contains("V")) {
+                                        
+                    vacDict.put(tempDate, tempVal);
+                }
+                
+                // If tempKey is a Infection date
+                else {
+                    
+                    infDict.put(tempDate, tempVal);
+                }                
+            }
+            
+            DefaultCategoryDataset vacDataset = new DefaultCategoryDataset();
+            DefaultCategoryDataset infDataset = new DefaultCategoryDataset();
+
+            for (Map.Entry<LocalDate, Integer> me : vacDict.entrySet()) {
+
+                vacDataset.setValue(me.getValue(), "Count", formatter.format(me.getKey()));
+            }
+
+            for (Map.Entry<LocalDate, Integer> me : infDict.entrySet()) {
+
+                infDataset.setValue(me.getValue(), "Count", formatter.format(me.getKey()));
+            }
+
+            JFreeChart vacChart = ChartFactory.createBarChart("Past 7 days trend of the number of vaccination", 
+                    "Date", 
+                    "Number of vaccination", 
+                    vacDataset,
+                    PlotOrientation.VERTICAL,
+                    false,
+                    true,
+                    false);
+            CategoryPlot vacP = vacChart.getCategoryPlot();
+            vacP.setRangeGridlinePaint(Color.black);
+            vacP.getRangeAxis().setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+
+            JFreeChart infChart = ChartFactory.createBarChart("Past 7 days trend of the number of infection", 
+                    "Date", 
+                    "Number of infection", 
+                    infDataset,
+                    PlotOrientation.VERTICAL,
+                    false,
+                    true,
+                    false);
+            CategoryPlot infP = infChart.getCategoryPlot();
+            infP.setRangeGridlinePaint(Color.black);
+            infP.getRangeAxis().setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+
+            ChartPanel vacPanel = new ChartPanel(vacChart);
+            vacPanel.setPreferredSize(new Dimension(600, 400));        
+
+            ChartPanel infPanel = new ChartPanel(infChart);
+            infPanel.setPreferredSize(new Dimension(600, 400));
+
+            // Panel TOP
+            JPanel topPanel = new JPanel();
+            topPanel.setPreferredSize(new Dimension(800, 100));
+            
+            JLabel subHeaderLabel = new JLabel("GENERATE REPORT");
+            subHeaderLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
+            subHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+            subHeaderLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+            subHeaderLabel.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
+            topPanel.add(subHeaderLabel);
+            
+            // Panel MIDDLE
+            // SHOW 2 CHARTS
+            JPanel midPanel = new JPanel();
+            midPanel.setPreferredSize(new Dimension(800, 600));
+            midPanel.add(vacPanel, BorderLayout.LINE_START);
+            midPanel.add(infPanel, BorderLayout.LINE_END);
+            
+            // Panel BOTTOM
+            // SAVE IMAGE
+            JButton saveChartBtn = new JButton("SAVE CHART");
+            saveChartBtn.setBounds(100, 100, 300, 100);
+            
+            saveChartBtn.addActionListener(new ActionListener() {
+            
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    
+                    try {
+                        
+                        final ChartRenderingInfo info = new ChartRenderingInfo(new StandardEntityCollection());
+                        final File vacFile = new File("vacChart.png");
+                        final File infFile = new File("infChart.png");
+                        ChartUtilities.saveChartAsJPEG(vacFile, vacChart, 600, 400, info);
+                        ChartUtilities.saveChartAsJPEG(infFile, infChart, 600, 400, info);
+                    
+                    } catch(IOException ex) {
+                        Logger.getLogger(AdminPage.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                }
+            });
+            
+            JPanel botPanel = new JPanel();
+            botPanel.setPreferredSize(new Dimension(800, 100));
+            botPanel.add(saveChartBtn);
+
+            JFrame frame = new JFrame("Covid19 Report");
+
+            frame.getContentPane().add(topPanel, BorderLayout.PAGE_START);
+            frame.getContentPane().add(midPanel, BorderLayout.CENTER);
+            frame.getContentPane().add(botPanel, BorderLayout.PAGE_END);
+
+            frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
+            frame.setResizable(false);
+            frame.setLocationRelativeTo(null);
+            frame.setVisible(true);
+        
+        } catch (IOException ex) {
+            Logger.getLogger(AdminPage.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_generateReport
     
     private void showUserProfiles() throws IOException {
         
@@ -576,10 +798,12 @@ public class AdminPage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton createAccBtn;
+    private javax.swing.JLabel endDateLabel;
     private javax.swing.JTextField firstNameField;
     private javax.swing.JLabel firstNameLabel;
+    private javax.swing.JButton generateReportBtn;
     private javax.swing.JLabel headerLabel;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
@@ -593,10 +817,12 @@ public class AdminPage extends javax.swing.JFrame {
     private javax.swing.JLabel passwordLabel;
     private javax.swing.JComboBox<String> privilegeComboBox;
     private javax.swing.JLabel privilegeLabel;
+    private javax.swing.JLabel startDateLabel;
     private javax.swing.JButton suspendAccBtn;
     private javax.swing.JButton updateAccBtn;
     private javax.swing.JTable userProfilesTable;
     private javax.swing.JTextField usernameField;
     private javax.swing.JLabel usernameLabel;
+    private javax.swing.JLabel welcomeLabel;
     // End of variables declaration//GEN-END:variables
 }

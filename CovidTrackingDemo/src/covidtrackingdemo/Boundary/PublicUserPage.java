@@ -441,6 +441,31 @@ public class PublicUserPage extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void setUsername(String username) throws IOException {
+    
+        welcomeLabel.setText("Welcome, " + username);
+        
+        this.currentUser = username;
+        
+        // Tab 1
+        // populate today's date
+        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");  
+        String date = dateFormat.format(new Date());  
+        checkInDateField.setText(date);
+        
+        // populate alerts
+        showAlert();
+        
+        // Tab 2
+        // populate "YOU ARE VACCINATED" label
+        checkVacStatus();
+        
+        // populate user profile
+        showUserProfile();
+        // populate today's date
+        dateField.setDate(new Date());
+    }
+    
     private void logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout
         // TODO add your handling code here:
         
@@ -522,31 +547,6 @@ public class PublicUserPage extends javax.swing.JFrame {
             Logger.getLogger(PublicUserPage.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_checkIn
-        
-    public void setUsername(String username) throws IOException {
-    
-        welcomeLabel.setText("Welcome, " + username);
-        
-        this.currentUser = username;
-        
-        // Tab 1
-        // populate today's date
-        DateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");  
-        String date = dateFormat.format(new Date());  
-        checkInDateField.setText(date);
-        
-        // populate alerts
-        showAlert();
-        
-        // Tab 2
-        // populate "YOU ARE VACCINATED" label
-        checkVacStatus();
-        
-        // populate user profile
-        showUserProfile();
-        // populate today's date
-        dateField.setDate(new Date());
-    }
     
     private void showAlert() throws IOException {
     

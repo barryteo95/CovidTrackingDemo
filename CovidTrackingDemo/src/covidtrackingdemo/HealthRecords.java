@@ -77,7 +77,7 @@ public class HealthRecords {
             while ((row = csvReader.readLine()) != null) {
                 
                 String[] data = row.split(",");
-                
+                                
                 PublicUser user = new PublicUser();
                 
                 user.setUsername(data[0]);

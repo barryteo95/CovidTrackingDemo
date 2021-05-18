@@ -71,23 +71,22 @@ public class Visit {
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate dateOfVisit;
-        Boolean startOfIP;
-        Boolean duringIP;
-        Boolean endOfIP;
-        Boolean infPeriod;
+        Boolean isAfter;
+        Boolean isBefore;
+        Boolean isWithin;
         
         for (Visit visit : visitorList) {
             
             String visitor = visit.getPuUsername();  
             
             dateOfVisit = LocalDate.parse(visit.getVisitedDate(), formatter);
-            startOfIP = dateOfVisit.isEqual(startDate);
-            duringIP = dateOfVisit.isAfter(startDate);
-            endOfIP = dateOfVisit.isBefore(startDate.plusDays(3)); 
             
-            infPeriod = startOfIP || (duringIP && endOfIP);
+            isAfter = dateOfVisit.isAfter(startDate.minusDays(1));
+            isBefore = dateOfVisit.isBefore(startDate.plusDays(3)); 
+            
+            isWithin = isAfter && isBefore;
                         
-            if (infList.contains(visitor) && infPeriod) {
+            if (infList.contains(visitor) && isWithin) {
             
                 expList.add(visit.getBoUsername());
             }
@@ -99,13 +98,13 @@ public class Visit {
             String visitor = visit.getPuUsername();
             
             dateOfVisit = LocalDate.parse(visit.getVisitedDate(), formatter);
-            startOfIP = dateOfVisit.isEqual(startDate);
-            duringIP = dateOfVisit.isAfter(startDate);
-            endOfIP = dateOfVisit.isBefore(startDate.plusDays(3));
             
-            infPeriod = startOfIP || (duringIP && endOfIP);
+            isAfter = dateOfVisit.isAfter(startDate.minusDays(1));
+            isBefore = dateOfVisit.isBefore(startDate.plusDays(3)); 
             
-            if ((expList.contains(owner) && infPeriod) && !infList.contains(visitor)) {
+            isWithin = isAfter && isBefore;
+            
+            if ((expList.contains(owner) && isWithin) && !infList.contains(visitor)) {
             
                 expList.add(visitor);
             }
