@@ -723,7 +723,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
         
             String strInfDate = sdf.format(infDateField.getDate());
             
-            if (!strInfDate.equals("01/01/0001")) {
+            if (!strInfDate.equals("01/01/1001")) {
                 
                 infDateField.setEnabled(true);
             }
@@ -775,7 +775,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
             try {
 
-                java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse("01/01/0001");
+                java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse("01/01/1001");
 
                 vacDateField.setDate(date);  
             } 
@@ -851,7 +851,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
         
             String strVacDate = sdf.format(vacDateField.getDate());
             
-            if (!strVacDate.equals("01/01/0001")) {
+            if (!strVacDate.equals("01/01/1001")) {
                 
                 vacDateField.setEnabled(true);
             }
@@ -903,7 +903,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
             try {
 
-                java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse("01/01/0001");
+                java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse("01/01/1001");
 
                 infDateField.setDate(date);  
             } 
