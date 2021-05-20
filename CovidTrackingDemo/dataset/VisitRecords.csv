@@ -1,6 +1,7 @@
 BusinessOwner,PublicUser,VisitedDate
-LW499@example.com,JW2@example.com,11/05/2021
-LW499@example.com,SM6@example.com,12/05/2021
-LW499@example.com,EC1@example.com,13/05/2021
-LW499@example.com,EC1@example.com,06/05/2021
-CP677@example.com,EC1@example.com,13/05/2021
+AM1001@example.com,RM1000@example.com,11/05/2021
+AM1001@example.com,RM1000@example.com,12/05/2021
+AM1001@example.com,RM1000@example.com,13/05/2021
+AM1001@example.com,RM1000@example.com,06/05/2021
+AM1001@example.com,RM1000@example.com,13/05/2021
+AM1001@example.com,EG999@example.com,20/05/2021

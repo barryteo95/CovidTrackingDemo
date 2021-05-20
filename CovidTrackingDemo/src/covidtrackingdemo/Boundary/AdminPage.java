@@ -601,8 +601,8 @@ public class AdminPage extends javax.swing.JFrame {
         
         try {
             
-            // HashMap<String, Integer> dict = grc.generateReport(startDateLabel.getText(), endDateLabel.getText());
-            HashMap<String, Integer> dict = grc.generateReport("18/05/2021", "20/05/2021");
+            HashMap<String, Integer> dict = grc.generateReport(startDateLabel.getText(), endDateLabel.getText());
+            // HashMap<String, Integer> dict = grc.generateReport("18/05/2021", "20/05/2021");
             
             Map<LocalDate, Integer> vacDict = new TreeMap<>();
             Map<LocalDate, Integer> infDict = new TreeMap<>();

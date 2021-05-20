@@ -571,12 +571,14 @@ public class PublicUserPage extends javax.swing.JFrame {
         
         if (response) {
             
+            vacLabel.setText("YOU ARE VACCINATED");
             vacLabel.setForeground(Color.BLACK);
             vacLabel.setBackground(Color.GREEN);
             vacLabel.setOpaque(true);
         } 
         else {
             
+            vacLabel.setText("YOU ARE NOT VACCINATED");
             vacLabel.setForeground(Color.WHITE);
             vacLabel.setBackground(Color.RED);
             vacLabel.setOpaque(true);
