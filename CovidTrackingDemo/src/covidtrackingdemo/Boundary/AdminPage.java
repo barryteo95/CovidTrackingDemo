@@ -151,7 +151,7 @@ public class AdminPage extends javax.swing.JFrame {
         passwordLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
         jPanel2.add(passwordLabel, gridBagConstraints);
@@ -160,7 +160,7 @@ public class AdminPage extends javax.swing.JFrame {
         firstNameLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
         jPanel2.add(firstNameLabel, gridBagConstraints);
@@ -169,7 +169,7 @@ public class AdminPage extends javax.swing.JFrame {
         lastNameLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
         jPanel2.add(lastNameLabel, gridBagConstraints);
@@ -178,7 +178,7 @@ public class AdminPage extends javax.swing.JFrame {
         privilegeLabel.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
         jPanel2.add(privilegeLabel, gridBagConstraints);
@@ -195,7 +195,7 @@ public class AdminPage extends javax.swing.JFrame {
         passwordField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -205,7 +205,7 @@ public class AdminPage extends javax.swing.JFrame {
         firstNameField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -215,7 +215,7 @@ public class AdminPage extends javax.swing.JFrame {
         lastNameField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -226,7 +226,7 @@ public class AdminPage extends javax.swing.JFrame {
         privilegeComboBox.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 4;
+        gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.ipadx = 100;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
@@ -456,11 +456,11 @@ public class AdminPage extends javax.swing.JFrame {
                     }
                     
                     else if (validationIsSuccessful == 2) {
-                            JOptionPane.showMessageDialog(null, "Please enter a valid username");
+                            JOptionPane.showMessageDialog(null, "Please enter username in this format : \n - @example.com");
                     }
                     
                     else if (validationIsSuccessful == 3) {
-                            JOptionPane.showMessageDialog(null, "Please enter a stronger password");   
+                            JOptionPane.showMessageDialog(null, "Please enter password in this format : \n - 8 letters \n - uppercase \n - lowercase \n - numbers \n - special char");   
                     }
                 
                 } catch (IOException ex) {
@@ -707,7 +707,8 @@ public class AdminPage extends javax.swing.JFrame {
                         final File infFile = new File("infChart.png");
                         ChartUtilities.saveChartAsJPEG(vacFile, vacChart, 600, 400, info);
                         ChartUtilities.saveChartAsJPEG(infFile, infChart, 600, 400, info);
-                    
+                        JOptionPane.showMessageDialog(null, "Report downloaded as JPEG.");
+                                
                     } catch(IOException ex) {
                         Logger.getLogger(AdminPage.class.getName()).log(Level.SEVERE, null, ex);
                     }

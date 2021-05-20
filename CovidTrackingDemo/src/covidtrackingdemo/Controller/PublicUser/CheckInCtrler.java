@@ -5,8 +5,11 @@
  */
 package covidtrackingdemo.Controller.PublicUser;
 
+import covidtrackingdemo.Entity.HealthOrganization;
+import covidtrackingdemo.Entity.User;
 import covidtrackingdemo.Entity.Visit;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
@@ -16,10 +19,34 @@ public class CheckInCtrler {
     
     public CheckInCtrler() {}
     
-    public void checkIn(String businessOwner, String publicUser, String date) throws IOException {
+    public Boolean checkIn(String businessOwner, String publicUser, String date) throws IOException {
     
-        Visit v = new Visit();
+        HealthOrganization ho = new HealthOrganization(); 
         
-        v.checkIn(businessOwner, publicUser, date);
+        ArrayList<User> userProfiles = ho.showUserProfiles();
+        
+        ArrayList<String> boList = new ArrayList<>();
+        
+        for (User user: userProfiles) {
+            
+            if (user.getPrivilege().equals("Business Owner")) {
+                
+                boList.add(user.getUsername());
+            }
+        }
+        
+        if (boList.contains(businessOwner)) {
+    
+            Visit v = new Visit();
+        
+            v.checkIn(businessOwner, publicUser, date);
+
+            return true;
+        }
+        
+        else {
+            
+            return false;
+        }
     }
 }
