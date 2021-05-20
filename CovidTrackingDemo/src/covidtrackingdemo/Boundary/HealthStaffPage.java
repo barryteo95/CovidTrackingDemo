@@ -513,11 +513,6 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
                         showHealthRec();
                     }
-                    
-//                    else {
-//                        
-//                        JOptionPane.showMessageDialog(null, "Please enter a new and valid vaccination date");   
-//                    }
                 } 
                 catch (IOException ex) {
                     
@@ -556,11 +551,6 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
                         showHealthRec();
                     }
-                    
-//                    else {
-//
-//                        JOptionPane.showMessageDialog(null, "Please enter a new and valid infection date");   
-//                    }
                 } 
                 
                 catch (IOException ex) {

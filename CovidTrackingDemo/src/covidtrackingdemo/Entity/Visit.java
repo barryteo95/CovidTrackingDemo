@@ -85,9 +85,9 @@ public class Visit {
             isBefore = dateOfVisit.isBefore(startDate.plusDays(3)); 
             
             isWithin = isAfter && isBefore;
-                        
+                                    
             if (infList.contains(visitor) && isWithin) {
-            
+                
                 expList.add(visit.getBoUsername());
             }
         }
@@ -103,9 +103,9 @@ public class Visit {
             isBefore = dateOfVisit.isBefore(startDate.plusDays(3)); 
             
             isWithin = isAfter && isBefore;
-            
-            if ((expList.contains(owner) && isWithin) && !infList.contains(visitor)) {
-            
+                        
+            if (expList.contains(owner) && isWithin) {
+                
                 expList.add(visitor);
             }
         }
