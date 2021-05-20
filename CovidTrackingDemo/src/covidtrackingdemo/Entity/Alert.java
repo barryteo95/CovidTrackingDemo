@@ -68,11 +68,11 @@ public class Alert {
         ar.insert(puUsername, alertType, strInfDate, "No");
     }
     
-    public Boolean sendExpAlert(Set<String> exposedList, String currentDate) throws IOException {
+    public Boolean sendExpAlert(Set<String> expList, String currentDate) throws IOException {
     
         AlertRecords ar = new AlertRecords();
         
-        Iterator<String> i = exposedList.iterator();
+        Iterator<String> i = expList.iterator();
         
         while (i.hasNext()){
             ar.insert(i.next(), "exposure", currentDate, "No");

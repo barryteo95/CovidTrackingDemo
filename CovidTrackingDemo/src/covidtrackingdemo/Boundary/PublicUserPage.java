@@ -539,9 +539,17 @@ public class PublicUserPage extends javax.swing.JFrame {
         CheckInCtrler cic = new CheckInCtrler();
         
         try {
-            cic.checkIn(boUsernameField.getText(), currentUser, checkInDateField.getText());
+            Boolean response = cic.checkIn(boUsernameField.getText(), currentUser, checkInDateField.getText());
             
-            JOptionPane.showMessageDialog(this, "Checked into " + boUsernameField.getText());
+            if (response) {
+                
+                JOptionPane.showMessageDialog(this, "Checked into " + boUsernameField.getText());
+            }
+            
+            else {
+                
+                JOptionPane.showMessageDialog(this, "Business Owner not found.");
+            }
             
         } catch (IOException ex) {
             Logger.getLogger(PublicUserPage.class.getName()).log(Level.SEVERE, null, ex);

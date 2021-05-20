@@ -38,7 +38,7 @@ public class CreateAccCtrler {
         }
 
         //Validate email
-        else if (!username.contains("@")) {
+        else if (!username.contains("@example.com")) {
             return 2;
         }
 

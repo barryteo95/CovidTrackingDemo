@@ -37,8 +37,8 @@ public class SendExpAlertCtrler {
         LocalDate startDate = LocalDate.parse(currentDate, formatter);
         startDate = startDate.minusDays(2);
         
-        Visit vist = new Visit();
-        Set<String> expList = vist.findExposed(infList, startDate);
+        Visit visit = new Visit();
+        Set<String> expList = visit.findExposed(infList, startDate);
         
         // Alerts
         Alert alert = new Alert();
