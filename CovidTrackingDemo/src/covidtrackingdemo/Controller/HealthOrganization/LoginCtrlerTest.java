@@ -49,7 +49,7 @@ public class LoginCtrlerTest {
     @Test
     public void testLogin() throws Exception {
         
-        System.out.println("LoginControllerTest - testLogin()");
+        System.out.println("LoginCtrlerTest - testLogin()");
        
         String username;
         String password;
@@ -62,19 +62,19 @@ public class LoginCtrlerTest {
         result = instance.login(username, password);
         assertEquals(expResult, result);
         
-        username = "EC1@example.com";
+        username = "LD1@example.com";
         password = "password";
         expResult = "Public User";
         result = instance.login(username, password);
         assertEquals(expResult, result);
         
-        username = "LW499@example.com";
+        username = "AM1001@example.com";
         password = "password";
         expResult = "Business Owner";
         result = instance.login(username, password);
         assertEquals(expResult, result);
         
-        username = "OW895@example.com";
+        username = "AD1026@example.com";
         password = "password";
         expResult = "Health Staff";
         result = instance.login(username, password);
