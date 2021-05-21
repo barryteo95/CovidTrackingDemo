@@ -64,6 +64,7 @@ public class PublicUserPage extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         alertList = new javax.swing.JList<>();
         ackAlertBtn = new javax.swing.JButton();
+        jSeparator2 = new javax.swing.JSeparator();
         jPanel3 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
         vacLabel = new javax.swing.JLabel();
@@ -84,8 +85,9 @@ public class PublicUserPage extends javax.swing.JFrame {
         visitedTable = new javax.swing.JTable();
         showVisitedBtn = new javax.swing.JButton();
         logoutBtn = new javax.swing.JButton();
+        jSeparator1 = new javax.swing.JSeparator();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setMinimumSize(new java.awt.Dimension(127, 400));
         setResizable(false);
@@ -135,17 +137,19 @@ public class PublicUserPage extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(15, 0, 15, 0);
         getContentPane().add(welcomeLabel, gridBagConstraints);
 
-        userTab.setPreferredSize(new java.awt.Dimension(800, 400));
+        userTab.setPreferredSize(new java.awt.Dimension(800, 500));
 
         jPanel2.setPreferredSize(new java.awt.Dimension(483, 400));
         jPanel2.setLayout(new java.awt.GridBagLayout());
 
+        jPanel4.setPreferredSize(new java.awt.Dimension(270, 107));
         jPanel4.setLayout(new java.awt.GridBagLayout());
 
         boUsernameLabel.setText("Business Owner");
         boUsernameLabel.setPreferredSize(new java.awt.Dimension(90, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 15;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 15);
         jPanel4.add(boUsernameLabel, gridBagConstraints);
 
@@ -158,10 +162,12 @@ public class PublicUserPage extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
         jPanel4.add(checkInDateLabel, gridBagConstraints);
 
+        boUsernameField.setToolTipText("Please enter a valid username");
         boUsernameField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.ipadx = 30;
         jPanel4.add(boUsernameField, gridBagConstraints);
 
         checkInBtn.setText("CHECK-IN");
@@ -174,10 +180,10 @@ public class PublicUserPage extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         jPanel4.add(checkInBtn, gridBagConstraints);
 
-        checkInDateField.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         checkInDateField.setText("jLabel5");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -191,10 +197,14 @@ public class PublicUserPage extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 20);
         jPanel2.add(jPanel4, gridBagConstraints);
 
+        alertList.setToolTipText("Select to acknowledge an alert ");
         jScrollPane1.setViewportView(alertList);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(0, 20, 0, 0);
         jPanel2.add(jScrollPane1, gridBagConstraints);
 
         ackAlertBtn.setText("ACKNOWLEDGE");
@@ -204,11 +214,20 @@ public class PublicUserPage extends javax.swing.JFrame {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
         jPanel2.add(ackAlertBtn, gridBagConstraints);
+
+        jSeparator2.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator2.setPreferredSize(new java.awt.Dimension(5, 0));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.insets = new java.awt.Insets(0, 5, 0, 5);
+        jPanel2.add(jSeparator2, gridBagConstraints);
 
         userTab.addTab("MAIN", jPanel2);
 
@@ -226,63 +245,63 @@ public class PublicUserPage extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
         gridBagConstraints.gridwidth = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.weighty = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 15, 0);
         jPanel5.add(vacLabel, gridBagConstraints);
 
         puUsernameLabel.setText("Username");
-        puUsernameLabel.setPreferredSize(new java.awt.Dimension(100, 14));
+        puUsernameLabel.setPreferredSize(new java.awt.Dimension(90, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 15);
         jPanel5.add(puUsernameLabel, gridBagConstraints);
 
         passwordLabel.setText("Password");
-        passwordLabel.setPreferredSize(new java.awt.Dimension(100, 14));
+        passwordLabel.setPreferredSize(new java.awt.Dimension(90, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         jPanel5.add(passwordLabel, gridBagConstraints);
 
         privilegeLabel.setText("Privilege");
-        privilegeLabel.setPreferredSize(new java.awt.Dimension(100, 14));
+        privilegeLabel.setPreferredSize(new java.awt.Dimension(90, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         jPanel5.add(privilegeLabel, gridBagConstraints);
 
         firstNameLabel.setText("First Name");
-        firstNameLabel.setPreferredSize(new java.awt.Dimension(100, 14));
+        firstNameLabel.setPreferredSize(new java.awt.Dimension(90, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         jPanel5.add(firstNameLabel, gridBagConstraints);
 
         lastNameLabel.setText("Last Name");
-        lastNameLabel.setPreferredSize(new java.awt.Dimension(100, 14));
+        lastNameLabel.setPreferredSize(new java.awt.Dimension(90, 14));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         jPanel5.add(lastNameLabel, gridBagConstraints);
 
         puUsernameField.setEditable(false);
@@ -292,9 +311,9 @@ public class PublicUserPage extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         gridBagConstraints.weightx = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 49);
         jPanel5.add(puUsernameField, gridBagConstraints);
 
         passwordField.setEditable(false);
@@ -304,8 +323,9 @@ public class PublicUserPage extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
         gridBagConstraints.weightx = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 49);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         jPanel5.add(passwordField, gridBagConstraints);
 
         privilegeField.setEditable(false);
@@ -315,8 +335,9 @@ public class PublicUserPage extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
         gridBagConstraints.weightx = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 49);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         jPanel5.add(privilegeField, gridBagConstraints);
 
         firstNameField.setEditable(false);
@@ -326,8 +347,9 @@ public class PublicUserPage extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 4;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
         gridBagConstraints.weightx = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 49);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         jPanel5.add(firstNameField, gridBagConstraints);
 
         lastNameField.setEditable(false);
@@ -337,33 +359,36 @@ public class PublicUserPage extends javax.swing.JFrame {
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.ipadx = 30;
         gridBagConstraints.weightx = 10.0;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 49);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
         jPanel5.add(lastNameField, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 20);
         jPanel3.add(jPanel5, gridBagConstraints);
 
         jPanel6.setPreferredSize(new java.awt.Dimension(400, 200));
         jPanel6.setLayout(new java.awt.GridBagLayout());
 
+        dateLabel.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
         dateLabel.setText("Date");
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 15);
         jPanel6.add(dateLabel, gridBagConstraints);
+
+        dateField.setToolTipText("Select a date and press SHOW");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
         gridBagConstraints.weightx = 1.0;
-        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
+        gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 15);
         jPanel6.add(dateField, gridBagConstraints);
 
         jScrollPane2.setPreferredSize(new java.awt.Dimension(300, 100));
@@ -394,6 +419,8 @@ public class PublicUserPage extends javax.swing.JFrame {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTH;
+        gridBagConstraints.weighty = 1.0;
         jPanel6.add(jScrollPane2, gridBagConstraints);
 
         showVisitedBtn.setText("SHOW");
@@ -405,16 +432,17 @@ public class PublicUserPage extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
         gridBagConstraints.weightx = 1.0;
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 20, 0);
         jPanel6.add(showVisitedBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridheight = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.insets = new java.awt.Insets(20, 20, 0, 0);
         jPanel3.add(jPanel6, gridBagConstraints);
 
         logoutBtn.setText("LOGOUT");
@@ -425,10 +453,19 @@ public class PublicUserPage extends javax.swing.JFrame {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridy = 1;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 0);
+        gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 20);
         jPanel3.add(logoutBtn, gridBagConstraints);
+
+        jSeparator1.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator1.setPreferredSize(new java.awt.Dimension(5, 0));
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.VERTICAL;
+        gridBagConstraints.insets = new java.awt.Insets(20, 5, 0, 5);
+        jPanel3.add(jSeparator1, gridBagConstraints);
 
         userTab.addTab("USER", jPanel3);
 
@@ -470,9 +507,6 @@ public class PublicUserPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         dispose();
-        
-        LoginPage lp = new LoginPage();
-        lp.setVisible(true);
     }//GEN-LAST:event_logout
 
     private void showVisited(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showVisited
@@ -508,28 +542,36 @@ public class PublicUserPage extends javax.swing.JFrame {
 
     private void ackAlert(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ackAlert
         // TODO add your handling code here:
-        ArrayList<String> selectedList = new ArrayList<>();
         
         int[] selectedIx = alertList.getSelectedIndices();
         
-        for (int i = 0; i < selectedIx.length; i++) {
-            
-            String selected = alertList.getModel().getElementAt(selectedIx[i]);
-            
-            selectedList.add(currentUser + " " + selected);
-        }
+        if (selectedIx.length == 0) {
         
-        AckAlertCtrler ac = new AckAlertCtrler();
+            JOptionPane.showMessageDialog(this, "No alert selected!");
+        }
+        else {
             
-        try {
-            ac.ackAlert(selectedList);
+            ArrayList<String> selectedList = new ArrayList<>();
             
-            JOptionPane.showMessageDialog(this, "Alert acknowledged");
+            for (int i = 0; i < selectedIx.length; i++) {
             
-            showAlert();
-            
-        } catch (IOException ex) {
-            Logger.getLogger(BusinessOwnerPage.class.getName()).log(Level.SEVERE, null, ex);
+                String selected = alertList.getModel().getElementAt(selectedIx[i]);
+
+                selectedList.add(currentUser + " " + selected);
+            }
+
+            AckAlertCtrler ac = new AckAlertCtrler();
+
+            try {
+                ac.ackAlert(selectedList);
+
+                JOptionPane.showMessageDialog(this, "Alert acknowledged");
+
+                showAlert();
+
+            } catch (IOException ex) {
+                Logger.getLogger(BusinessOwnerPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }//GEN-LAST:event_ackAlert
 
@@ -561,13 +603,20 @@ public class PublicUserPage extends javax.swing.JFrame {
         DefaultListModel<String> model = new DefaultListModel<>(); 
          
         ShowAlertCtrler sac = new ShowAlertCtrler();
-        ArrayList<Alert> alist = sac.showAlert(currentUser);
+        ArrayList<Alert> aList = sac.showAlert(currentUser);
          
-        for (Alert a : alist) {
-            
-            model.addElement(a.getAlertType() + " alert sent on " + a.getAlertDate());
+        if (aList.isEmpty()) {
+        
+            model.addElement(" No alert");
         }
-         
+        else {
+            
+            for (Alert a : aList) {
+
+                model.addElement(a.getAlertType() + " alert sent on " + a.getAlertDate());
+            }
+        }
+
         alertList.setModel(model);
     }
     
@@ -666,6 +715,8 @@ public class PublicUserPage extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTextField lastNameField;
     private javax.swing.JLabel lastNameLabel;
     private javax.swing.JButton logoutBtn;

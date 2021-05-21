@@ -6,7 +6,6 @@
 package covidtrackingdemo.Controller.PublicUser;
 
 import covidtrackingdemo.Entity.HealthStaff;
-import covidtrackingdemo.Entity.PublicUser;
 import java.io.IOException;
 
 /**
@@ -21,7 +20,7 @@ public class CheckVacStatusCtrler {
     
         HealthStaff hs = new HealthStaff();
         
-        PublicUser user = hs.showHealthRec(username);
+        HealthStaff user = hs.showHealthRec(username);
         
         return user.getVacStatus().equals("Yes");
     }

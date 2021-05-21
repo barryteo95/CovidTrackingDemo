@@ -80,7 +80,7 @@ public class LoginCtrlerTest {
         result = instance.login(username, password);
         assertEquals(expResult, result);
         
-        username = "Testing@example.com";
+        username = "@example.com";
         password = "password";
         expResult = "";
         result = instance.login(username, password);

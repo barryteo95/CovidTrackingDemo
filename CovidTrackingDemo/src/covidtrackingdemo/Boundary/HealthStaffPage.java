@@ -11,7 +11,7 @@ import covidtrackingdemo.Controller.HealthStaff.ShowHealthRecCtrler;
 import covidtrackingdemo.Controller.HealthStaff.SendExpAlertCtrler;
 import covidtrackingdemo.Controller.HealthStaff.SendInfAlertCtrler;
 import covidtrackingdemo.Controller.HealthStaff.SendVacAlertCtrler;
-import covidtrackingdemo.Entity.PublicUser;
+import covidtrackingdemo.Entity.HealthStaff;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.io.IOException;
@@ -83,7 +83,7 @@ public class HealthStaffPage extends javax.swing.JFrame {
         expAlertDateField = new javax.swing.JLabel();
         welcomeLabel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setMinimumSize(new java.awt.Dimension(127, 400));
         setResizable(false);
@@ -644,9 +644,6 @@ public class HealthStaffPage extends javax.swing.JFrame {
     private void logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout
         // TODO add your handling code here:
         dispose();
-        
-        LoginPage lp = new LoginPage();
-        lp.setVisible(true);
     }//GEN-LAST:event_logout
 
     private void vacStatusListener(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_vacStatusListener
@@ -935,11 +932,11 @@ public class HealthStaffPage extends javax.swing.JFrame {
         
         ShowHealthRecCtrler dc = new ShowHealthRecCtrler();
        
-        ArrayList<PublicUser> userList = dc.showHealthRec();
+        ArrayList<HealthStaff> userList = dc.showHealthRec();
         
         Object rowData[] = new Object[7];
         
-        for (PublicUser user : userList) {
+        for (HealthStaff user : userList) {
                         
             rowData[0] = user.getUsername();
             rowData[1] = user.getVaccinatedBy();

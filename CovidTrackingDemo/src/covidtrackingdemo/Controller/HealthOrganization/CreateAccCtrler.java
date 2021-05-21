@@ -6,6 +6,7 @@
 package covidtrackingdemo.Controller.HealthOrganization;
 
 import covidtrackingdemo.Entity.HealthOrganization;
+import covidtrackingdemo.Entity.HealthStaff;
 import java.io.IOException;
 
 /**
@@ -18,13 +19,21 @@ public class CreateAccCtrler {
 
     public int createAcc(String username, String password, String privilege, String firstName, String lastName) throws IOException {
 
-        HealthOrganization ho = new HealthOrganization();
-
         int validationIsSuccessful = validate(username, password, privilege, firstName, lastName);
 
-        if (validationIsSuccessful == 0)
+        // validationIsSuccessful : 0 | successful 
+        if (validationIsSuccessful == 0) {
+        
+            HealthOrganization ho = new HealthOrganization();
             ho.createAcc(username, password, privilege, firstName, lastName);
-
+            
+            if (privilege.equals("Public User")) {
+            
+                HealthStaff hs = new HealthStaff();
+                hs.createRec(username, null, "No", "01/01/1001", null, "No", "01/01/1001");
+            }
+        }
+        
         return validationIsSuccessful;
     }
     

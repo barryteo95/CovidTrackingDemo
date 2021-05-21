@@ -5,7 +5,7 @@
  */
 package covidtrackingdemo;
 
-import covidtrackingdemo.Entity.PublicUser;
+import covidtrackingdemo.Entity.HealthStaff;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -28,7 +28,7 @@ public class HealthRecords {
     }
         
     // Select - individual
-    public PublicUser select(String username) throws IOException {
+    public HealthStaff select(String username) throws IOException {
         
         try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
             
@@ -42,7 +42,7 @@ public class HealthRecords {
                 
                 if (username.equals(data[0])){
                     
-                    PublicUser user = new PublicUser();
+                    HealthStaff user = new HealthStaff();
                     
                     user.setUsername(data[0]);
                     user.setVaccinatedBy(data[1]);
@@ -63,9 +63,9 @@ public class HealthRecords {
     }
     
     // Select - all
-    public ArrayList<PublicUser> select() throws FileNotFoundException, IOException {
+    public ArrayList<HealthStaff> select() throws FileNotFoundException, IOException {
                 
-        ArrayList<PublicUser> userList;
+        ArrayList<HealthStaff> userList;
         
         try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
             
@@ -78,7 +78,7 @@ public class HealthRecords {
                 
                 String[] data = row.split(",");
                                 
-                PublicUser user = new PublicUser();
+                HealthStaff user = new HealthStaff();
                 
                 user.setUsername(data[0]);
                 user.setVaccinatedBy(data[1]);
@@ -125,6 +125,20 @@ public class HealthRecords {
         try (BufferedWriter csvWriter = new BufferedWriter(new FileWriter(path))) {
                
             csvWriter.write(newData);
+            
+            csvWriter.close();
+        }
+    }
+    
+    public void insert(String puUsername, String vaccinatedBy, String vacStatus, String vacDate, String determinedBy, String infStatus, String infDate) throws IOException {
+    
+        try (BufferedWriter csvWriter = new BufferedWriter(new FileWriter(path, true))) {
+            
+            String row = puUsername + "," + vaccinatedBy + "," + vacStatus + "," + vacDate + "," + determinedBy + "," + infStatus + "," + infDate;
+            
+            csvWriter.newLine();
+            
+            csvWriter.write(row);
             
             csvWriter.close();
         }

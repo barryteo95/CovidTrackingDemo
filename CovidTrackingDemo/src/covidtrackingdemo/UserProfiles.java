@@ -33,9 +33,7 @@ public class UserProfiles {
     
     // Insert 
     public void insert(String username, String password, String privilege, String firstName, String lastName) throws FileNotFoundException, IOException {
-        
-        // Insert validations here
-        
+                
         try (BufferedWriter csvWriter = new BufferedWriter(new FileWriter(path, true))) {
             
             String row = username + "," + password + "," + privilege + "," + firstName + "," + lastName;

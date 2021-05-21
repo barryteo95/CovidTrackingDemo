@@ -60,7 +60,7 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         visitorCountLabel = new javax.swing.JLabel();
         welcomeLabel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setMinimumSize(new java.awt.Dimension(127, 400));
         setResizable(false);
@@ -102,14 +102,25 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         getContentPane().add(jPanel1, gridBagConstraints);
 
         jPanel2.setPreferredSize(new java.awt.Dimension(312, 200));
-        jPanel2.setLayout(new java.awt.GridBagLayout());
 
+        expAlertList.setToolTipText("Select to acknowledge an alert ");
         expAlertList.setPreferredSize(new java.awt.Dimension(252, 80));
         jScrollPane1.setViewportView(expAlertList);
 
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        jPanel2.add(jScrollPane1, gridBagConstraints);
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(27, 27, 27)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(11, 11, 11)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
@@ -119,7 +130,8 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(15, 15, 0, 15);
         getContentPane().add(jPanel2, gridBagConstraints);
 
-        jPanel3.setPreferredSize(new java.awt.Dimension(472, 264));
+        jPanel3.setPreferredSize(new java.awt.Dimension(472, 281));
+        jPanel3.setVerifyInputWhenFocusTarget(false);
 
         visitorTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -152,8 +164,8 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 246, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(167, 167, 167))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 266, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(147, 147, 147))
         );
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -200,7 +212,7 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 5;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
-        gridBagConstraints.insets = new java.awt.Insets(15, 15, 0, 15);
+        gridBagConstraints.insets = new java.awt.Insets(10, 15, 0, 15);
         getContentPane().add(jPanel4, gridBagConstraints);
 
         jPanel5.setPreferredSize(new java.awt.Dimension(34, 30));
@@ -216,6 +228,7 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(0, 0, 0, 10);
         jPanel5.add(dateLabel, gridBagConstraints);
 
+        dateField.setToolTipText("Select a date and press SHOW");
         dateField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -234,6 +247,8 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(0, 10, 0, 0);
         jPanel5.add(showVisitorBtn, gridBagConstraints);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -243,10 +258,13 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(15, 10, 0, 10);
         getContentPane().add(jPanel5, gridBagConstraints);
 
-        visitorCountLabel.setText("Visitor Count");
+        visitorCountLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        visitorCountLabel.setText("Visitor Count : 0");
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 6;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.insets = new java.awt.Insets(10, 0, 0, 0);
         getContentPane().add(visitorCountLabel, gridBagConstraints);
 
         welcomeLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -275,37 +293,42 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
 
     private void ackAlert(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ackAlert
         
-        ArrayList<String> selectedList = new ArrayList<>();
-        
         int[] selectedIx = expAlertList.getSelectedIndices();
         
-        for (int i = 0; i < selectedIx.length; i++) {
-            
-            String selected = expAlertList.getModel().getElementAt(selectedIx[i]);
-            
-            selectedList.add(currentUser + " " + selected);
+        if (selectedIx.length == 0) {
+        
+            JOptionPane.showMessageDialog(this, "No alert selected!");
         }
         
-        AckAlertCtrler ac = new AckAlertCtrler();
+        else {
+        
+            ArrayList<String> selectedList = new ArrayList<>();
             
-        try {
-            ac.ackAlert(selectedList);
+            for (int i = 0; i < selectedIx.length; i++) {
             
-            JOptionPane.showMessageDialog(this, "Alert acknowledged");
-            
-            showAlert();
-            
-        } catch (IOException ex) {
-            Logger.getLogger(BusinessOwnerPage.class.getName()).log(Level.SEVERE, null, ex);
-        }
+                String selected = expAlertList.getModel().getElementAt(selectedIx[i]);
+
+                selectedList.add(currentUser + " " + selected);
+            }
+
+            AckAlertCtrler ac = new AckAlertCtrler();
+
+            try {
+                ac.ackAlert(selectedList);
+
+                JOptionPane.showMessageDialog(this, "Alert acknowledged");
+
+                showAlert();
+
+            } catch (IOException ex) {
+                Logger.getLogger(BusinessOwnerPage.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        } 
     }//GEN-LAST:event_ackAlert
 
     private void logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout
         // TODO add your handling code here:
         dispose();
-        
-        LoginPage lp = new LoginPage();
-        lp.setVisible(true);
     }//GEN-LAST:event_logout
 
     private void showVisitor(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showVisitor
@@ -347,12 +370,19 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
          
         ShowAlertCtrler sac = new ShowAlertCtrler();
         ArrayList<Alert> aList = sac.showAlert(currentUser);
-         
-        for (Alert a : aList) {
-            
-            model.addElement(a.getAlertType() + " alert sent on " + a.getAlertDate());
+        
+        if (aList.isEmpty()) {
+        
+            model.addElement(" No alert");
         }
-         
+        else {
+            
+            for (Alert a : aList) {
+            
+                model.addElement(a.getAlertType() + " alert sent on " + a.getAlertDate());
+            }
+        }
+        
         expAlertList.setModel(model);
     }
     

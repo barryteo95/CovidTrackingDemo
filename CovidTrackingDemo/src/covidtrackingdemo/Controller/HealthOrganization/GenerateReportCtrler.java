@@ -6,7 +6,6 @@
 package covidtrackingdemo.Controller.HealthOrganization;
 
 import covidtrackingdemo.Entity.HealthStaff;
-import covidtrackingdemo.Entity.PublicUser;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -25,7 +24,7 @@ public class GenerateReportCtrler {
         
         // Call the controller class
         HealthStaff hs = new HealthStaff();
-        ArrayList<PublicUser> healthRecs = hs.showHealthRecs();
+        ArrayList<HealthStaff> healthRecs = hs.showHealthRecs();
         
         // Create a HashMap with <Key, Value>
         // e.g., <"V,DD/MM/YYYY", count>
@@ -52,7 +51,7 @@ public class GenerateReportCtrler {
         String tempKey;
         Integer tempVal;
         
-        for (PublicUser user : healthRecs) {
+        for (HealthStaff user : healthRecs) {
             
             infDate = LocalDate.parse(user.getInfDate(), formatter);
             vacDate = LocalDate.parse(user.getVacDate(), formatter);

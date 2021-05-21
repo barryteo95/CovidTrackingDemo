@@ -94,7 +94,7 @@ public class AdminPage extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         welcomeLabel = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBounds(new java.awt.Rectangle(0, 0, 0, 0));
         setMinimumSize(new java.awt.Dimension(127, 400));
         setResizable(false);
@@ -183,6 +183,7 @@ public class AdminPage extends javax.swing.JFrame {
         gridBagConstraints.insets = new java.awt.Insets(20, 0, 0, 15);
         jPanel2.add(privilegeLabel, gridBagConstraints);
 
+        usernameField.setToolTipText("Please enter a valid username");
         usernameField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -192,6 +193,7 @@ public class AdminPage extends javax.swing.JFrame {
         gridBagConstraints.anchor = java.awt.GridBagConstraints.NORTHWEST;
         jPanel2.add(usernameField, gridBagConstraints);
 
+        passwordField.setToolTipText("Please enter a valid password");
         passwordField.setPreferredSize(new java.awt.Dimension(100, 30));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
@@ -460,7 +462,12 @@ public class AdminPage extends javax.swing.JFrame {
                     }
                     
                     else if (validationIsSuccessful == 3) {
-                            JOptionPane.showMessageDialog(null, "Please enter password in this format : \n - 8 letters \n - uppercase \n - lowercase \n - numbers \n - special char");   
+                            JOptionPane.showMessageDialog(null, "Please enter password in this format : "
+                                    + "\n - Contain at least 8 characters"
+                                    + "\n - Include uppercase "
+                                    + "\n - Include lowercase "
+                                    + "\n - Include numbers "
+                                    + "\n - Include special char");   
                     }
                 
                 } catch (IOException ex) {
@@ -587,9 +594,6 @@ public class AdminPage extends javax.swing.JFrame {
     private void logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout
         // TODO add your handling code here:
         dispose();
-        
-        LoginPage lp = new LoginPage();
-        lp.setVisible(true);
     }//GEN-LAST:event_logout
 
     private void generateReport(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateReport
