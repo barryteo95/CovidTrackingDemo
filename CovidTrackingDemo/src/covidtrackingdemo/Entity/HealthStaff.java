@@ -41,45 +41,49 @@ public class HealthStaff extends User {
     public void setInfStatus(String infStatus) { this.infStatus = infStatus; }
     public void setInfDate(String infDate) { this.infDate = infDate; }
     
+    // Other Methods
     public HealthStaff showHealthRec(String username) throws IOException {
     
         HealthRecords hr = new HealthRecords();
         
-        HealthStaff user = hr.select(username);
-        
-        return user;
+        // Retrieve a specified health record entry        
+        return hr.select(username);
     }
         
     public ArrayList<HealthStaff> showHealthRecs() throws IOException {
         
         HealthRecords hr = new HealthRecords();
         
-        ArrayList<HealthStaff> userList = hr.select();
-        
-        return userList;
+        // Retrieve all health record entries  
+        return hr.select();
     }
     
     public void createRec(String puUsername, String vaccinatedBy, String vacStatus, String vacDate, String determinedBy, String infStatus, String infDate) throws IOException {
     
+        // Insert a new health record entry 
         HealthRecords hr = new HealthRecords();
-        
         hr.insert(puUsername, vaccinatedBy, vacStatus, vacDate, determinedBy, infStatus, infDate);
     }
 
     public void update(String hsUsername, String puUsername, String vacStatus, String strVacDate, String infStatus, String strInfDate) throws IOException {
         
+        // Update a health record entry
         HealthRecords hr = new HealthRecords();
-        
         hr.update(hsUsername, puUsername, vacStatus, strVacDate, infStatus, strInfDate);    
     }
     
     public ArrayList<String> findInfected(String currentDate) throws IOException, ParseException {  
         
+        // Retrieve all health record entries   
         HealthRecords hr = new HealthRecords();
-        
-        ArrayList<String> infectedList = new ArrayList<>();
-         
         ArrayList<HealthStaff> recordList = hr.select();
+        
+        /* 
+         * Add health record entries to this list based on the requirements
+         * - infected status "Yes"
+         * - infected date == today's date
+        */
+        ArrayList<String> infectedList = new ArrayList<>();
         
         for (HealthStaff user : recordList) {
                         

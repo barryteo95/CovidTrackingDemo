@@ -18,45 +18,15 @@ public class UpdateInfStatusCtrler {
 
     public UpdateInfStatusCtrler() {}
     
-    public int updateInfStatus(String hsUsername, String puUsername, String vacStatus, Date vacDate, String infStatus, Date infDate) throws IOException {
-   
-        HealthStaff hs = new HealthStaff();
+    public void updateInfStatus(String hsUsername, String puUsername, String vacStatus, Date vacDate, String infStatus, Date infDate) throws IOException { 
 
-        String strInfDate = validateDate(infDate);
-
-        // Update occurs when date is valid 
-        
-        if (!strInfDate.equals("")) {
-            
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
-            String strVacDate = sdf.format(vacDate);
-
-            hs.update(hsUsername, puUsername, vacStatus, strVacDate, infStatus, strInfDate);
-            
-            return 0;
-        }
-            
-        else {
-
-            return 1;  
-        } 
-    }
-    
-    private String validateDate(Date infDate) throws IOException {
-
-        Date dateOfInf = infDate;
-        
+        // Convert Date to String 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
-        String strInfDate = sdf.format(dateOfInf);
-        
-        if (!strInfDate.equals(sdf.format(dateOfInf))) {
-            return ""; 
-        }
-        
-        else {
-            return strInfDate;
-        } 
+        String strVacDate = sdf.format(vacDate);
+        String strInfDate = sdf.format(infDate);
+            
+        // Update specified health record entry
+        HealthStaff hs = new HealthStaff();
+        hs.update(hsUsername, puUsername, vacStatus, strVacDate, infStatus, strInfDate);
     }
 }

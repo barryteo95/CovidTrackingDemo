@@ -21,10 +21,11 @@ public class CheckInCtrler {
     
     public Boolean checkIn(String businessOwner, String publicUser, String date) throws IOException {
     
+        // Retrieve all user profile entries
         HealthOrganization ho = new HealthOrganization(); 
-        
         ArrayList<User> userProfiles = ho.showUserProfiles();
         
+        // Filter out all except business owner entries
         ArrayList<String> boList = new ArrayList<>();
         
         for (User user: userProfiles) {
@@ -37,8 +38,9 @@ public class CheckInCtrler {
         
         if (boList.contains(businessOwner)) {
     
+            // If business owner username is valid, 
+            // Insert a new visit entry 
             Visit v = new Visit();
-        
             v.checkIn(businessOwner, publicUser, date);
 
             return true;

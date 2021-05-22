@@ -22,6 +22,7 @@ public class ShowUserProfilesCtrler {
     
         HealthOrganization ho = new HealthOrganization();
         
+        // Retrieve all user profile entries
         return ho.showUserProfiles();
     }
 }

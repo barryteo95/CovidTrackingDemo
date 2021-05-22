@@ -18,10 +18,11 @@ public class TestRunner {
     
     public static void main(String[] args) {
         
+        // Return the results from running the test in LoginCtrlerTest class
         Result result = JUnitCore.runClasses(LoginCtrlerTest.class);
 		
 	System.out.println("Is the test successful?: " + result.wasSuccessful());
-		
+	
 	for (Failure failure : result.getFailures()) {
             System.out.println("Failure: " + failure.toString());
 	}

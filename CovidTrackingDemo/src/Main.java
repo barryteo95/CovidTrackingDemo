@@ -15,6 +15,7 @@ public class Main {
     
     public static void main (String[] args) {
         
+        // Landing page
         LoginPage lp = new LoginPage();
         lp.setVisible(true);
     }

@@ -22,7 +22,7 @@ public class GenerateReportCtrler {
     
     public HashMap<String, Integer> generateReport(String startDate, String endDate) throws IOException {
         
-        // Call the controller class
+        // Retrieve all health record entries
         HealthStaff hs = new HealthStaff();
         ArrayList<HealthStaff> healthRecs = hs.showHealthRecs();
         
@@ -34,7 +34,7 @@ public class GenerateReportCtrler {
         // Create a formatter for dates
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
 
-        //convert String to LocalDate
+        // Convert String to LocalDate
         LocalDate fromDate = LocalDate.parse(startDate, formatter);  
         LocalDate toDate = LocalDate.parse(endDate, formatter);
         

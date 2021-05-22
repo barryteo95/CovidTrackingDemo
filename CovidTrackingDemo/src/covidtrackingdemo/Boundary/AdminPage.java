@@ -419,8 +419,10 @@ public class AdminPage extends javax.swing.JFrame {
         
         this.currentUser = username;
         
+        // Populate user profile table 
         showUserProfiles();
         
+        // Initialize the dates to show range of report
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
         LocalDate endDate = LocalDate.now();
         LocalDate startDate = LocalDate.now().minusDays(7);
@@ -442,34 +444,38 @@ public class AdminPage extends javax.swing.JFrame {
                 CreateAccCtrler cc = new CreateAccCtrler();
         
                 try {
-                    int validationIsSuccessful = cc.createAcc(usernameField.getText(), passwordField.getText(), (String)privilegeComboBox.getSelectedItem(), firstNameField.getText(), lastNameField.getText());
+                    int validationIsSuccessful = cc.createAcc(
+                            usernameField.getText(), 
+                            passwordField.getText(), 
+                            (String)privilegeComboBox.getSelectedItem(), 
+                            firstNameField.getText(), 
+                            lastNameField.getText());
                     
-                    if (validationIsSuccessful == 0) {
-
-                        DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
-
-                        model.setRowCount(0);
-
-                        showUserProfiles();
-                    }
-                    
-                    else if (validationIsSuccessful == 1) {
+                    switch (validationIsSuccessful) {
+                        
+                        case 0:
+                            // Validation is successful 
+                            DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
+                            model.setRowCount(0);
+                            showUserProfiles();
+                            break;
+                        case 1:
                             JOptionPane.showMessageDialog(null, "Please fill in all fields");
-                    }
-                    
-                    else if (validationIsSuccessful == 2) {
+                            break;
+                        case 2:
                             JOptionPane.showMessageDialog(null, "Please enter username in this format : \n - @example.com");
-                    }
-                    
-                    else if (validationIsSuccessful == 3) {
+                            break;
+                        case 3:
                             JOptionPane.showMessageDialog(null, "Please enter password in this format : "
                                     + "\n - Contain at least 8 characters"
                                     + "\n - Include uppercase "
                                     + "\n - Include lowercase "
                                     + "\n - Include numbers "
-                                    + "\n - Include special char");   
+                                    + "\n - Include special char");
+                            break;
+                        default:
+                            break;
                     }
-                
                 } catch (IOException ex) {
                     Logger.getLogger(AdminPage.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -492,29 +498,33 @@ public class AdminPage extends javax.swing.JFrame {
                 UpdateAccCtrler uc = new UpdateAccCtrler();
         
                 try {
-                    int validationIsSuccessful = uc.updateAcc(usernameField.getText(), passwordField.getText(), (String)privilegeComboBox.getSelectedItem(), firstNameField.getText(), lastNameField.getText());
+                    int validationIsSuccessful = uc.updateAcc(
+                            usernameField.getText(), 
+                            passwordField.getText(), 
+                            (String)privilegeComboBox.getSelectedItem(), 
+                            firstNameField.getText(), 
+                            lastNameField.getText());
                     
-                    if (validationIsSuccessful == 0) {
-
-                        DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
-
-                        model.setRowCount(0);
-
-                        showUserProfiles();
-                    }
-                    
-                    else if (validationIsSuccessful == 1) {
+                    switch (validationIsSuccessful) {
+                        
+                        case 0:
+                            // Validation is successful
+                            DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
+                            model.setRowCount(0);
+                            showUserProfiles();
+                            break;
+                        case 1:
                             JOptionPane.showMessageDialog(null, "Please fill in all fields");
-                    }
-                    
-                    else if (validationIsSuccessful == 2) {
+                            break;
+                        case 2:
                             JOptionPane.showMessageDialog(null, "Please enter a valid username");
+                            break;
+                        case 3:
+                            JOptionPane.showMessageDialog(null, "Please enter a stronger password");
+                            break;
+                        default:
+                            break;
                     }
-                    
-                    else if (validationIsSuccessful == 3) {
-                            JOptionPane.showMessageDialog(null, "Please enter a stronger password");   
-                    }
-                    
                 } catch (IOException ex) {
                     Logger.getLogger(AdminPage.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -539,19 +549,20 @@ public class AdminPage extends javax.swing.JFrame {
                 try {
                     int validationIsSuccessful = sc.suspendAcc(usernameField.getText(), passwordField.getText(), (String)privilegeComboBox.getSelectedItem(), firstNameField.getText(), lastNameField.getText());
                     
-                    if (validationIsSuccessful == 0) {
-
-                        DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
-
-                        model.setRowCount(0);
-
-                        showUserProfiles();
-                    }
+                    switch(validationIsSuccessful) {
                     
-                    else if (validationIsSuccessful == 1) {
+                        case 0:
+                            // Validation is successful
+                            DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
+                            model.setRowCount(0);
+                            showUserProfiles();
+                            break;
+                        case 1:
                             JOptionPane.showMessageDialog(null, "Please enter a valid username");
+                            break;
+                        default:
+                            break;
                     }
-                    
                 } catch (IOException ex) {
                     Logger.getLogger(AdminPage.class.getName()).log(Level.SEVERE, null, ex);
                 }
@@ -563,9 +574,12 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void clickUserProfile(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickUserProfile
         // TODO add your handling code here:
+        
+        // Find the index of the selected row 
         int i = userProfilesTable.getSelectedRow();
+        
+        // Populate the fields with what was selected
         DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
-
         usernameField.setText(model.getValueAt(i, 0).toString());
         passwordField.setText(model.getValueAt(i, 1).toString());
 
@@ -585,6 +599,8 @@ public class AdminPage extends javax.swing.JFrame {
             case "Admin" : 
                 privilegeComboBox.setSelectedIndex(3);
                 break;
+            default:
+                break;
         }
 
         firstNameField.setText(model.getValueAt(i, 3).toString());
@@ -593,6 +609,8 @@ public class AdminPage extends javax.swing.JFrame {
 
     private void logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout
         // TODO add your handling code here:
+        
+        // Remove current frame
         dispose();
     }//GEN-LAST:event_logout
 
@@ -607,6 +625,7 @@ public class AdminPage extends javax.swing.JFrame {
             
             HashMap<String, Integer> dict = grc.generateReport(startDateLabel.getText(), endDateLabel.getText());
             
+            // Use TreeMap to sort LocalDate variables
             Map<LocalDate, Integer> vacDict = new TreeMap<>();
             Map<LocalDate, Integer> infDict = new TreeMap<>();
             
@@ -614,6 +633,7 @@ public class AdminPage extends javax.swing.JFrame {
             Integer tempVal;
             LocalDate tempDate;
             
+            // Separate infection and vaccination dates
             for (Map.Entry<String, Integer> me : dict.entrySet()) {
                 
                 tempKey = me.getKey();
@@ -633,6 +653,7 @@ public class AdminPage extends javax.swing.JFrame {
                 }                
             }
             
+            // Populate the datasets so that the charts can plot it 
             DefaultCategoryDataset vacDataset = new DefaultCategoryDataset();
             DefaultCategoryDataset infDataset = new DefaultCategoryDataset();
 
@@ -741,11 +762,12 @@ public class AdminPage extends javax.swing.JFrame {
     
     private void showUserProfiles() throws IOException {
         
-        DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
-        
+        // Retrieve all user profile entries
         ShowUserProfilesCtrler dc = new ShowUserProfilesCtrler();
-       
         ArrayList<User> userList = dc.showUserProfiles();
+        
+        // Populate user profile table 
+        DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
         
         Object rowData[] = new Object[5];
         

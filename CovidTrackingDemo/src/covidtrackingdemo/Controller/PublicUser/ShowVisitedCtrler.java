@@ -23,9 +23,16 @@ public class ShowVisitedCtrler {
     
     public ArrayList<Visit> showVisited(java.util.Date date, String currentUser) throws IOException, ParseException {
         
+        // Retrieve all visit entries 
         Visit visit = new Visit();
-        ArrayList<Visit> visitedList = visit.display();
+        ArrayList<Visit> visitedList = visit.showVisit();
         
+        /*
+         * For each visit entry, if 
+         * visit entry's date don't match given date &&
+         * visit entry's public user name don't match given username
+         * then remove visit entry 
+        */
         Iterator itr = visitedList.iterator();
         
         while (itr.hasNext()) {
@@ -40,7 +47,7 @@ public class ShowVisitedCtrler {
                 itr.remove();
             }            
         }
-
+        
         return visitedList;
     }
 }

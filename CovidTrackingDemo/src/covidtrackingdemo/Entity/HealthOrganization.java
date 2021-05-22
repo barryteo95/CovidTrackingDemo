@@ -17,24 +17,25 @@ public class HealthOrganization extends User {
 
     public HealthOrganization() {}
 
+    // Other Methods
     public void createAcc(String username, String password, String privilege, String firstName, String lastName) throws IOException {
                 
+        // Insert a new user profile entry
         UserProfiles db = new UserProfiles();
-        
         db.insert(username, password, privilege, firstName, lastName);
     }    
     
     public void updateAcc(String username, String password, String privilege, String firstName, String lastName) throws IOException {
                 
+        // Update the specified user profile entry
         UserProfiles db = new UserProfiles();
-        
         db.update(username, password, privilege, firstName, lastName);
     }
     
     public void suspendAcc(String username, String password, String privilege, String firstName, String lastName) throws IOException {
     
+        // Suspend the specified user profile entry
         UserProfiles db = new UserProfiles();
-        
         db.update(username, password, privilege, firstName, lastName);
     }
     
@@ -42,17 +43,15 @@ public class HealthOrganization extends User {
     
         UserProfiles db = new UserProfiles();
         
-        User user = db.select(accName);
-        
-        return user;
+        // Retrieve the specified user profile entry
+        return db.select(accName);
     }
     
     public ArrayList<User> showUserProfiles() throws IOException {
     
         UserProfiles db = new UserProfiles();
-        
-        ArrayList<User> userList = db.select();
-        
-        return userList;
+                
+        // Retrieve all user profile entries
+        return db.select();
     }
 }

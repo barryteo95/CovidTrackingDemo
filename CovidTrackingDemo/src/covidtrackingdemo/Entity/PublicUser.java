@@ -11,6 +11,5 @@ package covidtrackingdemo.Entity;
  */
 public class PublicUser extends User {
 
-    public PublicUser() {
-    }
+    public PublicUser() {}
 }

@@ -25,6 +25,7 @@ public class AckAlertCtrler {
         
             String[] data = sel.split(" ");
             
+            // Remove specified alert entry/entries
             alert.ackAlert(data[0], data[1], data[5]);
         }
     }

@@ -53,18 +53,17 @@ public class Alert {
     }
     
     // Other Methods
-    
     public void sendVacAlert(String puUsername, String alertType, String strVacDate) throws IOException {
 
+        // Insert a new alert entry 
         AlertRecords ar = new AlertRecords();
-        
         ar.insert(puUsername, alertType, strVacDate, "No");
     }
     
     public void sendInfAlert(String puUsername, String alertType, String strInfDate) throws IOException {
 
+        // Insert a new alert entry
         AlertRecords ar = new AlertRecords();
-        
         ar.insert(puUsername, alertType, strInfDate, "No");
     }
     
@@ -72,6 +71,7 @@ public class Alert {
     
         AlertRecords ar = new AlertRecords();
         
+        // For each exposed username, insert a new alert entry
         Iterator<String> i = expList.iterator();
         
         while (i.hasNext()){
@@ -84,16 +84,16 @@ public class Alert {
     public ArrayList<Alert> showAlert() throws IOException {
     
         AlertRecords ar = new AlertRecords();
-       
+        
+        // Retrieve all alert entries
         return ar.select();
     }
     
     public void ackAlert(String username, String alertType, String alertDate) throws IOException {
     
         AlertRecords ar = new AlertRecords();
-        
-        // ar.update(username, alertType, alertDate);
-        
+                
+        // Remove the specified alert entry
         ar.delete(username, alertType, alertDate);
     }
 }

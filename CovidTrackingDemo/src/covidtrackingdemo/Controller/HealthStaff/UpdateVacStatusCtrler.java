@@ -18,45 +18,15 @@ public class UpdateVacStatusCtrler {
     
     public UpdateVacStatusCtrler() {}
             
-    public int updateVacStatus(String hsUsername, String puUsername, String vacStatus, Date vacDate, String infStatus, Date infDate) throws IOException {
+    public void updateVacStatus(String hsUsername, String puUsername, String vacStatus, Date vacDate, String infStatus, Date infDate) throws IOException {
         
-        HealthStaff hs = new HealthStaff();
-
-        String strVacDate = validateDate(vacDate);
-
-        // Update occurs when date is valid 
-        
-        if (!strVacDate.equals("")) {
-            
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        
-            String strInfDate = sdf.format(infDate);
-
-            hs.update(hsUsername, puUsername, vacStatus, strVacDate, infStatus, strInfDate);
-            
-            return 0;
-        }
-            
-        else {
-
-            return 1;  
-        } 
-    }
-    
-    private String validateDate(Date vacDate) throws IOException {
-
-        Date dateOfVac = vacDate;
-        
+        // Convert Date to String
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        String strVacDate = sdf.format(vacDate);
+        String strInfDate = sdf.format(infDate);
         
-        String strVacDate = sdf.format(dateOfVac);
-        
-        if (!strVacDate.equals(sdf.format(dateOfVac))) {
-            return ""; 
-        }
-        
-        else {
-            return strVacDate;
-        } 
+        // Update specified health record entry
+        HealthStaff hs = new HealthStaff();
+        hs.update(hsUsername, puUsername, vacStatus, strVacDate, infStatus, strInfDate);
     }
 }

@@ -445,47 +445,49 @@ public class HealthStaffPage extends javax.swing.JFrame {
         
         this.currentUser = username;
         
+        // Initialize the field with username
         hsUsernameField.setText(username);
         
+        // Populate health record table
         showHealthRec(); 
     }
     
     private void update(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_update
         
+        // Find out the index of selected item
         int i = healthRecTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) healthRecTable.getModel();
 
-        // Convert Vaccination/ Infection String to String (Y/N)
         String vacStatus;
         String infStatus;
 
         if (vacStatusYesBtn.isSelected()) {
+            
             vacStatus = "Yes";
         }
-        
         else {
+            
             vacStatus = "No"; 
         }
         
         if (infStatusYesBtn.isSelected()) {
+            
             infStatus = "Yes";
         }
-        
         else {
+            
             infStatus = "No"; 
         }
 
-        // Convert Vaccination/ Infection Date to String Type
-        
         String recordVacDate = model.getValueAt(i,3).toString();
         String recordInfDate = model.getValueAt(i,6).toString();
-
+        
+        // Convert Vaccination/ Infection Date to String Type
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String fieldVacDate = dateFormat.format(vacDateField.getDate());
         String fieldInfDate = dateFormat.format(infDateField.getDate());
         
         // If Vaccination Date is Updated
-
         if (!recordVacDate.equals(fieldVacDate)) {
             
             int confirmationNumber = JOptionPane.showConfirmDialog(this ,"Vaccination Notification Alert will be sent upon update. Proceed?", "",
@@ -493,26 +495,23 @@ public class HealthStaffPage extends javax.swing.JFrame {
             JOptionPane.QUESTION_MESSAGE);
 
             // If User agrees to Update Vac with Send Alert
-            
             if (confirmationNumber == 0) {
-            
-                UpdateVacStatusCtrler uvc = new UpdateVacStatusCtrler();
-
-                SendVacAlertCtrler svc = new SendVacAlertCtrler();
 
                 try {
                     
-                    int validationNumber = uvc.updateVacStatus(hsUsernameField.getText(), puUsernameField.getText(),
+                    // Update specified health record entry
+                    UpdateVacStatusCtrler uvc = new UpdateVacStatusCtrler();
+                    uvc.updateVacStatus(hsUsernameField.getText(), puUsernameField.getText(),
                             vacStatus, vacDateField.getDate(), infStatus, infDateField.getDate());
+                    
+                    // Create new specified alert entry
+                    SendVacAlertCtrler svc = new SendVacAlertCtrler();
+                    svc.sendVacAlert(puUsernameField.getText(), "vaccination", vacDateField.getDate());
 
-                    if (validationNumber == 0) {
-                        
-                        svc.sendVacAlert(puUsernameField.getText(), "vaccination", vacDateField.getDate());
+                    model.setRowCount(0);
 
-                        model.setRowCount(0);
-
-                        showHealthRec();
-                    }
+                    // Refresh health record table
+                    showHealthRec();
                 } 
                 catch (IOException ex) {
                     
@@ -522,7 +521,6 @@ public class HealthStaffPage extends javax.swing.JFrame {
         }
 
         // Else-If Infection Date is Updated
-
         else if (!recordInfDate.equals(fieldInfDate)) {
 
             int confirmationNumber = JOptionPane.showConfirmDialog(this ,"Infection Notification Alert will be sent upon update. Proceed?", "",
@@ -530,29 +528,24 @@ public class HealthStaffPage extends javax.swing.JFrame {
             JOptionPane.QUESTION_MESSAGE);
 
             // If User agrees to Update Inf with Send Alert
-
             if (confirmationNumber == 0) {
-                 
-                UpdateInfStatusCtrler uic = new UpdateInfStatusCtrler();
-
-                SendInfAlertCtrler sic = new SendInfAlertCtrler();
-
 
                 try {
-
-                    int validationNumber = uic.updateInfStatus(hsUsernameField.getText(), puUsernameField.getText(), 
+                    
+                    // Update specified health record entry
+                    UpdateInfStatusCtrler uic = new UpdateInfStatusCtrler();
+                    uic.updateInfStatus(hsUsernameField.getText(), puUsernameField.getText(), 
                         vacStatus, vacDateField.getDate(), infStatus, infDateField.getDate());
 
-                    if (validationNumber == 0) {
+                    // Create new specified alert entry
+                    SendInfAlertCtrler sic = new SendInfAlertCtrler();
+                    sic.sendInfAlert(puUsernameField.getText(), "infection", infDateField.getDate());
 
-                        sic.sendInfAlert(puUsernameField.getText(), "infection", infDateField.getDate());
+                    model.setRowCount(0);
 
-                        model.setRowCount(0);
-
-                        showHealthRec();
-                    }
+                    // Refresh health record table
+                    showHealthRec();
                 } 
-                
                 catch (IOException ex) {
                     
                     Logger.getLogger(HealthStaffPage.class.getName()).log(Level.SEVERE, null, ex);
@@ -563,15 +556,14 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
     private void clickHealthRec(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_clickHealthRec
 
+        // Find out the index of selected item
         int i = healthRecTable.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) healthRecTable.getModel();
 
         // Populate PU Username
-      
         puUsernameField.setText(model.getValueAt(i, 0).toString());
 
         // Populate Vaccine Status
-        
         String vacStatus = model.getValueAt(i,2).toString();
         
         vacStatusYesBtn.setEnabled(true);
@@ -590,23 +582,25 @@ public class HealthStaffPage extends javax.swing.JFrame {
                 vacStatusNoBtn.setSelected(true);
                 vacDateField.setEnabled(false);
                 break;
+                
+            default:
+                break;
         }
         
         // Populate Vaccine Date
-        
         String strVacDate = model.getValueAt(i,3).toString();
 
         try {
+            
+            // Convert String to java.util.Date
             java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse(strVacDate);            
             vacDateField.setDate(date); 
         } 
-        
         catch (ParseException ex) {
             Logger.getLogger(HealthStaffPage.class.getName()).log(Level.SEVERE, null, ex);
         }
 
         // Populate Infection Status
-        
         String infStatus = model.getValueAt(i,5).toString();
         
         infStatusYesBtn.setEnabled(true);
@@ -625,17 +619,19 @@ public class HealthStaffPage extends javax.swing.JFrame {
                 infStatusNoBtn.setSelected(true);
                 infDateField.setEnabled(false);
                 break;
+                
+            default:
+                break;
         }
         
         // Populate Infection Date
-        
         String strInfDate = model.getValueAt(i,6).toString();
         
         try {
+            // Convert String to java.util.Date
             java.util.Date date = new SimpleDateFormat("dd/MM/yyyy").parse(strInfDate);            
             infDateField.setDate(date); 
         } 
-        
         catch (ParseException ex) {
             Logger.getLogger(HealthStaffPage.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -643,6 +639,8 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
     private void logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout
         // TODO add your handling code here:
+        
+        // Remove current frame
         dispose();
     }//GEN-LAST:event_logout
 
@@ -904,11 +902,14 @@ public class HealthStaffPage extends javax.swing.JFrame {
 
     private void sendExpAlert(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sendExpAlert
         // TODO add your handling code here:
-        SendExpAlertCtrler ec = new SendExpAlertCtrler();
         
         try {
+            // Send alerts based on today's infected
+            SendExpAlertCtrler ec = new SendExpAlertCtrler();
             Set<String> expList = ec.sendExpAlert(expAlertDateField.getText());
             
+            // For each username in the set,
+            // add onto the message
             Iterator<String> i = expList.iterator();
         
             String message = "Exposure alert sent to:\n";
@@ -927,12 +928,13 @@ public class HealthStaffPage extends javax.swing.JFrame {
     }//GEN-LAST:event_sendExpAlert
     
     private void showHealthRec() throws IOException {
-
-        DefaultTableModel model = (DefaultTableModel) healthRecTable.getModel();
         
+        // Retrieve all health record entries
         ShowHealthRecCtrler dc = new ShowHealthRecCtrler();
-       
         ArrayList<HealthStaff> userList = dc.showHealthRec();
+        
+        // Populate health record table 
+        DefaultTableModel model = (DefaultTableModel) healthRecTable.getModel();
         
         Object rowData[] = new Object[7];
         

@@ -506,6 +506,7 @@ public class PublicUserPage extends javax.swing.JFrame {
     private void logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout
         // TODO add your handling code here:
         
+        // Remove current frame
         dispose();
     }//GEN-LAST:event_logout
 
@@ -514,14 +515,12 @@ public class PublicUserPage extends javax.swing.JFrame {
         
         DefaultTableModel model = (DefaultTableModel) visitedTable.getModel();
         model.setRowCount(0);
-        
-        ShowVisitedCtrler uvc = new ShowVisitedCtrler();
-        
-        ArrayList<Visit> visitedList;
                 
         try {
             
-            visitedList = uvc.showVisited(dateField.getDate(), currentUser);
+            // Retrieve all visit entries
+            ShowVisitedCtrler uvc = new ShowVisitedCtrler();
+            ArrayList<Visit> visitedList = uvc.showVisited(dateField.getDate(), currentUser);
             
             Object rowData[] = new Object[2];
         
@@ -543,6 +542,7 @@ public class PublicUserPage extends javax.swing.JFrame {
     private void ackAlert(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ackAlert
         // TODO add your handling code here:
         
+        // Retrieve the selected alerts
         int[] selectedIx = alertList.getSelectedIndices();
         
         if (selectedIx.length == 0) {
@@ -551,6 +551,8 @@ public class PublicUserPage extends javax.swing.JFrame {
         }
         else {
             
+             // if more than 0 selected alerts
+            // Fill up the list with the new alert format
             ArrayList<String> selectedList = new ArrayList<>();
             
             for (int i = 0; i < selectedIx.length; i++) {
@@ -560,13 +562,13 @@ public class PublicUserPage extends javax.swing.JFrame {
                 selectedList.add(currentUser + " " + selected);
             }
 
-            AckAlertCtrler ac = new AckAlertCtrler();
-
             try {
+                AckAlertCtrler ac = new AckAlertCtrler();
                 ac.ackAlert(selectedList);
 
                 JOptionPane.showMessageDialog(this, "Alert acknowledged");
 
+                // Refresh the alert list
                 showAlert();
 
             } catch (IOException ex) {
@@ -577,10 +579,9 @@ public class PublicUserPage extends javax.swing.JFrame {
 
     private void checkIn(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_checkIn
         // TODO add your handling code here:
-                
-        CheckInCtrler cic = new CheckInCtrler();
-        
+                 
         try {
+            CheckInCtrler cic = new CheckInCtrler();
             Boolean response = cic.checkIn(boUsernameField.getText(), currentUser, checkInDateField.getText());
             
             if (response) {
@@ -602,6 +603,7 @@ public class PublicUserPage extends javax.swing.JFrame {
     
         DefaultListModel<String> model = new DefaultListModel<>(); 
          
+        // Retreive all alert entries 
         ShowAlertCtrler sac = new ShowAlertCtrler();
         ArrayList<Alert> aList = sac.showAlert(currentUser);
          
@@ -613,6 +615,7 @@ public class PublicUserPage extends javax.swing.JFrame {
             
             for (Alert a : aList) {
 
+                // Populate the alert list
                 model.addElement(a.getAlertType() + " alert sent on " + a.getAlertDate());
             }
         }
@@ -623,7 +626,6 @@ public class PublicUserPage extends javax.swing.JFrame {
     private void checkVacStatus() throws IOException {
     
         CheckVacStatusCtrler vsc = new CheckVacStatusCtrler();
-        
         Boolean response = vsc.checkVacStatus(currentUser);
         
         if (response) {
@@ -644,8 +646,8 @@ public class PublicUserPage extends javax.swing.JFrame {
     
     private void showUserProfile() throws IOException {
     
+        // Retrieve specified user profile
         ShowUserProfileCtrler upc = new ShowUserProfileCtrler();
-        
         User user = upc.showUserProfile(welcomeLabel.getText().split(" ")[1]);
         
         puUsernameField.setText(user.getUsername());

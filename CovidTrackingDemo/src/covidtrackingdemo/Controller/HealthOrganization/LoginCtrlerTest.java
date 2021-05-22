@@ -55,39 +55,40 @@ public class LoginCtrlerTest {
         String password;
         String expResult;
         String result;
-                
+               
+        // Valid Admin account
         username = "admin1";
         password = "admin";
         expResult = "Admin";
         result = instance.login(username, password);
         assertEquals(expResult, result);
         
+        // Valid Public User account
         username = "LD1@example.com";
         password = "password";
         expResult = "Public User";
         result = instance.login(username, password);
         assertEquals(expResult, result);
         
+        // Valid Business Owner account
         username = "AM1001@example.com";
         password = "password";
         expResult = "Business Owner";
         result = instance.login(username, password);
         assertEquals(expResult, result);
         
+        // Valid Health Staff account
         username = "AD1026@example.com";
         password = "password";
         expResult = "Health Staff";
         result = instance.login(username, password);
         assertEquals(expResult, result);
         
+        // Incorrect example
         username = "@example.com";
         password = "password";
         expResult = "";
         result = instance.login(username, password);
         assertEquals(expResult, result);
-    
-        // TODO review the generated test code and remove the default call to fail.
-        // fail("The test case is a prototype.");
     }
-    
 }

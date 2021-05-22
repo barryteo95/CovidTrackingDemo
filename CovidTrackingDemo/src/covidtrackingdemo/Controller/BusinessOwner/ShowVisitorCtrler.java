@@ -23,15 +23,23 @@ public class ShowVisitorCtrler {
     
     public ArrayList<Visit> showVisitor(java.util.Date date, String currentUser) throws IOException, ParseException {
         
+        // Retrieve all visit entries
         Visit visit = new Visit();
-        ArrayList<Visit> visitorList = visit.display();
+        ArrayList<Visit> visitorList = visit.showVisit();
         
+        /*
+         * For each visit entry,
+         * if username don't match specified username &&
+         * date don't match specified date
+         * remove
+        */
         Iterator itr = visitorList.iterator();
         
         while (itr.hasNext()) {
             
             Visit v = (Visit) itr.next();
             
+            // Convert String to Date
             Date visitDate = new SimpleDateFormat("dd/MM/yyyy").parse(v.getVisitedDate());
             String username = v.getBoUsername();
                                 

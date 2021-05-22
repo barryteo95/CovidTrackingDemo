@@ -18,13 +18,15 @@ public class UpdateAccCtrler {
 
     public int updateAcc(String username, String password, String privilege, String firstName, String lastName) throws IOException {
 
-        HealthOrganization ho = new HealthOrganization();
-
         int validationIsSuccessful = validate(username, password, privilege, firstName, lastName);
 
-        if (validationIsSuccessful == 0)
-            ho.updateAcc(username, password, privilege, firstName, lastName);
+        if (validationIsSuccessful == 0) {
         
+            // Update specified user profile entry
+            HealthOrganization ho = new HealthOrganization();
+            ho.updateAcc(username, password, privilege, firstName, lastName);
+        }
+
         return validationIsSuccessful;
     }    
     
@@ -32,22 +34,28 @@ public class UpdateAccCtrler {
 
         String regex_password = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=])(?=\\S+$).{8,}$";
 
-        //Validate empty fields
+        // Validate empty fields
         if (username.equals("") || password.equals("") || firstName.equals("") || lastName.equals("")) {
+            
             return 1; 
         }
-
-        //Validate email
+        
+        // Validate email
         else if (!username.contains("@")) {
+            
             return 2;
         }
 
-        //Validate password
+        // Validate password
         else if (!password.matches(regex_password)) {
+            
             return 3;
         }
         
-        else 
+        // Valid
+        else {
+        
             return 0;
+        }
     }
 }

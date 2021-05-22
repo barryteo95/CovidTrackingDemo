@@ -18,10 +18,11 @@ public class CheckVacStatusCtrler {
     
     public Boolean checkVacStatus(String username) throws IOException {
     
+        // Retrieve specified health record entry
         HealthStaff hs = new HealthStaff();
-        
         HealthStaff user = hs.showHealthRec(username);
         
+        // Check whether health record entry vaccination status is yes
         return user.getVacStatus().equals("Yes");
     }
 }

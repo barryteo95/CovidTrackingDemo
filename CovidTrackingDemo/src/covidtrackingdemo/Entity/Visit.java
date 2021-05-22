@@ -50,37 +50,49 @@ public class Visit {
     // Other Methods
     public void checkIn(String boUsername, String puUsername, String date) throws IOException {
     
+        // Insert a new visit entry
         VisitRecords vr = new VisitRecords();
-        
         vr.insert(boUsername, puUsername, date);
     }
     
-    public ArrayList<Visit> display() throws IOException {
+    public ArrayList<Visit> showVisit() throws IOException {
         
+        // Retrieve all visit entries
         VisitRecords vr = new VisitRecords();
-        
         return vr.select();
     } 
     
     public Set<String> findExposed(ArrayList<String> infList, LocalDate startDate) throws IOException {
         
-        Set<String> expList = new HashSet<>();
-        
+        // Retrieve all visit entries
         VisitRecords vr = new VisitRecords();
         ArrayList<Visit> visitorList = vr.select();
         
+        /*
+         * Add business owner/public user username to this unique list 
+         * based on the requirements : 
+         * - start date =< date of visit <= end date
+         * - infected user == public user username
+         * - public user who visited exposed business owner
+        */
+        Set<String> expList = new HashSet<>();
+        
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-        LocalDate dateOfVisit;
+        
         Boolean isAfter;
         Boolean isBefore;
         Boolean isWithin;
+        
+        LocalDate dateOfVisit;
         
         for (Visit visit : visitorList) {
             
             String visitor = visit.getPuUsername();  
             
+            // Convert String type to LocalDate type
             dateOfVisit = LocalDate.parse(visit.getVisitedDate(), formatter);
             
+            // Return boolean when comparing dates
             isAfter = dateOfVisit.isAfter(startDate.minusDays(1));
             isBefore = dateOfVisit.isBefore(startDate.plusDays(3)); 
             

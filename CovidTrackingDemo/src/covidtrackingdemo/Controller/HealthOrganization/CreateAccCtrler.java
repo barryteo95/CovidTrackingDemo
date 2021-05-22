@@ -21,14 +21,17 @@ public class CreateAccCtrler {
 
         int validationIsSuccessful = validate(username, password, privilege, firstName, lastName);
 
-        // validationIsSuccessful : 0 | successful 
+        // validationIsSuccessful : 0 a.k.a successful 
         if (validationIsSuccessful == 0) {
-        
+            
+            // Create a new user profile entry 
             HealthOrganization ho = new HealthOrganization();
             ho.createAcc(username, password, privilege, firstName, lastName);
             
             if (privilege.equals("Public User")) {
-            
+                
+                // if a new public user is created
+                // Create a new health record entry with specified username too
                 HealthStaff hs = new HealthStaff();
                 hs.createRec(username, null, "No", "01/01/1001", null, "No", "01/01/1001");
             }
@@ -41,22 +44,28 @@ public class CreateAccCtrler {
 
         String regex_password = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()+=])(?=\\S+$).{8,}$";
 
-        //Validate empty fields
+        // Validate empty fields
         if (username.equals("") || password.equals("") || firstName.equals("") || lastName.equals("")) {
+            
             return 1; 
         }
 
-        //Validate email
+        // Validate email
         else if (!username.contains("@example.com")) {
+            
             return 2;
         }
 
-        //Validate password
+        // Validate password
         else if (!password.matches(regex_password)) {
+            
             return 3;
         }
         
-        else 
+        // Valid
+        else {
+            
             return 0;
+        }
     }
 }

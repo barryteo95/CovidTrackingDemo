@@ -140,9 +140,9 @@ public class LoginPage extends javax.swing.JFrame {
         
         String accPrivilege;
         
-        LoginCtrler lc = new LoginCtrler();
-        
         try {
+            
+            LoginCtrler lc = new LoginCtrler();
             accPrivilege = lc.login(usernameField.getText(), passwordField.getText());
             
             switch(accPrivilege) {
@@ -153,24 +153,28 @@ public class LoginPage extends javax.swing.JFrame {
                     admin.setVisible(true);
                     admin.setUsername(usernameField.getText());
                     break;
+                    
                 case "Public User" : 
                     JOptionPane.showMessageDialog(this, "Valid credentials. Public user");
                     PublicUserPage publicUser = new PublicUserPage();
                     publicUser.setVisible(true);
                     publicUser.setUsername(usernameField.getText());
                     break;
+                    
                 case "Business Owner" : 
                     JOptionPane.showMessageDialog(this, "Valid credentials. Business owner");
                     BusinessOwnerPage businessOwner = new BusinessOwnerPage();
                     businessOwner.setVisible(true);
                     businessOwner.setUsername(usernameField.getText());
                     break;
+                    
                 case "Health Staff" : 
                     JOptionPane.showMessageDialog(this, "Valid credentials. Health staff");
                     HealthStaffPage healthStaff = new HealthStaffPage();
                     healthStaff.setVisible(true);
                     healthStaff.setUsername(usernameField.getText());
                     break;
+                    
                 default : 
                     JOptionPane.showMessageDialog(this, "Invalid credentials.");
                     break;

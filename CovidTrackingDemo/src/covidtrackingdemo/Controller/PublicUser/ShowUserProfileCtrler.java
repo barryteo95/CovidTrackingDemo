@@ -21,6 +21,7 @@ public class ShowUserProfileCtrler {
         
         HealthOrganization ho = new HealthOrganization();
         
+        // Retrieve specified user profile entry
         return ho.showUserProfile(accName);
     }
 }

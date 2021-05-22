@@ -20,6 +20,7 @@ public class LoginCtrler {
     
         System.out.println("LoginCtrler - login()");
         
+        // Login with specified username and password
         User user = new User();
         return user.login(username, password);
     }

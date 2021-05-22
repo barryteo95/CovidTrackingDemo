@@ -18,24 +18,28 @@ public class SuspendAccCtrler {
 
     public int suspendAcc(String username, String password, String privilege, String firstName, String lastName) throws IOException {
 
-        HealthOrganization ho = new HealthOrganization();
-
         int validationIsSuccessful = validate(username);
 
-        if (validationIsSuccessful == 0)
+        if (validationIsSuccessful == 0) {
+            
+            // Suspend specified user profile entry
+            HealthOrganization ho = new HealthOrganization();
             ho.suspendAcc(username, "admin", privilege, firstName, lastName);
-        
+        }
+
         return validationIsSuccessful;
     }        
     
     private int validate(String username) throws IOException {
 
-        //Validate empty fields
+        // Validate empty fields
         if (username.equals("")) {
+            
             return 1; 
         }
-        
-        else 
+        else {
+            
             return 0;
+        } 
     }
 }

@@ -20,16 +20,16 @@ public class SendVacAlertCtrler {
     
     public void sendVacAlert(String puUsername, String alertType, Date vacDate) throws IOException {
         
-        // Convert Vaccination Date to String Type
-
+        // Convert vaccination date of Date type to String type
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-
         String strVacDate = sdf.format(vacDate);
 
-        // SendVacAlert
-
+        /*
+         * Send vaccination alerts to ...
+         * - specified username
+         * - tag with alert type and infection date
+        */
         Alert alert = new Alert();
-
         alert.sendVacAlert(puUsername, alertType, strVacDate);
     }
 }

@@ -37,24 +37,30 @@ public class User {
     public void setFirstName(String firstName) { this.firstName = firstName; }
     public void setLastName(String lastName) { this.lastName = lastName; }
     
+    // Other Methods
     public String login(String username, String password) throws FileNotFoundException, IOException {
                 
         System.out.println("User - login()");
         
+        // Retrieve specified user profile entry 
         UserProfiles db = new UserProfiles();
-        
         User user = db.select(username);
         
         if (user == null) {
             
+            // No result found, return empty string
             return "";
         }
         else if (!password.equals(user.getPassword())) {
-        
+            
+            // A result found, match the password 
+            // Incorrect password, return empty string
             return "";
         }
         else {
             
+            // A result found, match the password 
+            // Correct password, return privilege
             return user.getPrivilege();
         }         
     }

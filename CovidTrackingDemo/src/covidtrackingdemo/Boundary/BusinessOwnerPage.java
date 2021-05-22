@@ -286,22 +286,26 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         
         this.currentUser = username;
         
+        // Populate alert list 
         showAlert();
        
+        // Initialize the field with today's date
         dateField.setDate(new Date());
     }
 
     private void ackAlert(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ackAlert
         
+        // Retrieve the selected alerts
         int[] selectedIx = expAlertList.getSelectedIndices();
         
         if (selectedIx.length == 0) {
         
             JOptionPane.showMessageDialog(this, "No alert selected!");
         }
-        
         else {
-        
+            
+            // if more than 0 selected alerts
+            // Fill up the list with the new alert format
             ArrayList<String> selectedList = new ArrayList<>();
             
             for (int i = 0; i < selectedIx.length; i++) {
@@ -311,13 +315,13 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
                 selectedList.add(currentUser + " " + selected);
             }
 
-            AckAlertCtrler ac = new AckAlertCtrler();
-
             try {
+                AckAlertCtrler ac = new AckAlertCtrler();
                 ac.ackAlert(selectedList);
 
                 JOptionPane.showMessageDialog(this, "Alert acknowledged");
 
+                // Refresh the alert list
                 showAlert();
 
             } catch (IOException ex) {
@@ -328,6 +332,8 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
 
     private void logout(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_logout
         // TODO add your handling code here:
+        
+        // Remove current frame
         dispose();
     }//GEN-LAST:event_logout
 
@@ -336,14 +342,13 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         
         DefaultTableModel model = (DefaultTableModel) visitorTable.getModel();
         model.setRowCount(0);
-        
-        ShowVisitorCtrler sv = new ShowVisitorCtrler();
-            
-        ArrayList<Visit> visitorList;
        
         try {
-            visitorList = sv.showVisitor(dateField.getDate(), currentUser);
+            // Retrieve all visit entries
+            ShowVisitorCtrler sv = new ShowVisitorCtrler();
+            ArrayList<Visit> visitorList = sv.showVisitor(dateField.getDate(), currentUser);
             
+            // Populate visit table 
             Object rowData[] = new Object[2];
         
             for (Visit visitor : visitorList) {
@@ -368,6 +373,7 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
             
         DefaultListModel<String> model = new DefaultListModel<>(); 
          
+        // Retreive all alert entries 
         ShowAlertCtrler sac = new ShowAlertCtrler();
         ArrayList<Alert> aList = sac.showAlert(currentUser);
         
@@ -378,7 +384,8 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         else {
             
             for (Alert a : aList) {
-            
+                
+                // Populate the alert list 
                 model.addElement(a.getAlertType() + " alert sent on " + a.getAlertDate());
             }
         }

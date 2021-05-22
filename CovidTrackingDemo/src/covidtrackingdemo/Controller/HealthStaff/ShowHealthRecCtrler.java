@@ -21,6 +21,7 @@ public class ShowHealthRecCtrler {
     
         HealthStaff hs = new HealthStaff();
         
+        // Retrieve all health record entries 
         return hs.showHealthRecs();
     }
 }

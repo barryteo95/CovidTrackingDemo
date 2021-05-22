@@ -20,10 +20,15 @@ public class ShowAlertCtrler {
     
     public ArrayList<Alert> showAlert(String accName) throws IOException {
                         
+        // Retrieve all alert entries
         Alert alert = new Alert();
-        
         ArrayList<Alert> alertList = alert.showAlert();
         
+        /*
+         * For each alert entry,
+         * if username don't match specified username
+         * remove
+        */
         Iterator itr = alertList.iterator();
         
         while (itr.hasNext()) {
