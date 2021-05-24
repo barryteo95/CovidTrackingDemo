@@ -751,7 +751,7 @@ public class AdminPage extends javax.swing.JFrame {
             frame.getContentPane().add(botPanel, BorderLayout.PAGE_END);
 
             frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-            frame.setResizable(false);
+            frame.setResizable(true);
             frame.setLocationRelativeTo(null);
             frame.setVisible(true);
         
