@@ -618,10 +618,10 @@ public class AdminPage extends javax.swing.JFrame {
         // TODO add your handling code here:
         
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-
-        GenerateReportCtrler grc = new GenerateReportCtrler();
         
         try {
+            
+            GenerateReportCtrler grc = new GenerateReportCtrler();
             
             HashMap<String, Integer> dict = grc.generateReport(startDateLabel.getText(), endDateLabel.getText());
             
@@ -653,107 +653,9 @@ public class AdminPage extends javax.swing.JFrame {
                 }                
             }
             
-            // Populate the datasets so that the charts can plot it 
-            DefaultCategoryDataset vacDataset = new DefaultCategoryDataset();
-            DefaultCategoryDataset infDataset = new DefaultCategoryDataset();
-
-            for (Map.Entry<LocalDate, Integer> me : vacDict.entrySet()) {
-
-                vacDataset.setValue(me.getValue(), "Count", formatter.format(me.getKey()));
-            }
-
-            for (Map.Entry<LocalDate, Integer> me : infDict.entrySet()) {
-
-                infDataset.setValue(me.getValue(), "Count", formatter.format(me.getKey()));
-            }
-
-            JFreeChart vacChart = ChartFactory.createBarChart("Past 7 days trend of the number of vaccination", 
-                    "Date", 
-                    "Number of vaccination", 
-                    vacDataset,
-                    PlotOrientation.VERTICAL,
-                    false,
-                    true,
-                    false);
-            CategoryPlot vacP = vacChart.getCategoryPlot();
-            vacP.setRangeGridlinePaint(Color.black);
-            vacP.getRangeAxis().setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-
-            JFreeChart infChart = ChartFactory.createBarChart("Past 7 days trend of the number of infection", 
-                    "Date", 
-                    "Number of infection", 
-                    infDataset,
-                    PlotOrientation.VERTICAL,
-                    false,
-                    true,
-                    false);
-            CategoryPlot infP = infChart.getCategoryPlot();
-            infP.setRangeGridlinePaint(Color.black);
-            infP.getRangeAxis().setStandardTickUnits(NumberAxis.createIntegerTickUnits());
-
-            ChartPanel vacPanel = new ChartPanel(vacChart);
-            vacPanel.setPreferredSize(new Dimension(600, 400));        
-
-            ChartPanel infPanel = new ChartPanel(infChart);
-            infPanel.setPreferredSize(new Dimension(600, 400));
-
-            // Panel TOP
-            JPanel topPanel = new JPanel();
-            topPanel.setPreferredSize(new Dimension(800, 100));
-            
-            JLabel subHeaderLabel = new JLabel("GENERATE REPORT");
-            subHeaderLabel.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-            subHeaderLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-            subHeaderLabel.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-            subHeaderLabel.setVerticalAlignment(javax.swing.SwingConstants.CENTER);
-            topPanel.add(subHeaderLabel);
-            
-            // Panel MIDDLE
-            // SHOW 2 CHARTS
-            JPanel midPanel = new JPanel();
-            midPanel.setPreferredSize(new Dimension(800, 600));
-            midPanel.add(vacPanel, BorderLayout.LINE_START);
-            midPanel.add(infPanel, BorderLayout.LINE_END);
-            
-            // Panel BOTTOM
-            // SAVE IMAGE
-            JButton saveChartBtn = new JButton("SAVE CHART");
-            saveChartBtn.setBounds(100, 100, 300, 100);
-            
-            saveChartBtn.addActionListener(new ActionListener() {
-            
-                @Override
-                public void actionPerformed(ActionEvent e) {
-                    
-                    try {
-                        
-                        final ChartRenderingInfo info = new ChartRenderingInfo(new StandardEntityCollection());
-                        final File vacFile = new File("vacChart.png");
-                        final File infFile = new File("infChart.png");
-                        ChartUtilities.saveChartAsJPEG(vacFile, vacChart, 600, 400, info);
-                        ChartUtilities.saveChartAsJPEG(infFile, infChart, 600, 400, info);
-                        JOptionPane.showMessageDialog(null, "Report downloaded as JPEG.");
-                                
-                    } catch(IOException ex) {
-                        Logger.getLogger(AdminPage.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }
-            });
-            
-            JPanel botPanel = new JPanel();
-            botPanel.setPreferredSize(new Dimension(800, 100));
-            botPanel.add(saveChartBtn);
-
-            JFrame frame = new JFrame("Covid19 Report");
-
-            frame.getContentPane().add(topPanel, BorderLayout.PAGE_START);
-            frame.getContentPane().add(midPanel, BorderLayout.CENTER);
-            frame.getContentPane().add(botPanel, BorderLayout.PAGE_END);
-
-            frame.setExtendedState(JFrame.MAXIMIZED_BOTH); 
-            frame.setResizable(true);
-            frame.setLocationRelativeTo(null);
-            frame.setVisible(true);
+            // Here create a new JFrame
+            AdminReportPage report = new AdminReportPage();
+            report.setDict(vacDict, infDict);
         
         } catch (IOException ex) {
             Logger.getLogger(AdminPage.class.getName()).log(Level.SEVERE, null, ex);

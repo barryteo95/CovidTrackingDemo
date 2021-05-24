@@ -24,7 +24,7 @@ public class GenerateReportCtrler {
         
         // Retrieve all health record entries
         HealthStaff hs = new HealthStaff();
-        ArrayList<HealthStaff> healthRecs = hs.showHealthRecs();
+        ArrayList<HealthStaff> healthRecs = hs.showHealthRec();
         
         // Create a HashMap with <Key, Value>
         // e.g., <"V,DD/MM/YYYY", count>

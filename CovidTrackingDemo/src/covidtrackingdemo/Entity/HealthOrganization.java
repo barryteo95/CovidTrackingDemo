@@ -47,7 +47,7 @@ public class HealthOrganization extends User {
         return db.select(accName);
     }
     
-    public ArrayList<User> showUserProfiles() throws IOException {
+    public ArrayList<User> showUserProfile() throws IOException {
     
         UserProfiles db = new UserProfiles();
                 

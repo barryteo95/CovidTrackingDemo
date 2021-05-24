@@ -23,7 +23,7 @@ public class CheckInCtrler {
     
         // Retrieve all user profile entries
         HealthOrganization ho = new HealthOrganization(); 
-        ArrayList<User> userProfiles = ho.showUserProfiles();
+        ArrayList<User> userProfiles = ho.showUserProfile();
         
         // Filter out all except business owner entries
         ArrayList<String> boList = new ArrayList<>();
@@ -40,8 +40,8 @@ public class CheckInCtrler {
     
             // If business owner username is valid, 
             // Insert a new visit entry 
-            Visit v = new Visit();
-            v.checkIn(businessOwner, publicUser, date);
+            Visit visit = new Visit();
+            visit.checkIn(businessOwner, publicUser, date);
 
             return true;
         }

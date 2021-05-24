@@ -50,7 +50,7 @@ public class HealthStaff extends User {
         return hr.select(username);
     }
         
-    public ArrayList<HealthStaff> showHealthRecs() throws IOException {
+    public ArrayList<HealthStaff> showHealthRec() throws IOException {
         
         HealthRecords hr = new HealthRecords();
         
@@ -65,7 +65,7 @@ public class HealthStaff extends User {
         hr.insert(puUsername, vaccinatedBy, vacStatus, vacDate, determinedBy, infStatus, infDate);
     }
 
-    public void update(String hsUsername, String puUsername, String vacStatus, String strVacDate, String infStatus, String strInfDate) throws IOException {
+    public void updateRec(String hsUsername, String puUsername, String vacStatus, String strVacDate, String infStatus, String strInfDate) throws IOException {
         
         // Update a health record entry
         HealthRecords hr = new HealthRecords();

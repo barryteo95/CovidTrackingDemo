@@ -626,7 +626,7 @@ public class PublicUserPage extends javax.swing.JFrame {
     private void checkVacStatus() throws IOException {
     
         CheckVacStatusCtrler vsc = new CheckVacStatusCtrler();
-        Boolean response = vsc.checkVacStatus(currentUser);
+            Boolean response = vsc.checkVacStatus(currentUser);
         
         if (response) {
             

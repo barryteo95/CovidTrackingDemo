@@ -27,6 +27,6 @@ public class UpdateInfStatusCtrler {
             
         // Update specified health record entry
         HealthStaff hs = new HealthStaff();
-        hs.update(hsUsername, puUsername, vacStatus, strVacDate, infStatus, strInfDate);
+        hs.updateRec(hsUsername, puUsername, vacStatus, strVacDate, infStatus, strInfDate);
     }
 }
