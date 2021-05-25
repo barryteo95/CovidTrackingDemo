@@ -39,9 +39,7 @@ public class User {
     
     // Other Methods
     public String login(String username, String password) throws FileNotFoundException, IOException {
-                
-        System.out.println("User - login()");
-        
+                        
         // Retrieve specified user profile entry 
         UserProfiles db = new UserProfiles();
         User user = db.select(username);

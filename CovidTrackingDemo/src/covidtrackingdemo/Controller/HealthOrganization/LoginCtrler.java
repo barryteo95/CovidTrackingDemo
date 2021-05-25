@@ -17,9 +17,7 @@ public class LoginCtrler {
     public LoginCtrler() {}
     
     public String login(String username, String password) throws IOException {
-    
-        System.out.println("LoginCtrler - login()");
-        
+            
         // Login with specified username and password
         User user = new User();
         return user.login(username, password);

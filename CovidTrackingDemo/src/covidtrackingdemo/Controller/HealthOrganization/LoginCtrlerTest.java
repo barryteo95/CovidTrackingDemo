@@ -48,9 +48,7 @@ public class LoginCtrlerTest {
      */
     @Test
     public void testLogin() throws Exception {
-        
-        System.out.println("LoginCtrlerTest - testLogin()");
-       
+               
         String username;
         String password;
         String expResult;
@@ -61,34 +59,34 @@ public class LoginCtrlerTest {
         password = "admin";
         expResult = "Admin";
         result = instance.login(username, password);
-        assertEquals(expResult, result);
+        assertEquals(expResult, result, "Admin account should work.");
         
         // Valid Public User account
         username = "LD1@example.com";
         password = "password";
         expResult = "Public User";
         result = instance.login(username, password);
-        assertEquals(expResult, result);
+        assertEquals(expResult, result, "Public User account should work.");
         
         // Valid Business Owner account
         username = "AM1001@example.com";
         password = "password";
         expResult = "Business Owner";
         result = instance.login(username, password);
-        assertEquals(expResult, result);
+        assertEquals(expResult, result, "Business Owner account should work.");
         
         // Valid Health Staff account
         username = "AD1026@example.com";
         password = "password";
         expResult = "Health Staff";
         result = instance.login(username, password);
-        assertEquals(expResult, result);
+        assertEquals(expResult, result, "Health Staff account should work.");
         
         // Incorrect example
         username = "@example.com";
         password = "password";
         expResult = "";
         result = instance.login(username, password);
-        assertEquals(expResult, result);
+        assertEquals(expResult, result, "Invalid account should work.");
     }
 }
