@@ -59,34 +59,34 @@ public class LoginCtrlerTest {
         password = "admin";
         expResult = "Admin";
         result = instance.login(username, password);
-        assertEquals(expResult, result, "Admin account should work.");
+        assertEquals(expResult, result);
         
         // Valid Public User account
         username = "LD1@example.com";
         password = "password";
         expResult = "Public User";
         result = instance.login(username, password);
-        assertEquals(expResult, result, "Public User account should work.");
+        assertEquals(expResult, result);
         
         // Valid Business Owner account
         username = "AM1001@example.com";
         password = "password";
         expResult = "Business Owner";
         result = instance.login(username, password);
-        assertEquals(expResult, result, "Business Owner account should work.");
+        assertEquals(expResult, result);
         
         // Valid Health Staff account
         username = "AD1026@example.com";
         password = "password";
         expResult = "Health Staff";
         result = instance.login(username, password);
-        assertEquals(expResult, result, "Health Staff account should work.");
+        assertEquals(expResult, result);
         
         // Incorrect example
         username = "@example.com";
         password = "password";
         expResult = "";
         result = instance.login(username, password);
-        assertEquals(expResult, result, "Invalid account should work.");
+        assertEquals(expResult, result);
     }
 }

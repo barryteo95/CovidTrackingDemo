@@ -87,9 +87,7 @@ public class UserProfiles {
     public User select(String username) throws IOException {
         
         try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
-            
-            System.out.println("UserProfiles - select()");
-            
+                        
             csvReader.readLine();
             
             String row;
