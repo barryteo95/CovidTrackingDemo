@@ -11,12 +11,6 @@ import covidtrackingdemo.Controller.HealthOrganization.ShowUserProfilesCtrler;
 import covidtrackingdemo.Controller.HealthOrganization.SuspendAccCtrler;
 import covidtrackingdemo.Controller.HealthOrganization.UpdateAccCtrler;
 import covidtrackingdemo.Entity.User;
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -26,22 +20,8 @@ import java.util.Map;
 import java.util.TreeMap;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JButton;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
-import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
-import org.jfree.chart.ChartRenderingInfo;
-import org.jfree.chart.ChartUtilities;
-import org.jfree.chart.JFreeChart;
-import org.jfree.chart.axis.NumberAxis;
-import org.jfree.chart.entity.StandardEntityCollection;
-import org.jfree.chart.plot.CategoryPlot;
-import org.jfree.chart.plot.PlotOrientation;
-import org.jfree.data.category.DefaultCategoryDataset;
 
 /**
  *
@@ -473,6 +453,9 @@ public class AdminPage extends javax.swing.JFrame {
                                     + "\n - Include numbers "
                                     + "\n - Include special char");
                             break;
+                        case 4:
+                            JOptionPane.showMessageDialog(null, "Username already exists");
+                            break;
                         default:
                             break;
                     }
@@ -520,7 +503,12 @@ public class AdminPage extends javax.swing.JFrame {
                             JOptionPane.showMessageDialog(null, "Please enter a valid username");
                             break;
                         case 3:
-                            JOptionPane.showMessageDialog(null, "Please enter a stronger password");
+                            JOptionPane.showMessageDialog(null, "Please enter password in this format : "
+                                    + "\n - Contain at least 8 characters"
+                                    + "\n - Include uppercase "
+                                    + "\n - Include lowercase "
+                                    + "\n - Include numbers "
+                                    + "\n - Include special char");
                             break;
                         default:
                             break;

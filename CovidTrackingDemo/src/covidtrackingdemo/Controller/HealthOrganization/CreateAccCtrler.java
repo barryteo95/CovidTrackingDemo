@@ -7,6 +7,7 @@ package covidtrackingdemo.Controller.HealthOrganization;
 
 import covidtrackingdemo.Entity.HealthOrganization;
 import covidtrackingdemo.Entity.HealthStaff;
+import covidtrackingdemo.Entity.User;
 import java.io.IOException;
 
 /**
@@ -26,14 +27,24 @@ public class CreateAccCtrler {
             
             // Create a new user profile entry 
             HealthOrganization ho = new HealthOrganization();
-            ho.createAcc(username, password, privilege, firstName, lastName);
+            User user = ho.showUserProfile(username);
             
-            if (privilege.equals("Public User")) {
+            if (user != null) {
                 
-                // if a new public user is created
-                // Create a new health record entry with specified username too
-                HealthStaff hs = new HealthStaff();
-                hs.createRec(username, null, "No", "01/01/1001", null, "No", "01/01/1001");
+                // Returns 4 if username exists
+                return 4;
+            }
+            else {
+                
+                ho.createAcc(username, password, privilege, firstName, lastName);
+            
+                if (privilege.equals("Public User")) {
+                
+                    // if a new public user is created
+                    // Create a new health record entry with specified username too
+                    HealthStaff hs = new HealthStaff();
+                    hs.createRec(username, null, "No", "01/01/1001", null, "No", "01/01/1001");
+                }
             }
         }
         
@@ -50,13 +61,13 @@ public class CreateAccCtrler {
             return 1; 
         }
 
-        // Validate email
+        // Validate email format
         else if (!username.contains("@example.com")) {
             
             return 2;
         }
 
-        // Validate password
+        // Validate password format
         else if (!password.matches(regex_password)) {
             
             return 3;
