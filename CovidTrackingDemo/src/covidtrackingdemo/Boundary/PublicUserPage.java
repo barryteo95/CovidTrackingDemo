@@ -519,8 +519,8 @@ public class PublicUserPage extends javax.swing.JFrame {
         try {
             
             // Retrieve all visit entries
-            ShowVisitedCtrler uvc = new ShowVisitedCtrler();
-            ArrayList<Visit> visitedList = uvc.showVisited(dateField.getDate(), currentUser);
+            ShowVisitedCtrler svc = new ShowVisitedCtrler();
+            ArrayList<Visit> visitedList = svc.showVisited(dateField.getDate(), currentUser);
             
             Object rowData[] = new Object[2];
         
