@@ -316,8 +316,8 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
             }
 
             try {
-                AckAlertCtrler ac = new AckAlertCtrler();
-                ac.ackAlert(selectedList);
+                AckAlertCtrler aac = new AckAlertCtrler();
+                aac.ackAlert(selectedList);
 
                 JOptionPane.showMessageDialog(this, "Alert acknowledged");
 
@@ -345,8 +345,8 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
        
         try {
             // Retrieve all visit entries
-            ShowVisitorCtrler sv = new ShowVisitorCtrler();
-            ArrayList<Visit> visitorList = sv.showVisitor(dateField.getDate(), currentUser);
+            ShowVisitorCtrler svc = new ShowVisitorCtrler();
+            ArrayList<Visit> visitorList = svc.showVisitor(dateField.getDate(), currentUser);
             
             // Populate visit table 
             Object rowData[] = new Object[2];

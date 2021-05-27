@@ -905,8 +905,8 @@ public class HealthStaffPage extends javax.swing.JFrame {
         
         try {
             // Send alerts based on today's infected
-            SendExpAlertCtrler ec = new SendExpAlertCtrler();
-            Set<String> expList = ec.sendExpAlert(expAlertDateField.getText());
+            SendExpAlertCtrler sec = new SendExpAlertCtrler();
+            Set<String> expList = sec.sendExpAlert(expAlertDateField.getText());
             
             // For each username in the set,
             // add onto the message
@@ -930,8 +930,8 @@ public class HealthStaffPage extends javax.swing.JFrame {
     private void showHealthRec() throws IOException {
         
         // Retrieve all health record entries
-        ShowHealthRecCtrler dc = new ShowHealthRecCtrler();
-        ArrayList<HealthStaff> userList = dc.showHealthRec();
+        ShowHealthRecCtrler shrc = new ShowHealthRecCtrler();
+        ArrayList<HealthStaff> userList = shrc.showHealthRec();
         
         // Populate health record table 
         DefaultTableModel model = (DefaultTableModel) healthRecTable.getModel();

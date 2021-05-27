@@ -421,10 +421,10 @@ public class AdminPage extends javax.swing.JFrame {
             
             case JOptionPane.YES_OPTION :  
                 
-                CreateAccCtrler cc = new CreateAccCtrler();
+                CreateAccCtrler cac = new CreateAccCtrler();
         
                 try {
-                    int validationIsSuccessful = cc.createAcc(
+                    int validationIsSuccessful = cac.createAcc(
                             usernameField.getText(), 
                             passwordField.getText(), 
                             (String)privilegeComboBox.getSelectedItem(), 
@@ -478,10 +478,10 @@ public class AdminPage extends javax.swing.JFrame {
             
             case JOptionPane.YES_OPTION : 
                 
-                UpdateAccCtrler uc = new UpdateAccCtrler();
+                UpdateAccCtrler uac = new UpdateAccCtrler();
         
                 try {
-                    int validationIsSuccessful = uc.updateAcc(
+                    int validationIsSuccessful = uac.updateAcc(
                             usernameField.getText(), 
                             passwordField.getText(), 
                             (String)privilegeComboBox.getSelectedItem(), 
@@ -532,10 +532,10 @@ public class AdminPage extends javax.swing.JFrame {
             
             case JOptionPane.YES_OPTION : 
                 
-                SuspendAccCtrler sc = new SuspendAccCtrler();
+                SuspendAccCtrler sac = new SuspendAccCtrler();
                 
                 try {
-                    int validationIsSuccessful = sc.suspendAcc(usernameField.getText(), passwordField.getText(), (String)privilegeComboBox.getSelectedItem(), firstNameField.getText(), lastNameField.getText());
+                    int validationIsSuccessful = sac.suspendAcc(usernameField.getText(), passwordField.getText(), (String)privilegeComboBox.getSelectedItem(), firstNameField.getText(), lastNameField.getText());
                     
                     switch(validationIsSuccessful) {
                     
@@ -653,8 +653,8 @@ public class AdminPage extends javax.swing.JFrame {
     private void showUserProfiles() throws IOException {
         
         // Retrieve all user profile entries
-        ShowUserProfilesCtrler dc = new ShowUserProfilesCtrler();
-        ArrayList<User> userList = dc.showUserProfiles();
+        ShowUserProfilesCtrler supc = new ShowUserProfilesCtrler();
+        ArrayList<User> userList = supc.showUserProfiles();
         
         // Populate user profile table 
         DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
