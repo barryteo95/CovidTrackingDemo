@@ -563,8 +563,8 @@ public class PublicUserPage extends javax.swing.JFrame {
             }
 
             try {
-                AckAlertCtrler ac = new AckAlertCtrler();
-                ac.ackAlert(selectedList);
+                AckAlertCtrler aac = new AckAlertCtrler();
+                aac.ackAlert(selectedList);
 
                 JOptionPane.showMessageDialog(this, "Alert acknowledged");
 
@@ -625,8 +625,8 @@ public class PublicUserPage extends javax.swing.JFrame {
     
     private void checkVacStatus() throws IOException {
     
-        CheckVacStatusCtrler vsc = new CheckVacStatusCtrler();
-        Boolean response = vsc.checkVacStatus(currentUser);
+        CheckVacStatusCtrler cvsc = new CheckVacStatusCtrler();
+        Boolean response = cvsc.checkVacStatus(currentUser);
         
         if (response) {
             
@@ -647,8 +647,8 @@ public class PublicUserPage extends javax.swing.JFrame {
     private void showUserProfile() throws IOException {
     
         // Retrieve specified user profile
-        ShowUserProfileCtrler upc = new ShowUserProfileCtrler();
-        User user = upc.showUserProfile(welcomeLabel.getText().split(" ")[1]);
+        ShowUserProfileCtrler supc = new ShowUserProfileCtrler();
+        User user = supc.showUserProfile(welcomeLabel.getText().split(" ")[1]);
         
         puUsernameField.setText(user.getUsername());
         passwordField.setText(user.getPassword());
