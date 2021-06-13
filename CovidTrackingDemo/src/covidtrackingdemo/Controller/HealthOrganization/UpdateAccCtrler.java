@@ -5,7 +5,7 @@
  */
 package covidtrackingdemo.Controller.HealthOrganization;
 
-import covidtrackingdemo.Entity.HealthOrganization;
+import covidtrackingdemo.Entity.UserProfile;
 import java.io.IOException;
 
 /**
@@ -23,7 +23,7 @@ public class UpdateAccCtrler {
         if (validationIsSuccessful == 0) {
         
             // Update specified user profile entry
-            HealthOrganization ho = new HealthOrganization();
+            UserProfile ho = new UserProfile();
             ho.updateAcc(username, password, privilege, firstName, lastName);
         }
 

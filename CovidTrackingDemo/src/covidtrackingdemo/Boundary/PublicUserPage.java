@@ -11,9 +11,9 @@ import covidtrackingdemo.Controller.PublicUser.CheckInCtrler;
 import covidtrackingdemo.Controller.PublicUser.CheckVacStatusCtrler;
 import covidtrackingdemo.Controller.PublicUser.ShowUserProfileCtrler;
 import covidtrackingdemo.Controller.PublicUser.ShowVisitedCtrler;
-import covidtrackingdemo.Entity.Alert;
-import covidtrackingdemo.Entity.User;
-import covidtrackingdemo.Entity.Visit;
+import covidtrackingdemo.Entity.AlertRecord;
+import covidtrackingdemo.Entity.UserProfile;
+import covidtrackingdemo.Entity.VisitRecord;
 import java.awt.Color;
 import java.io.IOException;
 import java.text.DateFormat;
@@ -520,11 +520,11 @@ public class PublicUserPage extends javax.swing.JFrame {
             
             // Retrieve all visit entries
             ShowVisitedCtrler svc = new ShowVisitedCtrler();
-            ArrayList<Visit> visitedList = svc.showVisited(dateField.getDate(), currentUser);
+            ArrayList<VisitRecord> visitedList = svc.showVisited(dateField.getDate(), currentUser);
             
             Object rowData[] = new Object[2];
         
-            for (Visit visited : visitedList) {
+            for (VisitRecord visited : visitedList) {
 
                 rowData[0] = visited.getBoUsername();
                 rowData[1] = visited.getVisitedDate();
@@ -605,7 +605,7 @@ public class PublicUserPage extends javax.swing.JFrame {
          
         // Retreive all alert entries 
         ShowAlertCtrler sac = new ShowAlertCtrler();
-        ArrayList<Alert> aList = sac.showAlert(currentUser);
+        ArrayList<AlertRecord> aList = sac.showAlert(currentUser);
          
         if (aList.isEmpty()) {
         
@@ -613,7 +613,7 @@ public class PublicUserPage extends javax.swing.JFrame {
         }
         else {
             
-            for (Alert a : aList) {
+            for (AlertRecord a : aList) {
 
                 // Populate the alert list
                 model.addElement(a.getAlertType() + " alert sent on " + a.getAlertDate());
@@ -648,7 +648,7 @@ public class PublicUserPage extends javax.swing.JFrame {
     
         // Retrieve specified user profile
         ShowUserProfileCtrler supc = new ShowUserProfileCtrler();
-        User user = supc.showUserProfile(welcomeLabel.getText().split(" ")[1]);
+        UserProfile user = supc.showUserProfile(welcomeLabel.getText().split(" ")[1]);
         
         puUsernameField.setText(user.getUsername());
         passwordField.setText(user.getPassword());

@@ -5,7 +5,7 @@
  */
 package covidtrackingdemo.Controller.BusinessOwner;
 
-import covidtrackingdemo.Entity.Alert;
+import covidtrackingdemo.Entity.AlertRecord;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -19,7 +19,7 @@ public class AckAlertCtrler {
     
     public void ackAlert(ArrayList<String> selectedList) throws IOException {
     
-        Alert alert = new Alert();
+        AlertRecord alert = new AlertRecord();
         
         for (String sel : selectedList) {
         

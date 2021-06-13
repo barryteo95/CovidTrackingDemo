@@ -5,7 +5,7 @@
  */
 package covidtrackingdemo;
 
-import covidtrackingdemo.Entity.Alert;
+import covidtrackingdemo.Entity.AlertRecord;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -27,9 +27,9 @@ public class AlertRecords {
         path = "dataset/AlertRecords.csv";
     }
     
-    public ArrayList<Alert> select() throws FileNotFoundException, IOException {
+    public ArrayList<AlertRecord> select() throws FileNotFoundException, IOException {
         
-        ArrayList<Alert> alertList;
+        ArrayList<AlertRecord> alertList;
         
         try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
             
@@ -42,7 +42,7 @@ public class AlertRecords {
                 
                 String[] data = row.split(",");
                 
-                Alert alert = new Alert();
+                AlertRecord alert = new AlertRecord();
                 
                 alert.setUsername(data[0]);
                 alert.setAlertType(data[1]);

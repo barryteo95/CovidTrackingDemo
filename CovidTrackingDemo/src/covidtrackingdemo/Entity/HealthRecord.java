@@ -14,8 +14,9 @@ import java.util.ArrayList;
  *
  * @author User
  */
-public class HealthStaff extends User {
+public class HealthRecord {
     
+    private String username;
     private String vaccinatedBy;
     private String vacStatus;
     private String vacDate;
@@ -23,9 +24,10 @@ public class HealthStaff extends User {
     private String infStatus;
     private String infDate;
     
-    public HealthStaff() {}
+    public HealthRecord() {}
     
     // Accessor Methods
+    public String getUsername() { return username; }
     public String getVaccinatedBy() { return vaccinatedBy; }
     public String getVacStatus() { return vacStatus; }
     public String getVacDate() { return vacDate; }
@@ -34,6 +36,7 @@ public class HealthStaff extends User {
     public String getInfDate() { return infDate; }
 
     // Mutator Methods
+    public void setUsername(String username) { this.username = username; }
     public void setVaccinatedBy(String vaccinatedBy) { this.vaccinatedBy = vaccinatedBy; }
     public void setVacStatus(String vacStatus) { this.vacStatus = vacStatus; }
     public void setVacDate(String vacDate) { this.vacDate = vacDate; }
@@ -42,7 +45,7 @@ public class HealthStaff extends User {
     public void setInfDate(String infDate) { this.infDate = infDate; }
     
     // Other Methods
-    public HealthStaff showHealthRec(String username) throws IOException {
+    public HealthRecord showHealthRec(String username) throws IOException {
     
         HealthRecords hr = new HealthRecords();
         
@@ -50,7 +53,7 @@ public class HealthStaff extends User {
         return hr.select(username);
     }
         
-    public ArrayList<HealthStaff> showHealthRec() throws IOException {
+    public ArrayList<HealthRecord> showHealthRec() throws IOException {
         
         HealthRecords hr = new HealthRecords();
         
@@ -76,7 +79,7 @@ public class HealthStaff extends User {
         
         // Retrieve all health record entries   
         HealthRecords hr = new HealthRecords();
-        ArrayList<HealthStaff> recordList = hr.select();
+        ArrayList<HealthRecord> recordList = hr.select();
         
         /* 
          * Add health record entries to this list based on the requirements
@@ -85,7 +88,7 @@ public class HealthStaff extends User {
         */
         ArrayList<String> infectedList = new ArrayList<>();
         
-        for (HealthStaff user : recordList) {
+        for (HealthRecord user : recordList) {
                         
             if (currentDate.equals(user.getInfDate())) {
             

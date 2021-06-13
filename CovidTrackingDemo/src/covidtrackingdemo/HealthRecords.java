@@ -5,7 +5,7 @@
  */
 package covidtrackingdemo;
 
-import covidtrackingdemo.Entity.HealthStaff;
+import covidtrackingdemo.Entity.HealthRecord;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -28,7 +28,7 @@ public class HealthRecords {
     }
         
     // Select - individual
-    public HealthStaff select(String username) throws IOException {
+    public HealthRecord select(String username) throws IOException {
         
         try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
             
@@ -42,7 +42,7 @@ public class HealthRecords {
                 
                 if (username.equals(data[0])){
                     
-                    HealthStaff user = new HealthStaff();
+                    HealthRecord user = new HealthRecord();
                     
                     user.setUsername(data[0]);
                     user.setVaccinatedBy(data[1]);
@@ -63,9 +63,9 @@ public class HealthRecords {
     }
     
     // Select - all
-    public ArrayList<HealthStaff> select() throws FileNotFoundException, IOException {
+    public ArrayList<HealthRecord> select() throws FileNotFoundException, IOException {
                 
-        ArrayList<HealthStaff> userList;
+        ArrayList<HealthRecord> userList;
         
         try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
             
@@ -78,7 +78,7 @@ public class HealthRecords {
                 
                 String[] data = row.split(",");
                                 
-                HealthStaff user = new HealthStaff();
+                HealthRecord user = new HealthRecord();
                 
                 user.setUsername(data[0]);
                 user.setVaccinatedBy(data[1]);

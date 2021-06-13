@@ -5,7 +5,7 @@
  */
 package covidtrackingdemo.Controller.PublicUser;
 
-import covidtrackingdemo.Entity.Visit;
+import covidtrackingdemo.Entity.VisitRecord;
 import java.io.IOException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -21,11 +21,11 @@ public class ShowVisitedCtrler {
     
     public ShowVisitedCtrler() {}
     
-    public ArrayList<Visit> showVisited(java.util.Date date, String currentUser) throws IOException, ParseException {
+    public ArrayList<VisitRecord> showVisited(java.util.Date date, String currentUser) throws IOException, ParseException {
         
         // Retrieve all visit entries 
-        Visit visit = new Visit();
-        ArrayList<Visit> visitedList = visit.showVisit();
+        VisitRecord visit = new VisitRecord();
+        ArrayList<VisitRecord> visitedList = visit.showVisit();
         
         /*
          * For each visit entry, if 
@@ -37,7 +37,7 @@ public class ShowVisitedCtrler {
         
         while (itr.hasNext()) {
             
-            Visit v = (Visit) itr.next();
+            VisitRecord v = (VisitRecord) itr.next();
             
             Date visitDate = new SimpleDateFormat("dd/MM/yyyy").parse(v.getVisitedDate());
             String username = v.getPuUsername();

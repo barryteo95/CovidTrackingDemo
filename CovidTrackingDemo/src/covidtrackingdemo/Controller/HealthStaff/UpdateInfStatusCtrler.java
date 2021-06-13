@@ -5,7 +5,7 @@
  */
 package covidtrackingdemo.Controller.HealthStaff;
 
-import covidtrackingdemo.Entity.HealthStaff;
+import covidtrackingdemo.Entity.HealthRecord;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -26,7 +26,7 @@ public class UpdateInfStatusCtrler {
         String strInfDate = sdf.format(infDate);
             
         // Update specified health record entry
-        HealthStaff hs = new HealthStaff();
+        HealthRecord hs = new HealthRecord();
         hs.updateRec(hsUsername, puUsername, vacStatus, strVacDate, infStatus, strInfDate);
     }
 }

@@ -5,9 +5,9 @@
  */
 package covidtrackingdemo.Controller.HealthStaff;
 
-import covidtrackingdemo.Entity.Alert;
-import covidtrackingdemo.Entity.HealthStaff;
-import covidtrackingdemo.Entity.Visit;
+import covidtrackingdemo.Entity.AlertRecord;
+import covidtrackingdemo.Entity.HealthRecord;
+import covidtrackingdemo.Entity.VisitRecord;
 import java.io.IOException;
 import java.text.ParseException;
 import java.time.LocalDate;
@@ -25,7 +25,7 @@ public class SendExpAlertCtrler {
     public Set<String> sendExpAlert(String currentDate) throws IOException, ParseException {
         
         // Find out the infected cases based on the current date 
-        HealthStaff hs = new HealthStaff();
+        HealthRecord hs = new HealthRecord();
         ArrayList<String> infList = hs.findInfected(currentDate);
         
         /*
@@ -36,7 +36,7 @@ public class SendExpAlertCtrler {
         LocalDate startDate = LocalDate.parse(currentDate, formatter);
         startDate = startDate.minusDays(2);
         
-        Visit visit = new Visit();
+        VisitRecord visit = new VisitRecord();
         Set<String> expList = visit.findExposed(infList, startDate);
         
         /*
@@ -44,7 +44,7 @@ public class SendExpAlertCtrler {
          * - username found in explist
          * - tag with current date
         */
-        Alert alert = new Alert();
+        AlertRecord alert = new AlertRecord();
         alert.sendExpAlert(expList, currentDate);
         
         return expList;

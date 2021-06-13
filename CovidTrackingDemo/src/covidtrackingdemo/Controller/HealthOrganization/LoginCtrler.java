@@ -5,7 +5,7 @@
  */
 package covidtrackingdemo.Controller.HealthOrganization;
 
-import covidtrackingdemo.Entity.User;
+import covidtrackingdemo.Entity.UserProfile;
 import java.io.IOException;
 
 /**
@@ -19,7 +19,7 @@ public class LoginCtrler {
     public String login(String username, String password) throws IOException {
             
         // Login with specified username and password
-        User user = new User();
+        UserProfile user = new UserProfile();
         return user.login(username, password);
     }
 }

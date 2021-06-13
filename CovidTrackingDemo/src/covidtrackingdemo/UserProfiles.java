@@ -5,7 +5,7 @@
  */
 package covidtrackingdemo;
 
-import covidtrackingdemo.Entity.User;
+import covidtrackingdemo.Entity.UserProfile;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -84,7 +84,7 @@ public class UserProfiles {
     public void delete() {}
     
     // Select - individual
-    public User select(String username) throws IOException {
+    public UserProfile select(String username) throws IOException {
         
         try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
                         
@@ -98,7 +98,7 @@ public class UserProfiles {
                 
                 if (username.equals(data[0])){
                     
-                    User user = new User();
+                    UserProfile user = new UserProfile();
                     
                     user.setUsername(data[0]);
                     user.setPassword(data[1]);
@@ -117,9 +117,9 @@ public class UserProfiles {
     }
     
     // Select - all
-    public ArrayList<User> select() throws FileNotFoundException, IOException {
+    public ArrayList<UserProfile> select() throws FileNotFoundException, IOException {
                 
-        ArrayList<User> userList;
+        ArrayList<UserProfile> userList;
         
         try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
             
@@ -132,7 +132,7 @@ public class UserProfiles {
                 
                 String[] data = row.split(",");
                 
-                User user = new User();
+                UserProfile user = new UserProfile();
                 
                 user.setUsername(data[0]);
                 user.setPassword(data[1]);

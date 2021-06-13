@@ -5,7 +5,7 @@
  */
 package covidtrackingdemo.Controller.HealthStaff;
 
-import covidtrackingdemo.Entity.Alert;
+import covidtrackingdemo.Entity.AlertRecord;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -29,7 +29,7 @@ public class SendInfAlertCtrler {
          * - specified username
          * - tag with alert type and infection date
         */
-        Alert alert = new Alert();
+        AlertRecord alert = new AlertRecord();
         alert.sendInfAlert(puUsername, alertType, strInfDate);
     }
 }

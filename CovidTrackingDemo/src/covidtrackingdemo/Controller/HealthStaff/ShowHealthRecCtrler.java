@@ -5,7 +5,7 @@
  */
 package covidtrackingdemo.Controller.HealthStaff;
 
-import covidtrackingdemo.Entity.HealthStaff;
+import covidtrackingdemo.Entity.HealthRecord;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -17,9 +17,9 @@ public class ShowHealthRecCtrler {
     
     public ShowHealthRecCtrler() {}
     
-    public ArrayList<HealthStaff> showHealthRec() throws IOException {
+    public ArrayList<HealthRecord> showHealthRec() throws IOException {
     
-        HealthStaff hs = new HealthStaff();
+        HealthRecord hs = new HealthRecord();
         
         // Retrieve all health record entries 
         return hs.showHealthRec();

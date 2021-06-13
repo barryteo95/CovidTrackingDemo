@@ -8,8 +8,8 @@ package covidtrackingdemo.Boundary;
 import covidtrackingdemo.Controller.BusinessOwner.AckAlertCtrler;
 import covidtrackingdemo.Controller.BusinessOwner.ShowVisitorCtrler;
 import covidtrackingdemo.Controller.BusinessOwner.ShowAlertCtrler;
-import covidtrackingdemo.Entity.Alert;
-import covidtrackingdemo.Entity.Visit;
+import covidtrackingdemo.Entity.AlertRecord;
+import covidtrackingdemo.Entity.VisitRecord;
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.ArrayList;
@@ -346,12 +346,12 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         try {
             // Retrieve all visit entries
             ShowVisitorCtrler svc = new ShowVisitorCtrler();
-            ArrayList<Visit> visitorList = svc.showVisitor(dateField.getDate(), currentUser);
+            ArrayList<VisitRecord> visitorList = svc.showVisitor(dateField.getDate(), currentUser);
             
             // Populate visit table 
             Object rowData[] = new Object[2];
         
-            for (Visit visitor : visitorList) {
+            for (VisitRecord visitor : visitorList) {
 
                 rowData[0] = visitor.getPuUsername();
                 rowData[1] = visitor.getVisitedDate();
@@ -375,7 +375,7 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
          
         // Retreive all alert entries 
         ShowAlertCtrler sac = new ShowAlertCtrler();
-        ArrayList<Alert> aList = sac.showAlert(currentUser);
+        ArrayList<AlertRecord> aList = sac.showAlert(currentUser);
         
         if (aList.isEmpty()) {
         
@@ -383,7 +383,7 @@ public class BusinessOwnerPage extends javax.swing.JFrame {
         }
         else {
             
-            for (Alert a : aList) {
+            for (AlertRecord a : aList) {
                 
                 // Populate the alert list 
                 model.addElement(a.getAlertType() + " alert sent on " + a.getAlertDate());

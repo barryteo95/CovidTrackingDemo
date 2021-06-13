@@ -17,13 +17,13 @@ import java.util.Set;
  *
  * @author User
  */
-public class Visit {
+public class VisitRecord {
     
     private String boUsername;
     private String puUsername;
     private String visitedDate;
     
-    public Visit() {}
+    public VisitRecord() {}
     
     // Accessor Methods
     public String getBoUsername() { 
@@ -55,7 +55,7 @@ public class Visit {
         vr.insert(boUsername, puUsername, date);
     }
     
-    public ArrayList<Visit> showVisit() throws IOException {
+    public ArrayList<VisitRecord> showVisit() throws IOException {
         
         // Retrieve all visit entries
         VisitRecords vr = new VisitRecords();
@@ -66,7 +66,7 @@ public class Visit {
         
         // Retrieve all visit entries
         VisitRecords vr = new VisitRecords();
-        ArrayList<Visit> visitorList = vr.select();
+        ArrayList<VisitRecord> visitorList = vr.select();
         
         /*
          * Add business owner/public user username to this unique list 
@@ -85,7 +85,7 @@ public class Visit {
         
         LocalDate dateOfVisit;
         
-        for (Visit visit : visitorList) {
+        for (VisitRecord visit : visitorList) {
             
             String visitor = visit.getPuUsername();  
             
@@ -104,7 +104,7 @@ public class Visit {
             }
         }
         
-        for (Visit visit : visitorList) {
+        for (VisitRecord visit : visitorList) {
            
             String owner = visit.getBoUsername();
             String visitor = visit.getPuUsername();
