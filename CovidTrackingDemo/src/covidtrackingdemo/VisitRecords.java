@@ -5,7 +5,7 @@
  */
 package covidtrackingdemo;
 
-import covidtrackingdemo.Entity.Visit;
+import covidtrackingdemo.Entity.VisitRecord;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileNotFoundException;
@@ -41,9 +41,9 @@ public class VisitRecords {
         }
     }
     
-    public ArrayList<Visit> select() throws FileNotFoundException, IOException {
+    public ArrayList<VisitRecord> select() throws FileNotFoundException, IOException {
     
-        ArrayList<Visit> visitorList;
+        ArrayList<VisitRecord> visitorList;
         
         try (BufferedReader csvReader = new BufferedReader(new FileReader(path))) {
             
@@ -56,7 +56,7 @@ public class VisitRecords {
                 
                 String[] data = row.split(",");
                 
-                Visit visit = new Visit();
+                VisitRecord visit = new VisitRecord();
                 
                 visit.setBoUsername(data[0]);
                 visit.setPuUsername(data[1]);

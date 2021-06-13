@@ -5,9 +5,9 @@
  */
 package covidtrackingdemo.Controller.PublicUser;
 
-import covidtrackingdemo.Entity.HealthOrganization;
-import covidtrackingdemo.Entity.User;
-import covidtrackingdemo.Entity.Visit;
+import covidtrackingdemo.Entity.UserProfile;
+import covidtrackingdemo.Entity.UserProfile;
+import covidtrackingdemo.Entity.VisitRecord;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -22,13 +22,13 @@ public class CheckInCtrler {
     public Boolean checkIn(String businessOwner, String publicUser, String date) throws IOException {
     
         // Retrieve all user profile entries
-        HealthOrganization ho = new HealthOrganization(); 
-        ArrayList<User> userProfiles = ho.showUserProfile();
+        UserProfile ho = new UserProfile(); 
+        ArrayList<UserProfile> userProfiles = ho.showUserProfile();
         
         // Filter out all except business owner entries
         ArrayList<String> boList = new ArrayList<>();
         
-        for (User user: userProfiles) {
+        for (UserProfile user: userProfiles) {
             
             if (user.getPrivilege().equals("Business Owner")) {
                 
@@ -40,7 +40,7 @@ public class CheckInCtrler {
     
             // If business owner username is valid, 
             // Insert a new visit entry 
-            Visit visit = new Visit();
+            VisitRecord visit = new VisitRecord();
             visit.checkIn(businessOwner, publicUser, date);
 
             return true;

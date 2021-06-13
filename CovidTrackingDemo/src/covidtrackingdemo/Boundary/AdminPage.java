@@ -10,7 +10,7 @@ import covidtrackingdemo.Controller.HealthOrganization.GenerateReportCtrler;
 import covidtrackingdemo.Controller.HealthOrganization.ShowUserProfilesCtrler;
 import covidtrackingdemo.Controller.HealthOrganization.SuspendAccCtrler;
 import covidtrackingdemo.Controller.HealthOrganization.UpdateAccCtrler;
-import covidtrackingdemo.Entity.User;
+import covidtrackingdemo.Entity.UserProfile;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -654,14 +654,14 @@ public class AdminPage extends javax.swing.JFrame {
         
         // Retrieve all user profile entries
         ShowUserProfilesCtrler supc = new ShowUserProfilesCtrler();
-        ArrayList<User> userList = supc.showUserProfiles();
+        ArrayList<UserProfile> userList = supc.showUserProfiles();
         
         // Populate user profile table 
         DefaultTableModel model = (DefaultTableModel) userProfilesTable.getModel();
         
         Object rowData[] = new Object[5];
         
-        for (User user : userList) {
+        for (UserProfile user : userList) {
             
             rowData[0] = user.getUsername();
             rowData[1] = user.getPassword();

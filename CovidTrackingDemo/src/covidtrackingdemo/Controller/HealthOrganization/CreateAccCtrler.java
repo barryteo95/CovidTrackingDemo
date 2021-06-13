@@ -5,9 +5,9 @@
  */
 package covidtrackingdemo.Controller.HealthOrganization;
 
-import covidtrackingdemo.Entity.HealthOrganization;
-import covidtrackingdemo.Entity.HealthStaff;
-import covidtrackingdemo.Entity.User;
+import covidtrackingdemo.Entity.UserProfile;
+import covidtrackingdemo.Entity.HealthRecord;
+import covidtrackingdemo.Entity.UserProfile;
 import java.io.IOException;
 
 /**
@@ -26,8 +26,8 @@ public class CreateAccCtrler {
         if (validationIsSuccessful == 0) {
             
             // Create a new user profile entry 
-            HealthOrganization ho = new HealthOrganization();
-            User user = ho.showUserProfile(username);
+            UserProfile ho = new UserProfile();
+            UserProfile user = ho.showUserProfile(username);
             
             if (user != null) {
                 
@@ -42,7 +42,7 @@ public class CreateAccCtrler {
                 
                     // if a new public user is created
                     // Create a new health record entry with specified username too
-                    HealthStaff hs = new HealthStaff();
+                    HealthRecord hs = new HealthRecord();
                     hs.createRec(username, null, "No", "01/01/1001", null, "No", "01/01/1001");
                 }
             }

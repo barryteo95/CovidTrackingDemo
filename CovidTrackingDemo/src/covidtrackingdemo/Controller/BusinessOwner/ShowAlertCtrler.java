@@ -5,7 +5,7 @@
  */
 package covidtrackingdemo.Controller.BusinessOwner;
 
-import covidtrackingdemo.Entity.Alert;
+import covidtrackingdemo.Entity.AlertRecord;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -18,11 +18,11 @@ public class ShowAlertCtrler {
     
     public ShowAlertCtrler() {}
     
-    public ArrayList<Alert> showAlert(String accName) throws IOException {
+    public ArrayList<AlertRecord> showAlert(String accName) throws IOException {
                         
         // Retrieve all alert entries
-        Alert alert = new Alert();
-        ArrayList<Alert> alertList = alert.showAlert();
+        AlertRecord alert = new AlertRecord();
+        ArrayList<AlertRecord> alertList = alert.showAlert();
         
         /*
          * For each alert entry,
@@ -33,7 +33,7 @@ public class ShowAlertCtrler {
         
         while (itr.hasNext()) {
             
-            Alert a = (Alert) itr.next();
+            AlertRecord a = (AlertRecord) itr.next();
             
             if (!accName.equals(a.getUsername())) {
                 

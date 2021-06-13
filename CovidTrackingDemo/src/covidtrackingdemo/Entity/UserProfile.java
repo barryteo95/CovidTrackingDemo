@@ -8,12 +8,13 @@ package covidtrackingdemo.Entity;
 import covidtrackingdemo.UserProfiles;
 import java.io.FileNotFoundException;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  *
  * @author User
  */
-public class User {
+public class UserProfile {
     
     private String username;
     private String password;
@@ -21,7 +22,7 @@ public class User {
     private String firstName;
     private String lastName;
     
-    public User(){}
+    public UserProfile(){}
     
     // Accessor Methods
     public String getUsername() { return username; }
@@ -42,7 +43,7 @@ public class User {
                         
         // Retrieve specified user profile entry 
         UserProfiles db = new UserProfiles();
-        User user = db.select(username);
+        UserProfile user = db.select(username);
         
         if (user == null) {
             
@@ -61,5 +62,42 @@ public class User {
             // Correct password, return privilege
             return user.getPrivilege();
         }         
+    }
+    
+    public void createAcc(String username, String password, String privilege, String firstName, String lastName) throws IOException {
+                
+        // Insert a new user profile entry
+        UserProfiles db = new UserProfiles();
+        db.insert(username, password, privilege, firstName, lastName);
+    }    
+    
+    public void updateAcc(String username, String password, String privilege, String firstName, String lastName) throws IOException {
+                
+        // Update the specified user profile entry
+        UserProfiles db = new UserProfiles();
+        db.update(username, password, privilege, firstName, lastName);
+    }
+    
+    public void suspendAcc(String username, String password, String privilege, String firstName, String lastName) throws IOException {
+    
+        // Suspend the specified user profile entry
+        UserProfiles db = new UserProfiles();
+        db.update(username, password, privilege, firstName, lastName);
+    }
+    
+    public UserProfile showUserProfile(String accName) throws IOException {
+    
+        UserProfiles db = new UserProfiles();
+        
+        // Retrieve the specified user profile entry
+        return db.select(accName);
+    }
+    
+    public ArrayList<UserProfile> showUserProfile() throws IOException {
+    
+        UserProfiles db = new UserProfiles();
+                
+        // Retrieve all user profile entries
+        return db.select();
     }
 }

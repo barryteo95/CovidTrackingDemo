@@ -15,14 +15,14 @@ import java.util.Set;
  *
  * @author User
  */
-public class Alert {
+public class AlertRecord {
     
     private String username;
     private String alertType;
     private String alertDate;
     private String isAcknowledge;
     
-    public Alert() {}
+    public AlertRecord() {}
     
     // Accessor Methods
     public String getUsername() { 
@@ -81,7 +81,7 @@ public class Alert {
         return true;
     }
     
-    public ArrayList<Alert> showAlert() throws IOException {
+    public ArrayList<AlertRecord> showAlert() throws IOException {
     
         AlertRecords ar = new AlertRecords();
         

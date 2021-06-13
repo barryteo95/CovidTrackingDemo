@@ -5,8 +5,8 @@
  */
 package covidtrackingdemo.Controller.PublicUser;
 
-import covidtrackingdemo.Entity.HealthOrganization;
-import covidtrackingdemo.Entity.User;
+import covidtrackingdemo.Entity.UserProfile;
+import covidtrackingdemo.Entity.UserProfile;
 import java.io.IOException;
 
 /**
@@ -17,9 +17,9 @@ public class ShowUserProfileCtrler {
     
     public ShowUserProfileCtrler() {}
     
-    public User showUserProfile(String accName) throws IOException {
+    public UserProfile showUserProfile(String accName) throws IOException {
         
-        HealthOrganization ho = new HealthOrganization();
+        UserProfile ho = new UserProfile();
         
         // Retrieve specified user profile entry
         return ho.showUserProfile(accName);

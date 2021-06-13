@@ -5,8 +5,8 @@
  */
 package covidtrackingdemo.Controller.HealthOrganization;
 
-import covidtrackingdemo.Entity.HealthOrganization;
-import covidtrackingdemo.Entity.User;
+import covidtrackingdemo.Entity.UserProfile;
+import covidtrackingdemo.Entity.UserProfile;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -18,9 +18,9 @@ public class ShowUserProfilesCtrler {
     
     public ShowUserProfilesCtrler() {}
     
-    public ArrayList<User> showUserProfiles() throws IOException {
+    public ArrayList<UserProfile> showUserProfiles() throws IOException {
     
-        HealthOrganization ho = new HealthOrganization();
+        UserProfile ho = new UserProfile();
         
         // Retrieve all user profile entries
         return ho.showUserProfile();

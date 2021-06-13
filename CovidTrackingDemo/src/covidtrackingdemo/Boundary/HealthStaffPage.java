@@ -11,7 +11,7 @@ import covidtrackingdemo.Controller.HealthStaff.ShowHealthRecCtrler;
 import covidtrackingdemo.Controller.HealthStaff.SendExpAlertCtrler;
 import covidtrackingdemo.Controller.HealthStaff.SendInfAlertCtrler;
 import covidtrackingdemo.Controller.HealthStaff.SendVacAlertCtrler;
-import covidtrackingdemo.Entity.HealthStaff;
+import covidtrackingdemo.Entity.HealthRecord;
 import java.awt.Color;
 import java.awt.event.ItemEvent;
 import java.io.IOException;
@@ -931,14 +931,14 @@ public class HealthStaffPage extends javax.swing.JFrame {
         
         // Retrieve all health record entries
         ShowHealthRecCtrler shrc = new ShowHealthRecCtrler();
-        ArrayList<HealthStaff> userList = shrc.showHealthRec();
+        ArrayList<HealthRecord> userList = shrc.showHealthRec();
         
         // Populate health record table 
         DefaultTableModel model = (DefaultTableModel) healthRecTable.getModel();
         
         Object rowData[] = new Object[7];
         
-        for (HealthStaff user : userList) {
+        for (HealthRecord user : userList) {
                         
             rowData[0] = user.getUsername();
             rowData[1] = user.getVaccinatedBy();

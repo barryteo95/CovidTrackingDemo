@@ -5,7 +5,7 @@
  */
 package covidtrackingdemo.Controller.HealthOrganization;
 
-import covidtrackingdemo.Entity.HealthOrganization;
+import covidtrackingdemo.Entity.UserProfile;
 import java.io.IOException;
 
 /**
@@ -23,7 +23,7 @@ public class SuspendAccCtrler {
         if (validationIsSuccessful == 0) {
             
             // Suspend specified user profile entry
-            HealthOrganization ho = new HealthOrganization();
+            UserProfile ho = new UserProfile();
             ho.suspendAcc(username, "admin", privilege, firstName, lastName);
         }
 
